@@ -3,3 +3,7 @@ node_modules
 bundle.js
 bundle.js.map
 config*
+.idea/
+package.json
+.idea/modules.xml
+.idea/workspace.xml
