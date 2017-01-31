@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes)=> {
 			address:{
 				type: DataTypes.STRING
 			}
-
 		}, {
 			classMethods: {
 				associate: (models)=> {
@@ -22,7 +21,6 @@ module.exports = (sequelize, DataTypes)=> {
 			}
 		}
 	);
-
 	return Student;
 };
 
