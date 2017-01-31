@@ -5,13 +5,12 @@ module.exports = (sequelize, DataTypes)=> {
 	}, {
 		classMethods: {
 	      associate: function(models) {
-	        // Topic.hasMany(models.Student);
-	        // Topic.hasMany(models.Mentor);
+	        Topic.hasMany(models.Student);
+	        Topic.hasMany(models.Mentor);
 	      }
 	    }
 	}
 	);
-
 	return Topic;
 };
 
