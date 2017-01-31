@@ -2,7 +2,8 @@
 node_modules
 bundle.js
 bundle.js.map
-config*
+config/config.json
 .idea/
 .idea/modules.xml
 .idea/workspace.xml
+
