@@ -1,9 +1,10 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var Mentor = sequelize.define('Mentor', {
+  const Mentor = sequelize.define('Mentor', {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {notEmpty: true}
     },
     email: {
       type: DataTypes.STRING,
@@ -12,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Mentor.hasMany(models.Topic)
-        Mentor.belongsToMany(models.Topic, {through: 'Mentor_Topic'})
+        Mentor.hasMany(models.Topic);
+        Mentor.belongsToMany(models.Topic, {through: 'Mentor_Topic'});
       }
     }
   });

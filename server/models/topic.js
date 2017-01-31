@@ -1,14 +1,17 @@
 "use strict";
+
 module.exports = (sequelize, DataTypes)=> {
 	const Topic = sequelize.define("Topic", {
-		name: DataTypes.STRING
+		name: {
+			type: DataTypes.STRING,
+			validate: {notEmpty: true}
+		}
 	}, {
 		classMethods: {
-	      associate: function(models) {
-	        Topic.hasMany(models.Student);
-	        Topic.hasMany(models.Mentor);
-	      }
-	    }
+			associate: function(models) {
+
+			}
+		}
 	}
 	);
 	return Topic;
