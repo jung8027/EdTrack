@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes)=> {
                 type: DataTypes.STRING,
                 validate: {notEmpty: true}
             },
-
         }, {
             classMethods: {
                 associate: (models)=> {
@@ -19,6 +18,5 @@ module.exports = (sequelize, DataTypes)=> {
             }
         }
     );
-
     return Grade;
 };
