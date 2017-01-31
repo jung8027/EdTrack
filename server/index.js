@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
-const models = require('../models');
+const models = require('./models');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
