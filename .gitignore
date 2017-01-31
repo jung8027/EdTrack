@@ -3,6 +3,8 @@ node_modules
 bundle.js
 bundle.js.map
 config/config.json
+npm-debug.log
 .idea/
 .idea/modules.xml
 .idea/workspace.xml
+
