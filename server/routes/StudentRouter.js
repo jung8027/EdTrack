@@ -16,7 +16,7 @@ const getStudent = (req, res) => {
 	models.Student.findOne({
 		where: {id: req.params.id},
 		include: [{
-			model: models.grade, required: true
+			model: models.Grade, required: true
 		}]
 	})
 		.then(student => {
@@ -52,7 +52,7 @@ const updateStudent = (req, res) => {
 				}
 			}
 		)
-	}).then((updatedStudent)=> {
+	}).then((updatedStudent) => {
 		console.log(updatedStudent);
 		res.send(updatedStudent);
 	});

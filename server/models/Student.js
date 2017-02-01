@@ -1,24 +1,23 @@
 "use strict";
 
-module.exports = (sequelize, DataTypes)=> {
+module.exports = (sequelize, DataTypes) => {
 	const Student = sequelize.define("Student", {
-			name: {
+	 		name: {
 				type: DataTypes.STRING,
-        validate: {notEmpty: true}
+				validate: {notEmpty: true}
 			},
-			email:{
+			email: {
 				type: DataTypes.STRING,
 				validate: {isEmail: true}
 			},
-			address:{
+			address: {
 				type: DataTypes.STRING
 			}
 		}, {
 			classMethods: {
-				associate: (models)=> {
+				associate: (models) => {
 					Student.hasMany(models.Grade);
 					Student.hasMany(models.Topic);
-					Student.belongsToMany(models.Topic, {through: 'Student_Topic'});
 				}
 			}
 		}
