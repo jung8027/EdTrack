@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes)=> {
         }, {
             classMethods: {
                 associate: (models)=> {
-                    Grade.belongsTo(models.Student);
+                Grade.belongsTo(models.Student);
                 }
             }
         }
