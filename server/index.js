@@ -6,7 +6,7 @@ import open from 'open';
 const models = require('./models');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-
+const router = require('./routes')
 
 /* eslint-disable no-console */
 
@@ -43,6 +43,7 @@ models.sequelize.sync().then(()=> {
 	});
 });
 
+app.use("/api", router)
 
 app.get('/*', (req, res)=> {
 	res.sendFile(path.join( __dirname, '../client/index.html'));
