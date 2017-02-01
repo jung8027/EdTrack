@@ -14,7 +14,6 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Mentor.hasMany(models.Topic);
-        Mentor.belongsToMany(models.Topic, {through: 'Mentor_Topic'});
       }
     }
   });
