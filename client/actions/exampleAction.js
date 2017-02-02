@@ -12,13 +12,13 @@ export function fetchSomething() {
 
 	const request = $.ajax({
 		url: "https://c4q-dot-searchbertha-hrd.appspot.com/_ah/apiKey",
-		success: function(data) {
+		success: function (data) {
 			console.log('data', data)
 		}
 	});
 
-	return (dispatch)=>{
-		request.then((data)=>{
+	return (dispatch) => {
+		request.then((data) => {
 			dispatch({type: 'FETCH_SOMETHING', payload: data});
 		});
 	};
