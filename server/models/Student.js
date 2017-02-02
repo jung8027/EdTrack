@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
 	const Student = sequelize.define("Student", {
-	 		name: {
+			name: {
 				type: DataTypes.STRING,
 				validate: {notEmpty: true}
 			},

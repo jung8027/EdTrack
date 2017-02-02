@@ -1,9 +1,11 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 import App from '../components/App';
+import Student from '../components/student/Student';
 
 
 export default (
 	<Route path="/" component={App}>
+		<IndexRoute component={Student}/>
 	</Route>
 );
