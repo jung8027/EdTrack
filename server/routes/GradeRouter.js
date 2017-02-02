@@ -1,33 +1,37 @@
 const router = require("express").Router();
-const Grade = require("../models/Grade.js");
+const models = require("../models");
 
 const getAllGrades = (req, res) => {
-	Grade.findAll()
-	.then(( allGrades ) => res.send( allGrades ));
+	models.Grade.findAll({})
+	.then( allGrades => res.send( allGrades ));
 };
 
 const postGrade = (req, res) => {
-	Grade.create({
+	models.Grade.create({
 		grade: req.body.grade,
-		type: req.body.type
-	});
+		type: req.body.type,
+		StudentId: req.body.StudentId
+	})
+	.then( newGrade => res.send( newGrade ) );
 };
 
 const getGrade = (req, res) => {
-	Grade.findOne({ where: { id: req.params.id } })
-	.then( (grade) => res.send(grade) );
+	models.Grade.findOne({ where: { id: req.params.id } })
+	.then( grade => res.send(grade) );
 };
 
 const updateGrade = (req, res) => {
-	Grade.findOne({ where: { id: req.params.id } })
-	.then( (grade) => grade.update({
+	models.Grade.findOne({ where: { id: req.params.id } })
+	.then( grade => grade.update({
 		grade: req.body.grade,
-		type: req.body.type
-	}) );
+		type: req.body.type,
+		StudentId: req.body.StudentId
+	}) )
+	.then( updatedGrade => res.send(updatedGrade) );
 };
 
 const deleteGrade = (req, res) => {
-	Grade.destroy({ where: { id: req.params.id } })
+	models.Grade.destroy({ where: { id: req.params.id } })
 	.then( () => res.send("grade removed") );
 };
 
