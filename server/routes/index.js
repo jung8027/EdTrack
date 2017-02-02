@@ -1,5 +1,5 @@
-var express = require('express');
-var router  = express.Router();
+const express = require('express');
+const router  = express.Router();
 
 router.use("/topic", require('./TopicRouter.js'));
 router.use("/mentor", require('./MentorRouter.js'));
