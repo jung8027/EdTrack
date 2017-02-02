@@ -15,9 +15,7 @@ const app = express();
 const compiler = webpack(config);
 
 //body-parser middleware adds .body property to req (if we make a POST AJAX request with some data attached, that data will be accessible as req.body)
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -28,13 +26,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 
-models.sequelize.sync().then(()=> {
+models.sequelize.sync().then(() => {
 	/**
 	 * Listen on provided port, on all network interfaces.
 	 */
 
 
-	app.listen(port, (err)=> {
+	app.listen(port, (err) => {
 		if (err) {
 			console.log(err);
 		} else {
@@ -45,6 +43,6 @@ models.sequelize.sync().then(()=> {
 
 app.use("/api", router);
 
-app.get('/*', (req, res)=> {
-	res.sendFile(path.join( __dirname, '../client/index.html'));
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
