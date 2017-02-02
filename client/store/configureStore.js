@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import reducer from '../reducers';
+import reducer from './rootReducer';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';//this middleware ensures immutability of the redux store
 import logger from 'redux-logger';//logs actions, prev state and next state to the console
 import thunk from 'redux-thunk';

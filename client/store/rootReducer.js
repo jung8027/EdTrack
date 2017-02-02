@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import exampleReducer from './exampleReducer';
+import exampleReducer from '../features/student/exampleReducer';
 
 const rootReducer = {
 	//here goes specific reducers
