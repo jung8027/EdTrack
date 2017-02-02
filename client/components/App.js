@@ -7,9 +7,15 @@ class App extends React.Component{
 			<div className ="container-fluid">
 				<h1>EdTrack</h1>
 				<h2>Performance Tracker</h2>
+				{this.props.children}
 			</div>
 		);
 	}
 }
+App.propTypes = {
+	children: PropTypes.object
+};
+
+
 
 export default App;
