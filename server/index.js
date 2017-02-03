@@ -36,9 +36,6 @@ if(!module.parent){
 		if (err) {
 			console.log(err);
 		}
-		else {
-			open(`http://localhost:${port}`);
-		}
 		});
 	}
 });
