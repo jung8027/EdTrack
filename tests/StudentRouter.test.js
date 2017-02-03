@@ -24,8 +24,8 @@ describe('Students tests', () => {
 				expect(res.body.length).eql(2);
 				expect(res.body[0].name).equal('test0');
 				expect(res.body[1].name).equal('test1');
-				// done();
-			}).then(done())
+				done();
+			})
 			.catch((err)=> console.log(err))
 	});
 

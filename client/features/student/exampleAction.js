@@ -11,7 +11,7 @@ import $ from 'jquery';
 export function fetchSomething() {
 
 	const request = $.ajax({
-		url: "https://c4q-dot-searchbertha-hrd.appspot.com/_ah/apiKey",
+		url: "api/students",
 		success: function (data) {
 			console.log('data', data)
 		}
@@ -19,7 +19,7 @@ export function fetchSomething() {
 
 	return (dispatch) => {
 		request.then((data) => {
-			dispatch({type: 'FETCH_SOMETHING', payload: data});
+			dispatch({type: 'FETCH_STUDENT', payload: data});
 		});
 	};
 }
