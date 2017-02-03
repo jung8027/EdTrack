@@ -8,6 +8,6 @@ import Mentor from '../features/mentor/Mentor';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Student}/>
-		<Route path='/mentor' component={Mentor}/>
+		<Route path="/mentor" component={Mentor}/>
 	</Route>
 );
