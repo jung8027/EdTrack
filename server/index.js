@@ -36,6 +36,9 @@ if(!module.parent){
 		if (err) {
 			console.log(err);
 		}
+		else {
+			console.log('listening to '+`http://localhost:${port}`);
+		}
 		});
 	}
 });
