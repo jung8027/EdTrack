@@ -31,14 +31,16 @@ models.sequelize.sync().then(() => {
 	 * Listen on provided port, on all network interfaces.
 	 */
 
-
-	app.listen(port, (err) => {
+if(!module.parent){
+    app.listen(port, (err) => {
 		if (err) {
 			console.log(err);
-		} else {
-			open(`http://localhost:${port}`);
 		}
-	});
+		// else {
+		// 	open(`http://localhost:${port}`);
+		// }
+		});
+	}
 });
 
 app.use("/api", router);
@@ -46,3 +48,5 @@ app.use("/api", router);
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+module.exports = app
