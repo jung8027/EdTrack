@@ -4,7 +4,7 @@
   "description": "app for student performance tracking",
   "scripts": {
 	"start": "npm-run-all --parallel open:src lint:watch",
-	"open:src": "node server/index.js --exec babel-node",
+	"open:src": "babel-node server/index.js",
 	"lint": "node_modules/.bin/esw webpack.config.* client server",
 	"lint:watch": "npm run lint -- --watch",
 	"test": "mocha --timeout 10000 --reporter progress server/testSetup.js \"tests/*.test.js\"",
