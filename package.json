@@ -7,7 +7,7 @@
 	"open:src": "nodemon server/index.js --exec babel-node",
 	"lint": "node_modules/.bin/esw webpack.config.* client server",
 	"lint:watch": "npm run lint -- --watch",
-	"test": "mocha --reporter progress server/testSetup.js \"tests/*.test.js\"",
+	"test": "mocha --reporter progress server/testSetup.js \"tests/*.test.js\" --timeout 5000",
 	"test:watch": "npm run test -- --watch"
   },
   "dependencies": {

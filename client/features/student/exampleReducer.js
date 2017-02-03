@@ -2,7 +2,7 @@
 
 export default function exampleReducer(state = {}, action) {
 	switch (action.type) {
-		case "SOMETHING":
+		case "FETCH_STUDENT":
 			return Object.assign({}, state, action.payload);
 		default:
 			return state;
