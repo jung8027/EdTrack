@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import App from '../components/App';
-import Student from '../components/student/Student';
+import App from '../features/app/App';
+import Student from '../features/student/Student';
 
 
 export default (

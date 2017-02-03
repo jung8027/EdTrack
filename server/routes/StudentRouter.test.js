@@ -1,13 +1,14 @@
 // const expect = require('chai').expect;
-// const server = require('../index');
-// const models = require('../models');
-// const supertest = require('supertest');
-//
-// describe('Our first test', () => {
-// 	it('should pass', () => {
-// 		expect(true).toEqual(true);
-// 	});
-// });
+import expect from 'expect';
+const server = require('../index');
+const models = require('../models');
+const supertest = require('supertest');
+
+describe('Our first test', () => {
+	it('should pass', () => {
+		expect(true).toEqual(false);
+	});
+});
 
 
 // describe('Students tests', () => {
