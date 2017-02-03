@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 
 //example of an redux action
-export function someAction(payload) {
-	return {type: 'SOMEACTIONS', payload: payload};
-}
+// export function someAction(payload) {
+// 	return {type: 'SOMEACTIONS', payload: payload};
+// }
 
 
 //example of an asynchronous actions using redux thunk

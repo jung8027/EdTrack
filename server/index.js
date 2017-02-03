@@ -36,9 +36,9 @@ if(!module.parent){
 		if (err) {
 			console.log(err);
 		}
-		// else {
-		// 	open(`http://localhost:${port}`);
-		// }
+		else {
+			open(`http://localhost:${port}`);
+		}
 		});
 	}
 });
@@ -49,4 +49,4 @@ app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-module.exports = app
+module.exports = app;

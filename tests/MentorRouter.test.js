@@ -1,6 +1,6 @@
 //require dev-dependencies
-let models = require('../models');
-let server = require('../index');
+let models = require('../server/models');
+let server = require('../server');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let should = require('chai').should();
