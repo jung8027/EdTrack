@@ -9,3 +9,5 @@ class Grade extends React.Component {
 		);
 	}
 }
+
+export default Grade;

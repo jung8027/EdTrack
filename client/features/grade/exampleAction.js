@@ -11,7 +11,7 @@ import $ from 'jquery';
 export function fetchSomething() {
 
 	const request = $.ajax({
-		url: "api/students",
+		url: "api/grade",
 		success: function (data) {
 			console.log('data', data)
 		}
@@ -19,7 +19,7 @@ export function fetchSomething() {
 
 	return (dispatch) => {
 		request.then((data) => {
-			dispatch({type: 'FETCH_STUDENT', payload: data});
+			dispatch({type: 'FETCH_GRADE', payload: data});
 		});
 	};
 }
