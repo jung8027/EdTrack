@@ -37,7 +37,7 @@ if(!module.parent){
 			console.log(err);
 		}
 		else {
-			open(`http://localhost:${port}`);
+			console.log(`http://localhost:${port}`);
 		}
 		});
 	}

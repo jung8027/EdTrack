@@ -1,8 +1,9 @@
 //example reducer that receives a prev state and an action and returns a new state
 
-export default function exampleReducer(state = {}, action) {
+export default function studentReducer(state = {}, action) {
 	switch (action.type) {
 		case "FETCH_STUDENT":
+			debugger;
 			return Object.assign({}, state, action.payload);
 		default:
 			return state;
