@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jung8027/EdTrack.png?label=ready&title=Ready)](https://waffle.io/jung8027/EdTrack)
 # EdTrack
 
 ##Objective
