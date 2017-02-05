@@ -28,32 +28,4 @@ describe('Students tests', () => {
 			})
 			.catch((err)=> console.log(err))
 	});
-
-
-
-// // test GET student by name
-// 	it(`'api/students/:name' should get 1 student`, (done) => {
-// 		supertest(server)
-// 			.get('/api/students/test1')
-// 			.end((err, res) => {
-// 				expect(res.body).be.a('array');
-// 				expect(res.body.length).equal(2);
-// 				expect(res.body[0].id).equal(2);
-// 				done();
-// 			});
-// 	});
-//
-// 	// test creating a new student
-// 	it(`'api/students' POST should post a new student to the database`, (done) => {
-// 		supertest(server)
-// 			.post('/api/students')
-// 			.type('form')
-// 			.send({studentname: 'iliass1', password:  'pass1',email: 'iliass1@gmail.com',profilePhoto:'',headerPhoto:'',website:'iliass1.com',birthday:'20-12-2012',location:'NY',bio:'what\'sup wala'})
-// 			.end((err, res) => {
-// 				expect(res.body).exist;
-// 				expect(res.body).be.a('object');
-// 				done();
-// 			});
-// 	});
-
 });
