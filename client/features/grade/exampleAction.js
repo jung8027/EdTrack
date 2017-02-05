@@ -1,4 +1,5 @@
-import axios from 'axios';
+import $ from 'jquery';
+
 
 //example of an redux action
 // export function someAction(payload) {
@@ -7,13 +8,18 @@ import axios from 'axios';
 
 
 //example of an asynchronous actions using redux thunk
-export function fetchStudent() {
+export function fetchSomething() {
 
-	const request = axios.get("api/student/1");
+	const request = $.ajax({
+		url: "api/grade",
+		success: function (data) {
+			console.log('data', data)
+		}
+	});
+
 	return (dispatch) => {
 		request.then((data) => {
-			console.log('student data ',data);
-			dispatch({type: 'FETCH_STUDENT', payload: data});
+			dispatch({type: 'FETCH_GRADE', payload: data});
 		});
 	};
 }

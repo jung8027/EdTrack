@@ -5,12 +5,8 @@ import logger from 'redux-logger';//logs actions, prev state and next state to t
 import thunk from 'redux-thunk';
 
 
-//syncs redux state to local storage
-import persistState from 'redux-localstorage';
-
-
 const enhancer = compose(
-	applyMiddleware(logger(), thunk, reduxImmutableStateInvariant()), persistState()
+	applyMiddleware(logger(), thunk, reduxImmutableStateInvariant())
 );
 
 

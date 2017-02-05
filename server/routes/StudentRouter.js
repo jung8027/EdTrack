@@ -38,25 +38,22 @@ const postStudent = (req, res) => {
 
 // // PUT (update) an existing student
 const updateStudent = (req, res) => {
-	models.Student.find(
+	models.Student.findOne(
 		{
 			where: {id: req.params.id}
 		}
 	).then((student) => {
 		student.update(
 			{
-				where: {
-					name: req.body.name,
-					email: req.body.email,
-					address: req.body.address
-				}
+				name: req.body.name,
+				email: req.body.email,
+				address: req.body.address
 			}
-		);
-	}).then((updatedStudent) => {
-		console.log(updatedStudent);
-		res.send(updatedStudent);
-	});
+
+		).then(updatedStudent=> res.send(updatedStudent))
+	})
 };
+
 
 // DELETE (delete) a student
 const deleteStudent = (req, res) => {

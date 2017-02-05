@@ -37,7 +37,8 @@ if(!module.parent){
 			console.log(err);
 		}
 		else {
-			console.log(`http://localhost:${port}`);
+
+			console.log('listening to '+`http://localhost:${port}`);
 		}
 		});
 	}

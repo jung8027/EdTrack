@@ -3,17 +3,21 @@ import React, {Component, PropTypes} from 'react';
 import 'jquery-ui';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as studentActions from './studentActions';
+import {fetchStudent} from './studentActions';
 const debug  = require('debug')('student');
 import Student from './Student';
-// import onStudentsEnter from '../../routes/route_data';
 
 
 class StudentContainer extends Component{
 	constructor(props, context){
 		super(props, context);
-		console.log('student container props',this.props);
+		console.log('student container props',props);
 	}
+	// render(){
+	// 	return (
+	// 		<Student {...this.props}/>
+	// 	)
+	// }
 }
 
 StudentContainer.propTypes = {
@@ -24,12 +28,11 @@ StudentContainer.propTypes = {
 
 const mapStateToProps= (state,ownProps)=>{
 	return {
-		student: state.student
+		student: state.studentReducer
 	};
 };
-debugger
 const mapDispatchToProps=(dispatch)=>({
-	actions: bindActionCreators({ studentActions }, dispatch)
+	actions: bindActionCreators({ fetchStudent }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Student);

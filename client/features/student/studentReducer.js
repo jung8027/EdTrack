@@ -3,10 +3,12 @@
 export default function studentReducer(state = {}, action) {
 	switch (action.type) {
 		case "FETCH_STUDENT":
-			debugger;
-			return Object.assign({}, state, action.payload);
+			state = Object.assign({}, state, action.payload);
+			console.log('student state', state);
+			return state;
 		default:
 			return state;
 	}
+
 
 }
