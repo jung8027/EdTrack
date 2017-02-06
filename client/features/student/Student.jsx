@@ -2,7 +2,6 @@
 import React, {PropTypes} from 'react';
 
 
-// class Student extends React.Component {
 const Student = (props)=>{
 		console.log('student component props',props.student.data);
 		return (
