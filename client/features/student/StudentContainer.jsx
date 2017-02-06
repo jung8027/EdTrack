@@ -31,6 +31,7 @@ const mapStateToProps= (state,ownProps)=>{
 		student: state.studentReducer
 	};
 };
+
 const mapDispatchToProps=(dispatch)=>({
 	actions: bindActionCreators({ fetchStudent }, dispatch)
 });
