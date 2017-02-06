@@ -7,10 +7,12 @@ import routes from './routes/routes';
 import configureStore from './store/configureStore';
 import './styles/styles.css'; //Webpack can import CSS files too
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import {fetchStudent} from './features/student/studentActions';
 
 
 const store = configureStore();
 
+store.dispatch(fetchStudent());
 
 render(
 	<Provider store={store}>

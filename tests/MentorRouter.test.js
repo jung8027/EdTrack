@@ -6,10 +6,20 @@ let chaiHttp = require('chai-http');
 let should = require('chai').should();
 let expect = require('chai').expect;
 let supertest = require('supertest');
+let MentorSeedFunc = require('../server/seeders/MentorSeed');
 
 chai.use(chaiHttp);
 
 describe('beginning mentor api tests', () => {
+	//Before the test we empty the database
+	before((done)	 => {
+    models.Mentor.sync({force: true})
+		.then(() => {
+			MentorSeedFunc();
+	    done();
+    });
+  });
+
 	//dummy test example
 	it(`sample test, should pass`, (done) => {
 		expect(3).equal(3);
@@ -28,7 +38,7 @@ describe('test if get mentors route is successful', () => {
 			.end((err, res) => {
 				if (err) done(err);
 				res.body.should.be.a('array');
-        expect(res.body.length).to.eql(4);
+        expect(res.body.length).to.eql(11);
 				done();
 			});
 	});
@@ -48,19 +58,30 @@ describe('test if get mentors route is successful', () => {
 				done();
 			});
 	});
-
 });
 
-// describe('new mentor with duplicate name. should receive ERROR MESSAGE: name must be unique', () => {
+describe('test if post mentors route is successful', () => {
 
-// 	let mentor2 = {name: "test3", email: 'newemail@gmail.com'};
-
-// 	// before((done)=>{
-// 	// 	return models.Mentor.sync()
-// 	// 	.then(() => models.Mentor.create(mentor2))
-// 	// 	.catch((err) => console.log('ERROR MESSAGE:', err.errors[0].message))
-// 	// 	.then(() => done());
-// 	// });
-
-
-// });
+	//create fake mentor
+	it(`'post to /api/mentor' to return created mentor information`, (done) => {
+		supertest(server)
+			.post('/api/mentor')
+			.set('content-type', 'application/x-www-form-urlencoded')
+			.send({
+				name: 'test4',
+				email: 'test4@gmail.com'
+			})
+			.expect(200)
+			.end((err, res) => {
+				if (err) done(err);
+				res.body.should.be.a('object');
+				expect(res.body).to.have.property('name');
+				expect(res.body.name).to.not.equal(null);
+				expect(res.body).to.have.property('email');
+				expect(res.body.email).to.not.equal(null);
+				expect(res.body).to.have.property('message');
+				expect(res.body.message).to.equal('Mentor successfully added!');
+				done();
+			});
+	});
+});

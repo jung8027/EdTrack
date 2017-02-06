@@ -12,7 +12,10 @@ const postNewMentor = (req, res) => {
 		name: req.body.name,
 		email: req.body.email
 	})
-		.then((MentorInfo) => res.send(MentorInfo));
+		.then((MentorInfo) => {
+			MentorInfo.dataValues.message = 'Mentor successfully added!';
+			res.send(MentorInfo);
+		});
 };
 
 const getSingleMentor = (req, res) => {
