@@ -8,7 +8,7 @@ import Grade from '../features/grade/Grade';
 
 export default (
 	<Route path="/" component={App}>
-		<Route path='/student' component={StudentContainer} />
+		<Route path='/student' component={StudentContainer}/>
 		<Route path='/mentor' component={Mentor}/>
 		<Route path='/grade' component={Grade}/>
 	</Route>
