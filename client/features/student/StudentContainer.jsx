@@ -13,11 +13,6 @@ class StudentContainer extends Component{
 		super(props, context);
 		console.log('student container props',props);
 	}
-	// render(){
-	// 	return (
-	// 		<Student {...this.props}/>
-	// 	)
-	// }
 }
 
 StudentContainer.propTypes = {
@@ -31,9 +26,9 @@ const mapStateToProps= (state,ownProps)=>{
 		student: state.studentReducer
 	};
 };
+
 const mapDispatchToProps=(dispatch)=>({
 	actions: bindActionCreators({ fetchStudent }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Student);
-

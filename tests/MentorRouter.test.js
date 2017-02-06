@@ -28,7 +28,7 @@ describe('test if get mentors route is successful', () => {
 			.end((err, res) => {
 				if (err) done(err);
 				res.body.should.be.a('array');
-        expect(res.body.length).to.eql(4);
+        expect(res.body.length).to.eql(11);
 				done();
 			});
 	});
@@ -50,17 +50,3 @@ describe('test if get mentors route is successful', () => {
 	});
 
 });
-
-// describe('new mentor with duplicate name. should receive ERROR MESSAGE: name must be unique', () => {
-
-// 	let mentor2 = {name: "test3", email: 'newemail@gmail.com'};
-
-// 	// before((done)=>{
-// 	// 	return models.Mentor.sync()
-// 	// 	.then(() => models.Mentor.create(mentor2))
-// 	// 	.catch((err) => console.log('ERROR MESSAGE:', err.errors[0].message))
-// 	// 	.then(() => done());
-// 	// });
-
-
-// });
