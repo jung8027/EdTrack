@@ -3,7 +3,7 @@
 export default function mentorReducer(state = [], action) {
 	switch (action.type) {
 		case "FETCH_MENTOR":
-			return action.payload;
+			return action.payload.data;
 		default:
 			return state;
 	}
