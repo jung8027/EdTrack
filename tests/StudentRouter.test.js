@@ -24,7 +24,6 @@ describe('Students tests', () => {
 	});
 	// test GET students from students table
 	it(`'api/student' GET should get all students`, (done) => {
-
 		supertest(server)
 			.get('/api/student')
 			.end((err, res) => {
@@ -39,8 +38,6 @@ describe('Students tests', () => {
 					done(e)
 				}
 			})
-
-
 	});
 
 // test GET student by name
@@ -67,5 +64,4 @@ describe('Students tests', () => {
 				done();
 			});
 	});
-
 });

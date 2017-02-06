@@ -18,6 +18,7 @@ class StudentContainer extends Component{
 			<Student {...this.props} />
 		)
 	}
+
 }
 
 StudentContainer.propTypes = {
@@ -31,6 +32,7 @@ const mapStateToProps= (state,ownProps)=>{
 		student: state.studentReducer
 	};
 };
+
 const mapDispatchToProps=(dispatch)=>({
 	actions: bindActionCreators({ fetchStudent }, dispatch)
 });
