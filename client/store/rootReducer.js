@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import exampleReducer from '../features/student/exampleReducer';
+import studentReducer from '../features/student/studentReducer';
 
 const rootReducer = {
 	//here goes specific reducers
-	exampleReducer
+	studentReducer
 };
 
 const reducer = combineReducers(rootReducer);

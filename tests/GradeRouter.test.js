@@ -2,7 +2,7 @@
 let models = require('../server/models');
 let server = require('../server');
 let chai = require('chai');
-let chaiHttp = require('chai-ht--tp');
+let chaiHttp = require('chai-http');
 let should = require('chai').should();
 let expect = require('chai').expect;
 let supertest = require('supertest');
@@ -28,7 +28,7 @@ describe('test if get grades route is successful', () => {
 			.end((err, res) => {
 				if (err) done(err);
 				res.body.should.be.a('array');
-        expect(res.body.length).to.eql(4);
+        expect(res.body.length).to.eql(0);
 				done();
 			});
 	});
