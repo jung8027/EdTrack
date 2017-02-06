@@ -1,9 +1,11 @@
-const Topic = require('../server/models').Topic;
+const Sequelize = require('sequelize');
+const models = require('../models');
+
 
 //Artist.sync will create the artists table
-Topic.sync({force: true})
+models.Topic.sync({force: true})
 //add the following three artists to the database:
-.then(() => Topic.bulkCreate([
+.then(() => models.Topic.bulkCreate([
   {name: 'React'},
   {name: 'Redux'},
   {name: 'Express'},
