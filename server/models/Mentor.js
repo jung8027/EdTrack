@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
 	const Mentor = sequelize.define('Mentor', {
 		name: {
 			type: DataTypes.STRING,
+			unique: true,
 			validate: {notEmpty: true}
 		},
 		email: {
