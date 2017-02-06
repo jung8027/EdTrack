@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const models = require('../models');
 
-//Student.sync will create the students table
+//Grade.sync will create the students table
 models.Grade.sync({force: true})
 //add the following Grades to the database:
 	.then(() => models.Grade.bulkCreate([
