@@ -28,7 +28,7 @@ describe('test if get grades route is successful', () => {
 			.end((err, res) => {
 				if (err) done(err);
 				res.body.should.be.a('array');
-        expect(res.body.length).to.eql(4);
+        expect(res.body.length).to.eql(0);
 				done();
 			});
 	});
