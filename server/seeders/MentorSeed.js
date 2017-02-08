@@ -16,4 +16,6 @@ const MentorSeedFunc = () => {
 	]);
 };
 
+MentorSeedFunc();
+
 module.exports = MentorSeedFunc;
