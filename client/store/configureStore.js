@@ -9,10 +9,10 @@ const enhancer = compose(
 	applyMiddleware(logger(), thunk, reduxImmutableStateInvariant())
 );
 
-
 export default function configureStore(initialState) {
 	return createStore(
 		reducer,
 		initialState,
-		enhancer);
+		enhancer
+	);
 }
