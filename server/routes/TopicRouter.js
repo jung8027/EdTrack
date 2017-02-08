@@ -8,30 +8,30 @@ const createTopic = (req, res) => {
 		// StudentId: req.body.StudentId
 	})
 		.then((data) => {
-			res.send(data)
-		})
+			res.send(data);
+		});
 };
 
 
 const getTopics = (req, res) => {
 	models.Topic.findAll()
 		.then((topics) => {
-			res.send(topics)
-		})
+			res.send(topics);
+		});
 };
 
 
 const getOneTopic = (req, res) => {
 	models.Topic.findById(req.params.id)
 		.then((data) => {
-			res.send(data)
-		})
+			res.send(data);
+		});
 };
 
 
 const deleteTopic = (req, res) => {
 	models.Topic.destroy({where: {id: req.params.id}})
-		.then(() => res.send('has been deleted'))
+		.then(() => res.send('has been deleted'));
 };
 
 
@@ -40,14 +40,14 @@ const updateTopic = (req, res) => {
 	models.Topic.findOne({where: {id: req.params.id}})
 		.then((topicInfo) => topicInfo.update({name: req.body.name})
 		)
-		.then((data) => res.send(data))
+		.then((data) => res.send(data));
 };
 
 
 //ROUTES
 router.route('/')
 	.post(createTopic)
-	.get(getTopics)
+	.get(getTopics);
 
 router.route('/:id')
 	.get(getOneTopic)

@@ -12,7 +12,7 @@ class Mentor extends React.Component {
 		return (
 			<div>
 				<h1>Mentors</h1>
-				{(this.props.mentors.data) ? this.props.mentors.data.map((ele,indx)=>(
+				{(this.props.mentors) ? this.props.mentors.map((ele,indx)=>(
 					<div key={indx}>
 					<p><strong>Name:</strong> {ele.name} <strong>Email:</strong> {ele.email}</p>
 					</div>
@@ -23,5 +23,10 @@ class Mentor extends React.Component {
 		);
 	}
 }
+
+Mentor.propTypes = {
+	mentors: PropTypes.array,
+	fetchMentors: PropTypes.func
+};
 
 export default Mentor;

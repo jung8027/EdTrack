@@ -6,10 +6,20 @@ let chaiHttp = require('chai-http');
 let should = require('chai').should();
 let expect = require('chai').expect;
 let supertest = require('supertest');
+let gradeSeedFunc = require('../server/seeders/gradeSeed');
+
 
 chai.use(chaiHttp);
 
 describe('beginning grade api tests', () => {
+	before((done)	 => { // before: runs before all tests
+    models.Grade.sync({force: true})
+		.then(() => {
+			gradeSeedFunc();
+			done();
+    });
+  });
+
 	//dummy test example
 	it(`sample test, should pass`, (done) => {
 		expect(3).equal(3);
@@ -17,7 +27,7 @@ describe('beginning grade api tests', () => {
 	});
 });
 
-describe('test if get grades route is successful', () => {
+describe('GET-grade(s)-Route Test', () => {
 
 	//example of how to do a test to get all grades route: /api/grade
 	it(`'/api/grade' should respond with all grades`, (done) => {
@@ -28,12 +38,12 @@ describe('test if get grades route is successful', () => {
 			.end((err, res) => {
 				if (err) done(err);
 				res.body.should.be.a('array');
-        expect(res.body.length).to.eql(0);
+        expect(res.body.length).to.eql(20);
 				done();
 			});
 	});
 
-	it(`'/api/grade' should respond with one grade.`, (done) => {
+	it(`'/api/grade/:id' should respond with one grade.`, (done) => {
 		supertest(server)
 			.get('/api/grade/1')
 			.set('Accept', 'application/json')
@@ -51,16 +61,31 @@ describe('test if get grades route is successful', () => {
 
 });
 
-// describe('new grade with duplicate grade. should receive ERROR MESSAGE: grade must be unique', () => {
 
-// 	let grade2 = {grade: "test3", type: 'newtype@gmail.com'};
+describe('POST-grade-route Test', () => {
 
-// 	// before((done)=>{
-// 	// 	return models.grade.sync()
-// 	// 	.then(() => models.grade.create(grade2))
-// 	// 	.catch((err) => console.log('ERROR MESSAGE:', err.errors[0].message))
-// 	// 	.then(() => done());
-// 	// });
+	//create fake grade
+	it(`'post to /api/grade' to return created grade information`, (done) => {
+		supertest(server)
+			.post('/api/grade')
+			.set('content-type', 'application/x-www-form-urlencoded')
+			.send({
+				grade: 86,
+				type: 'final',
+				StudentId: 4
+			})
+			.expect(200)
+			.end((err, res) => {
+				if (err) done(err);
+				res.body.should.be.a('object');
+				expect(res.body).to.have.property('grade');
+				expect(res.body.name).to.not.equal(null);
+				expect(res.body).to.have.property('type');
+				expect(res.body.email).to.not.equal(null);
+				expect(res.body).to.have.property('message');
+				expect(res.body.message).to.equal('Grade successfully added!');
+				done();
+			});
+	});
+});
 
-
-// });
