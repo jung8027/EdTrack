@@ -6,13 +6,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				validate: {notEmpty: true}
 			}
-		}, {
-			classMethods: {
-				associate: function (models) {
-					Topic.belongsToMany(models.Student, {through: 'Student_Topic'});
-					Topic.belongsToMany(models.Mentor, {through: 'Mentor_Topic'});
-				}
-			}
 		}
 	);
 	return Topic;

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Mentor = require('../models').Mentor;
+const Topic = require('../models').Topic;
 
 //FUNCTIONS//
 const getAllMentors = (req, res) => {
@@ -20,7 +21,8 @@ const postNewMentor = (req, res) => {
 
 const getSingleMentor = (req, res) => {
 	Mentor.findOne({
-		where: {id: req.params.id}
+		where: {id: req.params.id},
+		include: [{model: Topic}]
 	})
 		.then((MentorInfo) => res.send(MentorInfo));
 };
@@ -45,6 +47,18 @@ const deleteSingleMentor = (req, res) => {
 		.then(() => res.send('Mentor removed'));
 };
 
+const attachTopicsToMentor = (req,res) => {
+	let selectedTopics = JSON.parse(req.body.selectedTopics);
+	Mentor.findOne({
+		where: {id: req.params.id}
+	})
+		.then((MentorInfo) => {
+			MentorInfo.setTopics(selectedTopics);
+		})
+			.then((JoinsInfo) => {
+				res.send(JoinsInfo);
+			});
+};
 
 //ROUTES//
 router.route('/')
@@ -55,5 +69,8 @@ router.route('/:id')
 	.get(getSingleMentor)
 	.put(updateSingleMentor)
 	.delete(deleteSingleMentor);
+
+router.route('/:id/topic')
+	.post(attachTopicsToMentor);
 
 module.exports = router;

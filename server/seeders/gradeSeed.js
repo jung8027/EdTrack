@@ -41,5 +41,6 @@ const gradeSeedFunc = () => {
 
 };
 
+gradeSeedFunc();
 
 module.exports = gradeSeedFunc;
