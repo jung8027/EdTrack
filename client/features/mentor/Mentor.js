@@ -1,6 +1,4 @@
 import React, {PropTypes} from 'react';
-// import {fetchMentors} from './MentorAction';
-
 
 class Mentor extends React.Component {
 	constructor(props) {
@@ -8,7 +6,6 @@ class Mentor extends React.Component {
   }
 
 	render() {
-		console.log('app', this.props);
 		return (
 			<div>
 				<h1>Mentors</h1>

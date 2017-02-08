@@ -8,11 +8,13 @@ import configureStore from './store/configureStore';
 import './styles/styles.css'; //Webpack can import CSS files too
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {fetchStudent} from './features/student/studentActions';
+import { fetchTopics } from './features/topic/TopicAction';
 
 
 const store = configureStore();
 
 store.dispatch(fetchStudent());
+store.dispatch(fetchTopics());
 
 render(
 	<Provider store={store}>
