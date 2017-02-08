@@ -12,7 +12,10 @@ const postGrade = (req, res) => {
 		type: req.body.type,
 		StudentId: req.body.StudentId
 	})
-		.then(newGrade => res.send(newGrade));
+		.then(newGrade => {
+			newGrade.dataValues.message = 'Grade successfully added!';
+			res.send(newGrade);
+		});
 };
 
 const getGrade = (req, res) => {
