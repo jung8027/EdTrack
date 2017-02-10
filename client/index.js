@@ -10,6 +10,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {fetchStudent} from './features/student/studentActions';
 import { fetchTopics } from './features/topic/TopicAction';
 import {fetchGrade} from './features/grade/gradeActions';
+import {fetchStudentTopic} from './features/studentTopicList/StudentTopicActions';
 
 
 const store = configureStore();
@@ -17,6 +18,7 @@ const store = configureStore();
 store.dispatch(fetchStudent());
 store.dispatch(fetchTopics());
 store.dispatch(fetchGrade());
+store.dispatch(fetchStudentTopic(1));
 
 render(
 	<Provider store={store}>

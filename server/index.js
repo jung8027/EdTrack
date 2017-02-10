@@ -38,7 +38,8 @@ if(!module.parent){
 		}
 		else {
 
-			console.log('listening to '+`http://localhost:${port}`);
+			// console.log('listening to '+`http://localhost:${port}`);
+			console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
 		}
 		});
 	}

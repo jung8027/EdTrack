@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-//example of an redux action
-// export function someAction(payload) {
-// 	return {type: 'SOMEACTIONS', payload: payload};
-// }
-
-
 //example of an asynchronous actions using redux thunk
 export function fetchStudent() {
 

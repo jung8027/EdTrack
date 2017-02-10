@@ -6,21 +6,22 @@ let chaiHttp = require('chai-http');
 let should = require('chai').should();
 const expect = require('chai').expect;
 chai.use(chaiHttp);
+let StudentSeedFunc = require('../server/seeders/studentSeed');
+
 
 describe('Students tests', () => {
 	//fake student data that we'll use for tests
-	let students = [
-		{name: 'test1', email: 'test1@gmail.com', address: '123 main st'},
-		{name: 'test2', email: 'test2@gmail.com', address: '11 grove st'},
-		{name: 'test3', email: 'test3@gmail.com', address: '500 5 ave'},
-	];
+	let students = 	StudentSeedFunc();
+
 	//you can use 'before' to seed your database with data before your tests
 	//you only need one 'before' statement
 	//theres also a 'beforeEach' method if you want a function to run before each of your tests, individually
-	before(() => {
-		return models.Student.sync({force: true})
-			.then(() => models.Student.bulkCreate(students))
-			.catch((err) => console.log('DB Err!', err));
+	before((done)	 => {
+		models.Student.sync({force: true})
+			.then(() => {
+				students
+				done();
+			});
 	});
 	// test GET students from students table
 	it(`'api/student' GET should get all students`, (done) => {
@@ -28,10 +29,11 @@ describe('Students tests', () => {
 			.get('/api/student')
 			.end((err, res) => {
 				try {
-					expect(res.body.length).equal(3);
+					expect(res.body.length).equal(4);
 					expect(res.body[0].name).equal(students[0].name);
 					expect(res.body[1].name).equal(students[1].name);
 					expect(res.body[2].name).equal(students[2].name);
+					expect(res.body[3].name).equal(students[3].name);
 					done();
 				}
 				catch (e) {
