@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
 			classMethods: {
 				associate: (models) => {
 					Student.hasMany(models.Grade);
-					Student.hasMany(models.Topic);
+					Student.belongsToMany(models.Topic, {through: 'Student_Topic'});
+
 				}
 			}
 		}

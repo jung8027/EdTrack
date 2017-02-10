@@ -77,8 +77,8 @@ const addStudentTopicList = (req, res) => {
 		}
 	})
 		.then(student => {
-			student.setTopics(JSON.parse(req.body.selected));
-			console.log('student topic', student);
+			console.log('req.body',req.body);
+			student.setTopics(req.body.selectedTopics);
 			res.send(student);
 		});
 };
