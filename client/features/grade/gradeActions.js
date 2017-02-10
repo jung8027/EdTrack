@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function fetchGrade() {
+const fetchGrade = ()  => {
 
 	const request = axios.get("api/grade/1");
 	return (dispatch) => {
@@ -10,3 +10,20 @@ export function fetchGrade() {
 		});
 	};
 }
+
+
+const fetchAllGrades = ()  => {
+
+	const request = axios.get("api/grade/");
+	return (dispatch) => {
+		request.then((allGrade) => {
+			console.log('api/grade/ response:',allGrade);
+			dispatch({type: 'FETCH_ALL_GRADE', payload: allGrade});
+		});
+	};
+}
+
+export {
+	fetchGrade,
+	fetchAllGrades
+};
