@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-//example of an redux action
-// export function someAction(payload) {
-// 	return {type: 'SOMEACTIONS', payload: payload};
-// }
-
 
 //example of an asynchronous actions using redux thunk
 export function fetchStudentTopic(studentId) {
@@ -17,13 +12,3 @@ export function fetchStudentTopic(studentId) {
 		});
 	};
 }
-
-// export function addStudentTopic(studentId, selectedTopics) {
-// 	console.log('selected topic in actions', selectedTopics);
-// 	const request = axios.post(`'api/student/${parseInt(studentId)}/topicList/`,{selectedTopics: selectedTopics});
-// 	return (dispatch) => {
-// 		request.then(() => {
-// 			dispatch({type: 'SAVE_TOPIC_LIST', payload: selectedTopics});
-// 		});
-// 	};
-// }
