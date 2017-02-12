@@ -4,8 +4,6 @@ const models = require('../models');
 const createTopic = (req, res) => {
 	models.Topic.create({
 		name: req.body.name
-		// MentorId: req.body.MentorId,
-		// StudentId: req.body.StudentId
 	})
 		.then((data) => {
 			res.send(data);
