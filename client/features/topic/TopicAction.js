@@ -10,8 +10,8 @@ export const fetchTopics = () => (dispatch) => {
 
 
 export function addStudentTopic(studentId, selectedTopics) {
-	console.log('selected topic in actions', selectedTopics);
 	const request = axios.post(`api/student/${parseInt(studentId)}/topicList/`,
+		// The querystring.stringify() method produces a URL query string from a given obj by iterating through the object's "own properties"
 		querystring.stringify(
 			{selectedTopics: selectedTopics}), {
 			headers: {

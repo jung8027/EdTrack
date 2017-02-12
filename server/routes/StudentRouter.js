@@ -3,9 +3,9 @@ const router = express.Router();
 const models = require('../models');
 
 
-// GET all students information fully populated
+// GET all students information fully populated including their topics selected
 const getStudents = (req, res) => {
-	models.Student.findAll({})
+	models.Student.findAll({include:[{model: models.Topic}]})
 		.then((students) => {
 			res.send(students);
 		});
@@ -77,7 +77,6 @@ const addStudentTopicList = (req, res) => {
 		}
 	})
 		.then(student => {
-			console.log('req.body',req.body);
 			student.setTopics(req.body.selectedTopics);
 			res.send(student);
 		});
@@ -89,12 +88,11 @@ const getStudentTopicList = (req, res) => {
 			id: req.params.StudentId
 		},
 		include: [
-			{model:models.Topic}
-			]
+			{model: models.Topic}
+		]
 	})
 		.then(topics => {
 			topics.getTopics();
-			console.log(topics);
 			res.send(topics);
 		});
 };
@@ -113,9 +111,6 @@ router.route('/:id')
 router.route('/:StudentId/topicList')
 	.post(addStudentTopicList)
 	.get(getStudentTopicList);
-
-
-
 
 
 module.exports = router;
