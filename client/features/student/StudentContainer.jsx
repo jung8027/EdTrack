@@ -4,36 +4,39 @@ import 'jquery-ui';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchStudent} from './studentActions';
-const debug  = require('debug')('student');
+const debug = require('debug')('student');
 import Student from './Student';
+// import GradeContainer from '../grade/GradeContainer';
 
-
-class StudentContainer extends Component{
-	constructor(props, context){
+class StudentContainer extends Component {
+	constructor(props, context) {
 		super(props, context);
-		console.log('student container props',props);
+		console.log('student container props', props);
 	}
-	render(){
+
+	render() {
 		return (
-			<Student {...this.props} />
+			<div>
+				<Student {...this.props} />
+			</div>
 		)
 	}
 }
 
 StudentContainer.propTypes = {
-	actions : PropTypes.object.isRequired,
+	actions: PropTypes.object.isRequired,
 	student: PropTypes.object,
 	fetchStudent: PropTypes.func
 };
 
-const mapStateToProps= (state,ownProps)=>{
+const mapStateToProps = (state, ownProps) => {
 	return {
 		student: state.studentReducer
 	};
 };
 
-const mapDispatchToProps=(dispatch)=>({
-	actions: bindActionCreators({ fetchStudent }, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+	actions: bindActionCreators({fetchStudent}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentContainer);

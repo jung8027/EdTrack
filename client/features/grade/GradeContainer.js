@@ -10,6 +10,7 @@ import {fetchGrade} from "./gradeActions";
 class GradeContainer extends Component{
 	constructor(props, context){
 		super(props, context);
+
 		console.log('grade container props', props);
 	}
 	render(){
