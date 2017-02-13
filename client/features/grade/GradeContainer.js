@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 const debug  = require('debug')('grade');
 
 import Grade from './Grade';
-import {fetchGrade} from "./gradeActions";
+import {fetchGrade, fetchAllGrades} from "./gradeActions";
 
 class GradeContainer extends Component{
 	constructor(props, context){
@@ -23,7 +23,8 @@ class GradeContainer extends Component{
 GradeContainer.propTypes = {
 	actions : PropTypes.object.isRequired,
 	grade: PropTypes.object,
-	fetchGrade: PropTypes.func
+	fetchGrade: PropTypes.func,
+	fetchAllGrades: PropTypes.func,
 };
 
 const mapStateToProps= (state,ownProps)=>{
@@ -35,7 +36,8 @@ const mapStateToProps= (state,ownProps)=>{
 };
 
 const mapDispatchToProps=(dispatch)=>({
-	actions: bindActionCreators({ fetchGrade }, dispatch)
+	// actions: bindActionCreators({ fetchGrade }, dispatch)
+	actions: bindActionCreators({ fetchAllGrades }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GradeContainer);
