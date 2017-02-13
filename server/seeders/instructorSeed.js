@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const models = require("../models");
 
-const InstructorSeedFunc = () => {
+const instructorSeedFunc = () => {
 	models.Student.sync({ force:true })
 		.then( () => {
 			models.Instructor.bulkCreate([
@@ -14,5 +14,5 @@ const InstructorSeedFunc = () => {
 		});
 };
 
-InstructorSeedFunc();
-module.exports = InstructorSeedFunc;
+instructorSeedFunc();
+module.exports = instructorSeedFunc;
