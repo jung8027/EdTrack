@@ -1,37 +1,39 @@
 import React, {PropTypes} from 'react';
 
-let selectedTopics = [];
 
-class Topic extends React.Component {
-	constructor(props){
-		super(props);
-	}
+const Topic = (props) => {
+	return (
+		<div>
+			<h1>Topic</h1>
+			{
+				(props.topics) ? props.topics.map((topic, indx) => (
+					<div key={indx}>
+						<input type="checkbox" id={topic.id} value={topic.id} onChange={props.logger}/>
+						<label htmlFor={topic.id}><h4>{topic.name}</h4></label>
 
-	logger(event){
-		let topicName = event.target.value;
-		(!event.target.checked)
-			? selectedTopics = selectedTopics.filter(topic => parseInt(topic) != parseInt(topicName))
-			: selectedTopics.push(parseInt(topicName));
-		console.log('topicsarray', selectedTopics);
-	}
+					</div>
+				)) : <p>loading...</p>
+			}
+			<input type="button" value="Add Topics" onClick={props.handleClick}/>
+			<br/>
+			<h2><strong>Topics that you need help with are :</strong></h2>
+			<ul>
+				{
+					props.selected ?
+						props.topics.filter(topic => props.selected.includes(topic.id))
+							.map((topic, indx) => <li key={indx}><strong>{topic.name}</strong></li>)
+						:
+						null
+				}
+			</ul>
+		</div>
+	);
+};
 
-	render(){
-		console.log('topic', this.props);
-		return(
-			<div>
-				<h1>Topic</h1>
-						{
-							(this.props.topics) ? this.props.topics.map((topic, indx)=>(
-								<div key={indx}>
-									<input type="checkbox" id={topic.id} value={topic.id} onChange={this.logger}/>
-									<label htmlFor={topic.id}><h4>{topic.name}</h4></label>
-								</div>
-							)) : <p>loading...</p>
-						}
-				<input type='submit' placeholder='submit' onClick={this.logger}/>
-			</div>
-		);
-	}
-}
-
+Topic.propTypes = {
+	handleClick: PropTypes.func,
+	logger: PropTypes.func,
+	topics: PropTypes.array,
+	selected: PropTypes.array
+};
 export default Topic;

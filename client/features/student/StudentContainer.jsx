@@ -18,7 +18,6 @@ class StudentContainer extends Component{
 			<Student {...this.props} />
 		)
 	}
-
 }
 
 StudentContainer.propTypes = {
