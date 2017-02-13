@@ -71,7 +71,7 @@ describe('POST-grade-route Test', () => {
 			.set('content-type', 'application/x-www-form-urlencoded')
 			.send({
 				grade: 86,
-				type: 'final',
+				type: 'quiz',
 				StudentId: 4
 			})
 			.expect(200)
