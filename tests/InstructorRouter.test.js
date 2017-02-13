@@ -81,7 +81,7 @@ describe('POST-instructor-route Test', () => {
 				expect(res.body).to.have.property('email');
 				expect(res.body.email).to.not.equal(null);
 				expect(res.body).to.have.property('message');
-				expect(res.body.message).to.equal('instructor successfully added!');
+				expect(res.body.message).to.equal('Instructor added successfully !');
 				done();
 			});
 	});
