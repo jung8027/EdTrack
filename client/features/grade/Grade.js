@@ -4,14 +4,11 @@ import React, {PropTypes} from 'react';
 const Grade = (props)=>{
 		console.log('grade component props', props);
 		let grade = props.grade.data; // Array[21]
-		let student = 3;
+		let student = 1;
 		let unit = 5;
 		if (grade) {
 			var studentGrades = grade.filter( grade => grade.StudentId === student );
-			// console.log( "studentGrades", studentGrades);
 			var studentAverage = studentGrades.reduce( (gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / studentGrades.length ;
-			console.log('studentAverage', studentAverage);
-
 			var classAverage = grade.reduce( (gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grade.length ;
 		}
 		
