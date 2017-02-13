@@ -4,7 +4,7 @@ import studentReducer from '../features/student/studentReducer';
 import topicReducer from '../features/topic/TopicReducer';
 import gradeReducer from '../features/grade/gradeReducer';
 import studentTopicReducer from '../features/studentTopicList/StudentTopicReducer';
-import instructorReducer from '../features/grade/instructorReducer';
+import instructorReducer from '../features/instructor/instructorReducer';
 
 const rootReducer = {
 	mentorReducer,

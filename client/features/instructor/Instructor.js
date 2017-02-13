@@ -1,15 +1,17 @@
 import React, { PropTypes } from "react";
 
 const Instructor = props => {
-	let instructor = props.instructor.data;
+	console.log("Instructor prop: ", props);
+	// let instructor = props.instructor;
 
 	return (
 		<div>
 			<h1>Instructor View</h1>
-			{ !instructor ?
-					<p>Loading Instructor</p> :
+			{ !props.instructor ?
+					<p>Loading Instructor...</p> :
 					<div>
-						Hello, Instructor {instructor.name}, this is your class overview:
+						<h3>Hello, Instructor {props.instructor.name}</h3>
+
 					</div>
 			}
 		</div>

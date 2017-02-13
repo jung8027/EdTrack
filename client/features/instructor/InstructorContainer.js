@@ -4,12 +4,13 @@ import {bindActionCreators} from 'redux';
 const debug  = require('debug')('instructor');
 
 import Instructor from './Instructor';
-import { fetchInstructor } from "./InstructorActions";
+import { fetchInstructor } from "./instructorActions";
 
 class InstructorContainer extends Component{
 	constructor( props ){
 		super( props );
-		this.props.fetchInstructor();
+		// this.props.fetchInstructor();
+		console.log("InstructorContainer props", props);
 	}
 
 	render(){
@@ -34,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators({ fetchInstructor }, dispatch)
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( InstructorContainer )
+export default connect( mapStateToProps, mapDispatchToProps )( InstructorContainer );
