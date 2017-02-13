@@ -11,7 +11,7 @@ const Grade = (props)=>{
 			var studentAverage = studentGrades.reduce( (gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / studentGrades.length ;
 			var classAverage = grade.reduce( (gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grade.length ;
 		}
-		
+
 
 		return (
 			<div>
@@ -21,7 +21,7 @@ const Grade = (props)=>{
 					<div>
 						<h3>Hey Student {student}, these are your grades for unit {unit}:</h3> <br/>
 						<ul>
-							{	
+							{
 								grade.map( (grade, index) => {
 									if (grade.StudentId === student) {
 										return (
@@ -38,7 +38,7 @@ const Grade = (props)=>{
 						{
 							studentAverage < classAverage ? (
 								<h3> It seems like you're falling behind, which topic(s) would you like to get help with ?
- </h3>
+								</h3>
 							) : <h3>Looking good !</h3>
 						}
 					</div>
