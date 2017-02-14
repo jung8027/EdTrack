@@ -6,4 +6,4 @@ config/config.json
 npm-debug.log
 .idea/
 .idea/modules.xml
-.idea/workspace.xml
+.idea/workspace.xmlsendgrid.env

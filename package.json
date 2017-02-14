@@ -36,6 +36,8 @@
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.7.4",
     "redux-thunk": "2.1.0",
+    "sendgrid": "^4.7.1",
+    "sendgrid-rest": "^2.3.0",
     "sequelize": "^3.28.0",
     "sequelize-cli": "^2.5.1",
     "sequelize-cmd": "0.0.9",

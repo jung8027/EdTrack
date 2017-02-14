@@ -8,4 +8,6 @@ router.use("/student", require('./StudentRouter.js'));
 router.use("/class", require('./ClassRouter.js'));
 router.use("/instructor", require('./InstructorRouter.js'));
 
+router.use("/email", require('./EmailRouter.js'));
+
 module.exports = router;
