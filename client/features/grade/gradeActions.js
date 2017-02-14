@@ -2,10 +2,9 @@ import axios from 'axios';
 
 const fetchGrade = ()  => {
 
-	const request = axios.get("api/grade/1");
+	const request = axios.get("api/grade/2");
 	return (dispatch) => {
 		request.then((grade) => {
-			console.log('api/grade/1 response:',grade);
 			dispatch({type: 'FETCH_GRADE', payload: grade.data});
 		});
 	};
