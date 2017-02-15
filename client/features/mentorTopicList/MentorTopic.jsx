@@ -43,16 +43,16 @@ const MentorTopic = React.createClass({
 			<div>
 				{
 					(this.state.mentor)
-					? <div>
-							<br/>
-							<h3>Hello {this.state.mentor.name} </h3>
-							<h4><strong>Email:</strong> {this.state.mentor.email}</h4>
-							<h4>You already know these topics:</h4>
-							{this.state.mentor.Topics.map((topic, indx) =>
-								<p key={indx}>{topic.name}</p>
-							)}
-						</div>
-					: <p>loading profile...</p>
+						? <div>
+								<br/>
+								<h3>Hello {this.state.mentor.name} </h3>
+								<h4><strong>Email:</strong> {this.state.mentor.email}</h4>
+								<h4>You already know these topics:</h4>
+								{this.state.mentor.Topics.map((topic, indx) =>
+									<p key={indx}>{topic.name}</p>
+								)}
+							</div>
+						: <p>loading profile...</p>
 				}
 
 				<h3>Please click on the list of topics you are willing to teach:</h3>
