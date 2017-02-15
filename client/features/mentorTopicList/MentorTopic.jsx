@@ -43,7 +43,7 @@ const MentorTopic = React.createClass({
 			<div>
 				{
 					(this.state.mentor)
-						? <div>
+						?	<div>
 								<br/>
 								<h3>Hello {this.state.mentor.name} </h3>
 								<h4><strong>Email:</strong> {this.state.mentor.email}</h4>
