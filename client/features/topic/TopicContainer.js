@@ -15,10 +15,12 @@ class TopicContainer extends Component{
 
 	}
 	logger(event) {
+		console.log('e.trg',event.target);
 		let topicName = event.target.value;
-		(!event.target.checked)
-			? this.selected = this.selected.filter(topic => parseInt(topic) != parseInt(topicName))
-			: this.selected.push(parseInt(topicName));
+		this.selected.push(parseInt(topicName));
+		// (!event.target.checked)
+		// 	? this.selected = this.selected.filter(topic => parseInt(topic) != parseInt(topicName))
+		// 	: this.selected.push(parseInt(topicName));
 	}
 	handleClick(e) {
 		e.preventDefault();

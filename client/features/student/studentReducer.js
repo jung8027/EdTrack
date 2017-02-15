@@ -8,6 +8,4 @@ export default function studentReducer(state = {}, action) {
 		default:
 			return state;
 	}
-
-
 }

@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {fetchStudent} from './studentActions';
 const debug = require('debug')('student');
 import Student from './Student';
-// import GradeContainer from '../grade/GradeContainer';
+import GradeContainer from '../grade/GradeContainer';
 
 class StudentContainer extends Component {
 	constructor(props, context) {
@@ -16,12 +16,11 @@ class StudentContainer extends Component {
 
 	render() {
 		return (
-			<div>
-				<Student {...this.props} />
-			</div>
+						<Student {...this.props} />
 		)
 	}
 }
+
 
 StudentContainer.propTypes = {
 	actions: PropTypes.object.isRequired,
@@ -29,7 +28,7 @@ StudentContainer.propTypes = {
 	fetchStudent: PropTypes.func
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
 	return {
 		student: state.studentReducer
 	};
