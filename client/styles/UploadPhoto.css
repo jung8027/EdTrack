@@ -1,0 +1,87 @@
+#div-parent {
+  width: 40%;
+  height: auto;
+  margin: 20px auto;
+  overflow: hidden;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+#before-beg {
+	width: 303px;
+	height: 47px;
+	font-family: Rubik;
+	font-size: 40px;
+	line-height: 47px;
+	color: #545F7A;
+}
+
+#astronaut {
+	width: 128px;
+	height: 128px;
+	margin-bottom: 10px;
+}
+
+#Add-Prof {
+	width: 50%;
+  height: 38px;
+  font-family: Rubik;
+  font-size: 17px;
+  text-align: center;
+  line-height: 19px;
+  color: #545F7A;
+  margin-bottom: 17px;
+}
+
+#upload-pic {
+	width: 256px;
+	height: 43px;
+	background-color: #1ABC9C;
+	border-radius: 4px;
+	color: white;
+}
+
+#Skip-step {
+	width: 105px;
+  height: 19px;
+  font-family: Rubik;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #545F7A;
+}
+
+
+#uploadButton {
+	width: 256px;
+  height: 43px;
+  background-color: #1ABC9C;
+  border-radius: 4px;
+  color: white;
+  margin-top: 10px;
+}
+
+#continue-button {
+	width: 256px;
+  height: 43px;
+  background-color: #1ABC9C;
+  border-radius: 4px;
+  color: white;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+
+	#before-beg {
+		margin-bottom: 40px;
+	}
+
+	#Add-Prof {
+		margin-top: 40px;
+	}
+
+	#astronaut {
+		margin-top: 100px;
+	}
+
+}
