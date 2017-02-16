@@ -5,21 +5,19 @@ import $ from 'jquery';
 import '../../styles/ChangePicture.css';
 
 const ChangePicture = React.createClass({
-
 	getInitialState(){
 		return {img: ''}
 	},
 	componentDidMount: function () {
 	$.ajax({
-		url: "api/student/3",
+		url: "api/student/1",
 		method: 'GET',
 	})
 	.done((data)=>{this.setState({img:data})})
-},
+	},
 
 	handleFile(file){
 		let imageType = /^image\//;
-
 		if (!imageType.test(file.type)) {
 			console.log(file.type);
 			return;
@@ -28,13 +26,10 @@ const ChangePicture = React.createClass({
 		//attach image to screen
 		var preview = document.getElementById('image-preview')
 		preview.innerHTML = '';
-
 		var img = document.createElement("img");
 		img.className = "post-img";
 		img.file = file;
-
 		preview.appendChild(img);
-
 		let reader = new FileReader();
 
 		reader.onload = function(e) {
@@ -46,14 +41,9 @@ const ChangePicture = React.createClass({
 
 	handleChange(target, e){
 		let file = e.target.files ? e.target.files[0] : null;
-
 		if(target === 'img' && file){
-
 			this.setState({img: file});
-			console.log('state1',this.setState.img)
-
 			this.handleFile(file)
-
 		}
 	},
 	handleSubmit(e){
@@ -84,7 +74,6 @@ const ChangePicture = React.createClass({
 		document.getElementsByClassName('image-chooser')[0].click()
 	},
 
-
 	render(){
 		let img = this.state.img
 		return (
@@ -98,21 +87,16 @@ const ChangePicture = React.createClass({
 					<div id="image-preview"></div>
 
 					<div className= "submitButtons">
-					{
+						{
 							img ?
 							<img src={this.state.img.img_path}/>:
 							<h2>Loading...</h2>
-						}<br/>
+						} <br/>
 
-					<input id="continue-button" type="button" onClick={this.handleSubmit}  value="Continue" /><br/><br/>
-					<button id="uploadButton" type="button" onClick={this.handleClick}>Update profile picture</button><br/>
-
-
-						<Link to="/"><p id="Skip-step">Skip this step</p></Link>
-
-
+						<input id="continue-button" type="button" onClick={this.handleSubmit}  value="Continue" /><br/><br/>
+						<button id="uploadButton" type="button" onClick={this.handleClick}>Update profile picture</button><br/>
+							<Link to="/student"><p id="Skip-step">Skip this step</p></Link>
 					</div>
-
 				</form>
 			</div>
 		)

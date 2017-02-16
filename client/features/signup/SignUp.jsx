@@ -1,5 +1,3 @@
-// components SignUp, (UploadTest is test)
-
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
 import '../../styles/SignUp.css';
@@ -8,7 +6,6 @@ class Signup extends React.Component{
 	submitLogin(){
 		browserHistory.push('/upload-picture')
 	}
-
 	render() {
     return (
       <div>
