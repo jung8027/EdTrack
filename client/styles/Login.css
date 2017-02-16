@@ -1,0 +1,65 @@
+#edtrack-logo {
+	width: 320px;
+	height: 82.81px;
+	margin: 15px 474px;
+}
+
+
+#create-account {
+	width: 256px;
+	height: 43px;
+	background-color: #1ABC9C;
+	border-radius: 4px;
+	color: white;
+	margin-top: 15px;
+}
+
+#have-account {
+	margin-top: 17px;
+  width: 246px;
+  height: 19px;
+  font-family: Rubik;
+  font-size: 18px;
+  line-height: 19px;
+  color: #545F7A;
+	margin: 10px auto;
+}
+
+#signup {
+	width: 175px;
+  height: 28px;
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: #545F7A;
+	margin: 10px auto;	/*width: 87px;
+  height: 28px;
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: #545F7A;
+  margin-left: 581px;
+  margin-top: 42.16px;*/
+}
+
+
+#email-in {
+	width: 256px;
+	margin-top: 24px;
+	height: 36px;
+	background-color: #FFFFFF;
+	border: 1px solid #D0D2D3;
+	border-radius: 2px;
+}
+
+#password-in {
+	width: 256px;
+	margin-top: 16px;
+	height: 36px;
+	background-color: #FFFFFF;
+	border: 1px solid #D0D2D3;
+	border-radius: 2px;
+}
+
+
+

@@ -17,6 +17,12 @@ const compiler = webpack(config);
 //body-parser middleware adds .body property to req (if we make a POST AJAX request with some data attached, that data will be accessible as req.body)
 app.use(bodyParser.urlencoded({extended: true}));
 
+//return images from backend storage
+app.get('/image/:img', (req, res) => {
+	let userId = req.params.userId;
+	let img = req.params.img;
+  res.sendFile(path.join(__dirname, `images/${img}`));
+})
 
 app.use(require('webpack-dev-middleware')(compiler, {
 	noInfo: true,
