@@ -13,8 +13,10 @@ function sendMail(req, res){
 	const to_email = new helper.Email("quan.a.vuong@gmail.com");
 	const subject = "Mentor Session Info next Tuesday 2/21";
 
-	// const content = new helper.Content("text/html",'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EdTrack</title></head><body><h1>EdTrack Mentor Session Info</h1></body></html>');
-	const content = new helper.Content("text/html", '<!DOCTYPE html><html><head><style>div.container {width: 100%;border: 1px solid gray;}header, footer {padding: 1em;color: white;background-color: rgb(0, 180, 0);clear: left;text-align: center;}nav ul {list-style-type: none;padding: 0;}nav ul a {text-decoration: none;}#topics {margin-left: 170px;border-left: 1px solid gray;padding: 1em;overflow: hidden;}</style></head><body><div class="container"><header><h1> Mentor Session Info</h1></header><h1></h1><section id="students"> Iliass Quan Jung Luis</section><section id="topics"> # Final Topics ## Data Structures & Algorithms - hash tables (what are they + their practical use in JavaScript) - Big O Runtime (what is it + identifying runtime of various functions) - arrays (contiguous vs non-contiguous) - stacks and queues - recursion - linked lists</section><footer>Copyright &copy; EdTrack.io</footer></div></body></html>');
+	let students = JSON.stringify(req.body.students);
+	let topics = JSON.stringify(req.body.topics);
+
+	const content = new helper.Content("text/html", '<!DOCTYPE html><html><head><style>div.container {width: 100%;border: 1px solid gray;}header, footer {padding: 1em;color: white;background-color: #3F485D;clear: left;text-align: center;}nav ul {list-style-type: none;padding: 0;}nav ul a {text-decoration: none;}#topics {margin-left: 170px;border-left: 1px solid gray;padding: 1em;overflow: hidden;}</style></head><body><div class="container"><header><h1> Mentor Session Info</h1></header><h1></h1><section id="students">'+ students +'</section><section id="topics">'+ topics +'</section><footer>Copyright &copy; EdTrack.io</footer></div></body></html>');
 
 
 	const mail = new helper.Mail(from_email, subject, to_email, content);

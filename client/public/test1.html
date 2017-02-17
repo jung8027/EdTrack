@@ -1,67 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-div.container {
-    width: 100%;
-    border: 1px solid gray;
-}
+    <head>
+        <style>
+            div.container {
+                width: 100%;
+                border: 1px solid gray;
+            }
 
-header, footer {
-    padding: 1em;
-    color: white;
-    background-color: rgb(0, 180, 0);
-    clear: left;
-    text-align: center;
-}
+            header, footer {
+                padding: 1em;
+                color: white;
+                background-color: #3F485D;
+                clear: left;
+                text-align: center;
+            }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
+            #students {
+                float: left;
+            }
 
-nav ul a {
-    text-decoration: none;
-}
+            #topics {
+                float: right;
+            }
+            </style>
+        </head>
+    <body>
 
-#topics {
-    margin-left: 170px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
-}
-</style>
-</head>
-<body>
+    <div class="container">
 
-<div class="container">
+        <header>
+           <h1> Mentor Session Info</h1>
+        </header>
 
-<header>
-   <h1> Mentor Session Info</h1>
-</header>
+        <section id="students">
+        	'+ students +'
+        </section>
 
-<h1>
+        <section id="topics">
+            '+ topics +'
+        </section>
 
-</h1>
+        <footer>Copyright &copy; EdTrack.io</footer>
 
-<section id="students">
-	Iliass Quan Jung Luis
-</section>
+    </div>
 
-<section id="topics">
-	# Final Topics
-## Data Structures & Algorithms
-- hash tables (what are they + their practical use in JavaScript)
-- Big O Runtime (what is it + identifying runtime of various functions)
-- arrays (contiguous vs non-contiguous)
-- stacks and queues
-- recursion
-- linked lists
-</section>
-
-<footer>Copyright &copy; EdTrack.io</footer>
-
-</div>
-
-</body>
+    </body>
 </html>
