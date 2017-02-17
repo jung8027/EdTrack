@@ -10,7 +10,7 @@ function sendMail(req, res){
 	console.log('sendMail invoked!');
 
 	const from_email = new helper.Email("edtrack@googlegroups.com");
-	const to_email = new helper.Email("edtrack@googlegroups.com");
+	const to_email = new helper.Email("quan.a.vuong@gmail.com");
 	const subject = "Mentor Session Info next Tuesday 2/21";
 
 	// const content = new helper.Content("text/html",'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EdTrack</title></head><body><h1>EdTrack Mentor Session Info</h1></body></html>');
