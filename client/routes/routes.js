@@ -3,16 +3,14 @@ import {Route, IndexRoute} from 'react-router';
 import App from '../features/app/App';
 import MentorContainer from '../features/mentor/MentorContainer';
 import StudentContainer from '../features/student/StudentContainer.jsx';
-// import TopicContainer from '../features/topic/TopicContainer';
-// import GradeContainer from '../features/grade/GradeContainer';
-// import StudentTopicContainer from '../features/studentTopicList/StudentTopicContainer';
+import Student from '../features/student/Student.jsx';
+
+import TopicContainer from '../features/topic/TopicContainer';
+import GradeContainer from '../features/grade/GradeContainer';
 
 export default (
 	<Route path="/" component={App}>
-		<IndexRoute component={StudentContainer}/>
-		<Route path="/mentor" component={MentorContainer}/>
-		{/*<Route path="/grade" component={GradeContainer}/>*/}
-		{/*<Route path="/topic" component={TopicContainer}/>*/}
-		{/*<Route path="/studentTopic" component={StudentTopicContainer}/>*/}
+		<Route path="student/:id" component={StudentContainer}/>
+		<Route path="mentor" component={MentorContainer}/>
 	</Route>
 );

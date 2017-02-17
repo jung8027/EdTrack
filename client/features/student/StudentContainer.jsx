@@ -6,24 +6,28 @@ import {bindActionCreators} from 'redux';
 import {fetchStudent} from './studentActions';
 const debug = require('debug')('student');
 import Student from './Student';
-import GradeContainer from '../grade/GradeContainer';
 
 class StudentContainer extends Component {
 	constructor(props, context) {
 		super(props, context);
+		this.props.fetchStudent(this.props.params.id);
 		console.log('student container props', props);
-	}
 
+	}
+	// componentDidMount(){
+	// 	console.log('student id from params',this.props.params.id);
+	//
+    //
+	// }
 	render() {
 		return (
-						<Student {...this.props} />
+			<Student {...this.props} />
 		)
 	}
 }
 
 
 StudentContainer.propTypes = {
-	actions: PropTypes.object.isRequired,
 	student: PropTypes.object,
 	fetchStudent: PropTypes.func
 };
@@ -34,9 +38,9 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => ({
-	actions: bindActionCreators({fetchStudent}, dispatch)
-});
+const mapDispatchToProps = (dispatch) => (
+	bindActionCreators({fetchStudent}, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentContainer);
 

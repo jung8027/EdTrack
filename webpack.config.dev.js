@@ -17,7 +17,9 @@ export default {
 		filename: 'bundle.js'
 	},
 	devServer: {
-		contentBase: path.resolve(__dirname, 'client')
+		historyApiFallback: true,
+		contentBase: path.resolve(__dirname, 'client'),
+		hot: true
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),

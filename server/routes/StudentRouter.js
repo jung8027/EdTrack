@@ -73,7 +73,7 @@ const deleteStudent = (req, res) => {
 const addStudentTopicList = (req, res) => {
 	models.Student.findOne({
 		where: {
-			id: req.params.StudentId
+			id: req.params.id
 		}
 	})
 		.then(student => {
@@ -85,7 +85,7 @@ const addStudentTopicList = (req, res) => {
 const getStudentTopicList = (req, res) => {
 	models.Student.findOne({
 		where: {
-			id: req.params.StudentId
+			id: req.params.id
 		},
 		include: [
 			{model: models.Topic}
@@ -97,18 +97,16 @@ const getStudentTopicList = (req, res) => {
 		});
 };
 
-
 router.route('/')
 	.get(getStudents)
 	.post(postStudent);
-
 
 router.route('/:id')
 	.get(getStudent)
 	.put(updateStudent)
 	.delete(deleteStudent);
 
-router.route('/:StudentId/topicList')
+router.route('/:id/topic')
 	.post(addStudentTopicList)
 	.get(getStudentTopicList);
 

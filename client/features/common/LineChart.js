@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { VictoryLine , VictoryChart} from 'victory';
+import { VictoryBar , VictoryChart} from 'victory';
 
 const LineChart = props => {
 		console.log('chart props',props);
 		return (
-			<center>
 				<div className="chart" style={{width:"60%"}}>
 				<VictoryChart
 
@@ -12,13 +11,12 @@ const LineChart = props => {
 					// prevent it from overlapping the axis
 					domainPadding={30}
 				>
-					<VictoryLine
+					<VictoryBar
 						data={[
 							{type: props.grades[0].type, grade: props.grades[0].grade},
 							{type: props.grades[1].type, grade: props.grades[1].grade},
 							{type: props.grades[2].type, grade: props.grades[2].grade}
 						]}
-						interpolation="stepAfter"
 						domain={{y: [0, 100]}}
 						x="type"
 						y="grade"
@@ -31,7 +29,6 @@ const LineChart = props => {
 					/>
 				</VictoryChart>
 			</div>
-			</center>
 		);
 	};
 
