@@ -1,6 +1,6 @@
 //This component handles the Home template
 import React, {PropTypes} from 'react';
-
+import LineChart from '../common/LineChart';
 
 const Student = (props)=>{
 		console.log('student component props',props.student);
@@ -21,6 +21,7 @@ const Student = (props)=>{
 
 								</li>))}
 						</ul>
+						<LineChart grades={props.student.Grades}/>
 					</ul>
 				}
 			</div>

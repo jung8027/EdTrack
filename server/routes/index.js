@@ -6,5 +6,6 @@ router.use("/mentor", require('./MentorRouter.js'));
 router.use("/grade", require('./GradeRouter.js'));
 router.use("/student", require('./StudentRouter.js'));
 router.use("/class", require('./ClassRouter.js'));
+router.use("/instructor", require('./InstructorRouter.js'));
 
 module.exports = router;

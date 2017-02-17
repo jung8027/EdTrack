@@ -1,4 +1,4 @@
-export default function gradeReducer(state = {}, action) {
+export default function gradeReducer(state = [], action) {
 	switch (action.type) {
 		case "FETCH_GRADE":
 			// return Object.assign({}, state, action.payload);
