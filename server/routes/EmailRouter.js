@@ -9,12 +9,12 @@ const  helper = require('sendgrid').mail;
 function sendMail(req, res){
 	console.log('sendMail invoked!');
 
-	const from_email = new helper.Email("edtrack@googlegroups.com");
-	const to_email = new helper.Email("edtrack@googlegroups.com");
+	const from_email = new helper.Email(req.body.fromEmail);
+	const to_email = new helper.Email(req.body.toEmail);
 	const subject = "Mentor Session Info next Tuesday 2/21";
 
-	let students = JSON.stringify(req.body.students);
-	let topics = JSON.stringify(req.body.topics);
+	let students = req.body.students;
+	let topics = req.body.topics;
 
 	const content = new helper.Content("text/html", '<!DOCTYPE html><html><head><style>div.container {width: 100%;border: 1px solid gray;}header, footer {padding: 1em;color: white;background-color: #3F485D;clear: left;text-align: center;}nav ul {list-style-type: none;padding: 0;}nav ul a {text-decoration: none;}#topics {margin-left: 170px;border-left: 1px solid gray;padding: 1em;overflow: hidden;}</style></head><body><div class="container"><header><h1> Mentor Session Info</h1></header><h1></h1><section id="students">'+ students +'</section><section id="topics">'+ topics +'</section><footer>Copyright &copy; EdTrack.io</footer></div></body></html>');
 
