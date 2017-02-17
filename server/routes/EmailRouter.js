@@ -2,7 +2,7 @@ const router = require("express").Router();
 // const email = require("../../client/public/email.min.html");
 // const email = require("../../client/public/test1.min.html");
 
-const SENDGRID_API_KEY='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'
+const SENDGRID_API_KEY = require('../../sendgrid.js');
 const sg = require('sendgrid')(SENDGRID_API_KEY);
 const  helper = require('sendgrid').mail;
 
@@ -10,7 +10,7 @@ function sendMail(req, res){
 	console.log('sendMail invoked!');
 
 	const from_email = new helper.Email("edtrack@googlegroups.com");
-	const to_email = new helper.Email("quan.a.vuong@gmail.com");
+	const to_email = new helper.Email("edtrack@googlegroups.com");
 	const subject = "Mentor Session Info next Tuesday 2/21";
 
 	let students = JSON.stringify(req.body.students);
