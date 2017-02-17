@@ -12,7 +12,7 @@ class App extends React.Component {
 	}
 }
 let AppStyles ={
-	backgroundColor:"#545F7A"
+	backgroundColor:"white"
 };
 
 App.propTypes = {

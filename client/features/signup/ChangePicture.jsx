@@ -54,7 +54,7 @@ const ChangePicture = React.createClass({
 		let imgPath = JSON.stringify(this.state.img.name);
 
 		$.ajax({
-			url: 'api/student/3',
+			url: 'api/student/1',
 			type: 'PUT',
 			cache: false,
       contentType: false,
@@ -62,12 +62,12 @@ const ChangePicture = React.createClass({
       data: formData
 		})
 		.done((data) => {
-			var preview = document.getElementById('image-preview')
+			var preview = document.getElementById('image-preview');
 			preview.innerHTML = '';
 
 			this.setState({img: null})
 		})
-		browserHistory.push('/student')
+		browserHistory.push('/student/1')
 	},
 
 	handleClick(e){
@@ -95,7 +95,7 @@ const ChangePicture = React.createClass({
 
 						<input id="continue-button" type="button" onClick={this.handleSubmit}  value="Continue" /><br/><br/>
 						<button id="uploadButton" type="button" onClick={this.handleClick}>Update profile picture</button><br/>
-							<Link to="/student"><p id="Skip-step">Skip this step</p></Link>
+							<Link to="/student/1"><p id="Skip-step">Skip this step</p></Link>
 					</div>
 				</form>
 			</div>

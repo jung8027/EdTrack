@@ -14,11 +14,6 @@ class StudentContainer extends Component {
 		console.log('student container props', props);
 
 	}
-	// componentDidMount(){
-	// 	console.log('student id from params',this.props.params.id);
-	//
-    //
-	// }
 	render() {
 		return (
 			<Student {...this.props} />

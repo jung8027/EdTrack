@@ -15,7 +15,9 @@ const LineChart = props => {
 						data={[
 							{type: props.grades[0].type, grade: props.grades[0].grade},
 							{type: props.grades[1].type, grade: props.grades[1].grade},
-							{type: props.grades[2].type, grade: props.grades[2].grade}
+							{type: props.grades[2].type, grade: props.grades[2].grade},
+							{type: props.grades[3].type, grade: props.grades[3].grade},
+
 						]}
 						domain={{y: [0, 100]}}
 						x="type"

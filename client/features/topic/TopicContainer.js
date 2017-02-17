@@ -3,11 +3,17 @@ import Topic from './Topic';
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {fetchTopics, addStudentTopic, fetchStudentTopic} from './TopicAction';
+import {browserHistory} from 'react-router';
 
 
 class TopicContainer extends Component {
 	constructor(props, context) {
 		super(props, context);
+		this.state = {
+			active: 'TOPICS'
+
+		};
+		console.log('active state: ',this.state.active);
 		this.handleClick = this.handleClick.bind(this);
 		this.logger = this.logger.bind(this);
 		this.props.fetchTopics();
@@ -19,7 +25,6 @@ class TopicContainer extends Component {
 	logger(event) {
 		let topicName = event.target.name;
 		this.selected.push(parseInt(topicName));
-		$(this).style.backgroundColor = "white";
 		// (!event.target.checked)
 		// 	? this.selected = this.selected.filter(topic => parseInt(topic) != parseInt(topicName))
 		// 	: this.selected.push(parseInt(topicName));
@@ -28,14 +33,26 @@ class TopicContainer extends Component {
 	handleClick(e) {
 		e.preventDefault();
 		this.props.addStudentTopic(this.props.params.id, this.selected);
-	}
+		let active = this.state.active;
+		let newActive = active === 'TOPICS' ? 'SELECTED' : 'TOPICS';
 
+		this.setState({
+			active: newActive
+		});
+		console.log('newactive state',newActive)
+	}
+	handleSubmit(e){
+		e.preventDefault();
+		browserHistory.push('/mentor');
+	}
 	render() {
 		return (
 			<Topic {...this.props}
 				   handleClick={this.handleClick}
 				   logger={this.logger}
 				   selected={this.selected}
+				   active={this.state.active}
+				   handleSubmit = {this.handleSubmit}
 			/>
 		);
 	}
