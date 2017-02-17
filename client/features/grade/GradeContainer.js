@@ -10,36 +10,33 @@ import {fetchGrade, fetchAllGrades} from "./gradeActions";
 class GradeContainer extends Component{
 	constructor(props, context){
 		super(props, context);
-
+		this.props.fetchAllGrades();
 		console.log('grade container props', props);
 	}
 	render(){
 		return (
-			<Grade {...this.props} />
+			<Grade {...this.props}  studentId={this.props.studentId} />
 		);
 	}
 
 }
 
 GradeContainer.propTypes = {
-	actions : PropTypes.object.isRequired,
-	grade: PropTypes.object,
+	grade: PropTypes.array,
 	fetchGrade: PropTypes.func,
 	fetchAllGrades: PropTypes.func,
 };
 
 const mapStateToProps= (state,ownProps)=>{
-	// debugger;
 	console.log("state.gradeReducer:", state.gradeReducer);
 	return {
 		grade: state.gradeReducer
 	};
 };
 
-const mapDispatchToProps=(dispatch)=>({
-	// actions: bindActionCreators({ fetchGrade }, dispatch)
-	actions: bindActionCreators({ fetchAllGrades }, dispatch)
-});
+const mapDispatchToProps=(dispatch)=>(
+	bindActionCreators({ fetchAllGrades, fetchGrade }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(GradeContainer);
 

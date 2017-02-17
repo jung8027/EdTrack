@@ -4,20 +4,20 @@ import querystring from 'querystring';
 
 const MentorTopic = React.createClass({
 	getInitialState(){
-		return{
+		return {
 			topics: [], selectedTopics: [], mentor: ''
 		};
 	},
 	componentDidMount(){
 		axios.get('/api/mentor/' + this.props.params.mentorId)
-		.then((mentorData) => this.setState({
-			mentor: mentorData.data
-		}));
+			.then((mentorData) => this.setState({
+				mentor: mentorData.data
+			}));
 
 		axios.get('/api/topic/')
-		.then((topicData) => this.setState({
-			topics: topicData.data
-		}));
+			.then((topicData) => this.setState({
+				topics: topicData.data
+			}));
 	},
 	handleChange(event) {
 		let topicName = event.target.value;
@@ -28,30 +28,30 @@ const MentorTopic = React.createClass({
 	},
 	onSubmit(){
 		let stringify = JSON.stringify(this.state.selectedTopics);
-		axios.post('/api/mentor/'+ this.props.params.mentorId+ '/topic',
+		axios.post('/api/mentor/' + this.props.params.mentorId + '/topic',
 			querystring.stringify({selectedTopics: stringify})
 		)
-		.then((response) => {
-			console.log(response);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	},
 	render(){
-		return(
-			<div>
+		return (
+			<div className="row">
 				{
 					(this.state.mentor)
-						?	<div>
-								<br/>
-								<h3>Hello {this.state.mentor.name} </h3>
-								<h4><strong>Email:</strong> {this.state.mentor.email}</h4>
-								<h4>You already know these topics:</h4>
-								{this.state.mentor.Topics.map((topic, indx) =>
-									<p key={indx}>{topic.name}</p>
-								)}
-							</div>
+						? <div>
+						<br/>
+						<h3>Hello {this.state.mentor.name} </h3>
+						<h4><strong>Email:</strong> {this.state.mentor.email}</h4>
+						<h4>You already know these topics:</h4>
+						{this.state.mentor.Topics.map((topic, indx) =>
+							<p key={indx}>{topic.name}</p>
+						)}
+					</div>
 						: <p>loading profile...</p>
 				}
 
@@ -59,11 +59,11 @@ const MentorTopic = React.createClass({
 				{
 					(this.state.topics)
 						? this.state.topics.map((topic, indx) => (
-								<div key={indx}>
-									<input type="checkbox" id={topic.id} value={topic.id} onChange={this.handleChange}/>
-									<label htmlFor={topic.id}><p>{topic.name}</p></label>
-								</div>
-							))
+						<div key={indx}>
+							<input type="checkbox" id={topic.id} value={topic.id} onChange={this.handleChange}/>
+							<label htmlFor={topic.id}><p>{topic.name}</p></label>
+						</div>
+					))
 						: <p>loading list...</p>
 				}
 				<button onClick={this.onSubmit}>Submit</button>

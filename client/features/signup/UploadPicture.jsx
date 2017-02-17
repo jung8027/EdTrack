@@ -16,7 +16,7 @@ const UploadPicture = React.createClass({
 		}
 
 		//attach image to screen
-		var preview = document.getElementById('image-preview')
+		var preview = document.getElementById('image-preview');
 		preview.innerHTML = '';
 		var img = document.createElement("img");
 		img.className = "post-img";
@@ -41,7 +41,7 @@ const UploadPicture = React.createClass({
 
 	handleSubmit(e){
 		e.preventDefault();
-		let formData = new FormData()
+		let formData = new FormData();
 		formData.append('post', this.state.img, this.state.img.name);
 		formData.append('caption', this.state.caption);
 		let imgPath = JSON.stringify(this.state.img.name);
@@ -55,10 +55,10 @@ const UploadPicture = React.createClass({
       data: formData
 		})
 		.done((data) => {
-			var preview = document.getElementById('image-preview')
+			var preview = document.getElementById('image-preview');
 			preview.innerHTML = '';
 			this.setState({img: null, caption: ''})
-		})
+		});
 
 		browserHistory.push('/change-picture')
 	},
@@ -90,7 +90,7 @@ const UploadPicture = React.createClass({
 							</div>
 						}
 						<center>
-						<Link to="/student"><p id="Skip-step">Skip this step</p></Link>
+						<Link to="/student/1"><p id="Skip-step">Skip this step</p></Link>
 						</center>
 					</div>
 				</form>

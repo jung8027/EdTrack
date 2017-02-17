@@ -24,7 +24,7 @@ import {
 } from 'react-bootstrap';
 import Navbar, {Brand} from 'react-bootstrap/lib/Navbar';
 import $ from "jquery";
-import Sidebar from './SideBar';
+import {browserHistory} from 'react-router';
 
 
 function Header() {
@@ -44,22 +44,28 @@ function Header() {
                 </button>
             </span>
 				</Brand>
-				<ul className="nav navbar-top-links navbar-right">
-
+				<ul className="nav navbar-top-links navbar-left">
+					<li>
+						<a href="" onClick={(e) => {
+							e.preventDefault();
+							browserHistory.push('/');
+						}}>
+							<i className="fa fa-dashboard fa-fw"/> &nbsp;Dashboard
+						</a>
+					</li>
 					<NavDropdown title={<i className="fa fa-user fa-fw"/> } id='navDropdown4'>
 						<MenuItem eventKey="1">
 							<span> <i className="fa fa-user fa-fw"/> Student Profile </span>
 						</MenuItem>
 						<MenuItem divider/>
 						<MenuItem eventKey="4">
-							<span> <i className="fa fa-sign-out fa-fw"/> Logout </span>
+							<span> <i className="fa fa-sign-out fa-fw"/> Signout </span>
 						</MenuItem>
 						<MenuItem divider/>
 					</NavDropdown>
 
 				</ul>
 			</Navbar>
-			<Sidebar />
 		</div>
 	);
 }
