@@ -24,7 +24,7 @@ const ChangePicture = React.createClass({
 		}
 
 		//attach image to screen
-		var preview = document.getElementById('image-preview')
+		var preview = document.getElementById('image-preview');
 		preview.innerHTML = '';
 		var img = document.createElement("img");
 		img.className = "post-img";
@@ -48,7 +48,7 @@ const ChangePicture = React.createClass({
 	},
 	handleSubmit(e){
 		e.preventDefault();
-		let formData = new FormData()
+		let formData = new FormData();
 		formData.append('post', this.state.img, this.state.img.name);
 		formData.append('caption', this.state.caption);
 		let imgPath = JSON.stringify(this.state.img.name);

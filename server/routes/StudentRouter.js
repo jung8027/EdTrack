@@ -51,8 +51,8 @@ const updateStudent = (req, res) => {
 	const renameImg = () => {
 		return new Promise((res, rej) => {
 		  let fileExists = req.files[0] ? true : false;
-		  console.log('fileExists1',fileExists)
-		  console.log('req.files1',req.files)
+		  console.log('fileExists1',fileExists);
+		  console.log('req.files1',req.files);
 		  if(fileExists) {
 	      res(req.files[0]);
 	    } else {
@@ -106,7 +106,7 @@ const deleteStudent = (req, res) => {
 const addStudentTopicList = (req, res) => {
 	models.Student.findOne({
 		where: {
-			id: req.params.StudentId
+			id: req.params.id
 		}
 	})
 		.then(student => {
@@ -118,7 +118,7 @@ const addStudentTopicList = (req, res) => {
 const getStudentTopicList = (req, res) => {
 	models.Student.findOne({
 		where: {
-			id: req.params.StudentId
+			id: req.params.id
 		},
 		include: [
 			{model: models.Topic}
@@ -131,19 +131,19 @@ const getStudentTopicList = (req, res) => {
 };
 
 //Adds multer middleware
-router.use(upload.any())
+router.use(upload.any());
+
 
 router.route('/')
 	.get(getStudents)
 	.post(postStudent);
-
 
 router.route('/:id')
 	.get(getStudent)
 	.put(updateStudent)
 	.delete(deleteStudent);
 
-router.route('/:StudentId/topicList')
+router.route('/:id/topic')
 	.post(addStudentTopicList)
 	.get(getStudentTopicList);
 

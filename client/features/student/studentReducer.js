@@ -3,11 +3,9 @@
 export default function studentReducer(state = {}, action) {
 	switch (action.type) {
 		case "FETCH_STUDENT":
-			return Object.assign({}, state, action.payload.data);
+			return action.payload.data;
 
 		default:
 			return state;
 	}
-
-
 }

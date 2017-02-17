@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-//example of an asynchronous actions using redux thunk
-export function fetchStudent() {
-
-	const request = axios.get("api/student/1");
+//asynchronous actions using redux thunk
+export function fetchStudent(id) {
+	console.log('id from actions',id);
+	const request = axios.get(`/api/student/${id}`);
 	return (dispatch) => {
 		request.then((data) => {
 			console.log('student data ',data);
@@ -11,3 +11,4 @@ export function fetchStudent() {
 		});
 	};
 }
+

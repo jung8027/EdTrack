@@ -41,7 +41,7 @@ const UploadPicture = React.createClass({
 
 	handleSubmit(e){
 		e.preventDefault();
-		let formData = new FormData()
+		let formData = new FormData();
 		formData.append('post', this.state.img, this.state.img.name);
 		formData.append('caption', this.state.caption);
 		let imgPath = JSON.stringify(this.state.img.name);

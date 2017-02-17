@@ -9,8 +9,8 @@ export const fetchTopics = () => (dispatch) => {
 };
 
 
-export function addStudentTopic(studentId, selectedTopics) {
-	const request = axios.post(`api/student/${parseInt(studentId)}/topicList/`,
+export function addStudentTopic(id,selectedTopics) {
+	const request = axios.post(`/api/student/${id}/topic`,
 		// The querystring.stringify() method produces a URL query string from a given obj by iterating through the object's "own properties"
 		querystring.stringify(
 			{selectedTopics: selectedTopics}), {
@@ -27,3 +27,13 @@ export function addStudentTopic(studentId, selectedTopics) {
 	};
 }
 
+export function fetchStudentTopic(id) {
+
+	const request = axios.get(`/api/student/${id}/topic`);
+	return (dispatch) => {
+		request.then((data) => {
+			console.log('studentTopic list ',data);
+			dispatch({type: 'FETCH_STUDENT_TOPIC', payload: data});
+		});
+	};
+}
