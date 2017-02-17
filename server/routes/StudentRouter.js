@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+const upload = multer({dest: path.join(__dirname,'../images')});
 
 
 // GET all students information fully populated including their topics selected
@@ -44,20 +48,49 @@ const postStudent = (req, res) => {
 
 // // PUT (update) an existing student
 const updateStudent = (req, res) => {
-	models.Student.findOne(
-		{
-			where: {id: req.params.id}
-		}
-	).then((student) => {
-		student.update(
-			{
-				name: req.body.name,
-				email: req.body.email,
-				address: req.body.address
-			}
-		).then(updatedStudent => res.send(updatedStudent));
-	});
-};
+	const renameImg = () => {
+		return new Promise((res, rej) => {
+		  let fileExists = req.files[0] ? true : false;
+		  console.log('fileExists1',fileExists)
+		  console.log('req.files1',req.files)
+		  if(fileExists) {
+	      res(req.files[0]);
+	    } else {
+	      rej('IMAGE WAS NOT SUPPLIED');
+	    }
+	  })
+  }
+
+  renameImg()
+	.then((file) => {
+		let extension = '.'+ file.mimetype.split('/')[1];
+		let oldPath = file.destination + '/' + file.filename;
+		let newPath = file.destination + '/' + file.filename + extension;
+
+		let imgPath  = '/image' + '/' + file.filename + extension;
+
+		fs.rename(oldPath, newPath);
+		console.log('imgPath1',imgPath)
+		return imgPath;
+	})
+	.then((imgPath) => {
+		let img_path = req.body.img_path;
+
+		return models.Student.update(
+		{ img_path: imgPath },
+		{ where: { id: req.params.id } }
+		)
+	})
+		.then((data) => {
+		console.log("SUCCESS! posted new photo")
+		res.send(data)
+	})
+	.catch( (err) => {
+		console.log("ERROR POSTING A NEW PHOTO:", err)
+		res.sendStatus(500)
+	})
+}
+
 
 
 // DELETE (delete) a student
@@ -97,6 +130,8 @@ const getStudentTopicList = (req, res) => {
 		});
 };
 
+//Adds multer middleware
+router.use(upload.any())
 
 router.route('/')
 	.get(getStudents)
