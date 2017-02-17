@@ -18,7 +18,7 @@ const Topic = (props) => {
 						<ul className="items" style={listStyle}>
 							{
 								(props.topics) ? props.topics.map((topic, indx) => (
-									<li style={item} key={indx}>
+									<li key={indx}>
 										<input style={TopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name} onClick={props.logger}/>
 									</li>
 								)) : <p>loading...</p>
@@ -38,7 +38,7 @@ const Topic = (props) => {
 							{
 								props.selected ?
 									props.topics.filter(topic => props.selected.includes(topic.id))
-										.map((topic, indx) => <li style={item} key={indx}>
+										.map((topic, indx) => <li key={indx}>
 											<input style={selectedTopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name}/>
 										</li>)
 									:
