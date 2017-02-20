@@ -13,13 +13,13 @@ import ChangePicture from '../features/signup/ChangePicture';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Login}/>
-		<Route path="student/:id" component={StudentContainer}/>
+		<Route path="/student/:id" component={StudentContainer}/>
+		<Route path="/instructor/:id" component={InstructorContainer}/>
 		<Route path="/mentor" component={MentorContainer}/>
 		<Route path="/mentor/:mentorId" component={MentorTopic}/>
 		<Route path="/signup" component={Signup}/>
 		<Route path="/login" component={Login}/>
 		<Route path="/upload-picture" component={UploadPicture}/>
 		<Route path="/change-picture" component={ChangePicture}/>
-		<Route path="/instructor" component={InstructorContainer}/>
 	</Route>
 );

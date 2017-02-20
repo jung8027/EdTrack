@@ -5,25 +5,25 @@ import TopicContainer from '../topic/TopicContainer';
 import GradeContainer from '../grade/GradeContainer';
 
 const Student = (props) => {
-	console.log('student component props', props.student);
+	console.log('student grades component props', props.student.Grades);
 	return (
 		<div className="row">
 			{!props.student.name ?
 				<p>Loading...</p> :
-				<div style={{backgroundColor:"#545F7A"}}>
-					<div className="col s7" style={DashStyles}>
-						<div style={{marginLeft: "-750px"}}>
-						<img src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
-						<p>{props.student.name}</p>
-						<p>{props.student.email}</p>
+				<div>
+					<div className="col s8" style={DashStyles}>
+						<div>
+							<img src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
+							<p>{props.student.name}</p>
+							<p>{props.student.email}</p>
 						</div>
 						<center>
 							<LineChart grades={props.student.Grades}/>
 							<GradeContainer studentId={props.student.id}/>
 						</center>
 					</div>
-					<div className="col s4" style={TopicStyles}>
-						<TopicContainer {...props}/>
+					<div className="col s4" style={rightPaneStyles}>
+							<TopicContainer {...props}/>
 					</div>
 				</div>
 			}
@@ -34,17 +34,17 @@ const Student = (props) => {
 
 let DashStyles = {
 	backgroundColor: "white",
-	height: "1024px",
-	marginLeft: "50px"
+	height: "100%",
+	minHeight: "100vh"
 };
 
-let TopicStyles = {
+let rightPaneStyles = {
 	backgroundColor: "#545F7A",
-	height: "1024px",
 	fontFamily: "Rubik",
 	fontSize: "24px",
 	lineHeight: "28px",
-	color: "#FFFFFF"
+	color: "#FFFFFF",
+	minHeight: "100vh",
+	height: "100%"
 };
-
 export default Student;
