@@ -29,7 +29,7 @@ StudentContainer.propTypes = {
 
 const mapStateToProps = (state) => {
 	return {
-		student: state.studentReducer
+		student: state.studentReducer.student
 	};
 };
 

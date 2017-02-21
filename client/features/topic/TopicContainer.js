@@ -63,7 +63,8 @@ TopicContainer.propTypes = {
 	addStudentTopic: PropTypes.func,
 	handleClick: PropTypes.func,
 	logger: PropTypes.func,
-	fetchStudentTopic: PropTypes.func
+	fetchStudentTopic: PropTypes.func,
+	handleSubmit : PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => (

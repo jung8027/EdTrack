@@ -12,3 +12,13 @@ export function fetchStudent(id) {
 	};
 }
 
+//asynchronous actions using redux thunk
+export function fetchStudents() {
+	const request = axios.get(`/api/student`);
+	return (dispatch) => {
+		request.then((data) => {
+			console.log('student data ',data);
+			dispatch({type: 'FETCH_STUDENTS', payload: data});
+		});
+	};
+}
