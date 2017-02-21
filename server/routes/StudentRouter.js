@@ -9,7 +9,7 @@ const upload = multer({dest: path.join(__dirname,'../images')});
 
 // GET all students information fully populated including their topics selected
 const getStudents = (req, res) => {
-	models.Student.findAll({include:[{model: models.Topic}]})
+	models.Student.findAll({include:[{model: models.Topic},{model: models.Grade}]})
 		.then((students) => {
 			res.send(students);
 		});

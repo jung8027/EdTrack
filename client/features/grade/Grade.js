@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import LineChart from '../common/LineChart';
 
 const Grade = (props) => {
-	console.log('grade component props', props);
+	console.log('grade component props', props.students);
 	let grade = props.grade;
 	let student = props.studentId;
 	if (grade) {

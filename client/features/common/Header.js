@@ -1,22 +1,3 @@
-// import React, { PropTypes } from 'react';
-// import { PageHeader } from 'react-bootstrap';
-//
-//
-// const Display= (props) => {
-// 	return (
-// 		<div>
-// 			<div className="row">
-// 				<div className="col-lg-12">
-// 					<PageHeader>EdTrack</PageHeader>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-//
-//
-// export default Display;
-
 import React from 'react';
 import {
 	NavDropdown,
@@ -71,7 +52,7 @@ function Header() {
 }
 function toggleMenu() {
 	if ($(".navbar-collapse").hasClass('collapse')) {
-		$(".navbar-collapse").removeClass('collapse');
+		$(this).removeClass('collapse');
 	}
 	else {
 		$(".navbar-collapse").addClass('collapse');

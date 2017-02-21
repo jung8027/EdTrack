@@ -9,14 +9,12 @@ import './styles/styles.css'; //Webpack can import CSS files too
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { fetchTopics } from './features/topic/TopicAction';
 import { fetchAllGrades} from './features/grade/gradeActions';
-import { fetchInstructor } from './features/instructor/instructorActions';
 
 
 const store = configureStore();
 
 store.dispatch(fetchTopics());
 store.dispatch(fetchAllGrades());
-store.dispatch(fetchInstructor());
 
 
 render(

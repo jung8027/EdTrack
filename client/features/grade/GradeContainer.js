@@ -10,12 +10,16 @@ import {fetchGrade, fetchAllGrades} from "./gradeActions";
 class GradeContainer extends Component{
 	constructor(props, context){
 		super(props, context);
+		this.state= {
+			view: "instructor"
+		};
+
 		this.props.fetchAllGrades();
 		console.log('grade container props', props);
 	}
 	render(){
 		return (
-			<Grade {...this.props}  studentId={this.props.studentId} />
+			<Grade {...this.props} students={this.props.students} studentId={this.props.studentId} />
 		);
 	}
 
