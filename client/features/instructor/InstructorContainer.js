@@ -15,7 +15,8 @@ class InstructorContainer extends Component{
 			activeStudentCard: "GRADES",
 			filtered: "ALL",
 			infoSection: "CLASS",
-			studentId: 1
+			studentId: 1,
+			chartType: "BAR"
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
@@ -23,7 +24,18 @@ class InstructorContainer extends Component{
 		this.handleInfo = this.handleInfo.bind(this);
 		this.handleCardClick= this.handleCardClick.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
+		this.handleChartType= this.handleChartType.bind(this);
 
+	}
+	handleChartType(e){
+		e.preventDefault();
+		let activeChart = this.state.chartType;
+		let newActiveChart = activeChart === 'BAR' ? 'LINE' : 'BAR';
+
+		this.setState({
+			chartType: newActiveChart
+		});
+		console.log('new active chart',newActiveChart)
 	}
 	handleCardClick(e) {
 		e.preventDefault();
@@ -53,13 +65,9 @@ class InstructorContainer extends Component{
 		this.setState({
 			filtered: newFilter
 		});
-		console.log('button value',$('#filterBtn').val());
-		$('#filterBtn').val(
-			$('#filterBtn').val() == "Filter Grades"
-				? "SHOW All" : "Filter Grades"
-		);
-		let button = $('#filterBtn').val();
-		button.text("SHOW All");
+		let button = $('#filterBtn');
+		console.log('button value',button.val());
+		button.text( filtered === 'ALL' ? "SHOW All" : "Filter Grades");
 	}
 	render(){
 		return (
@@ -72,6 +80,8 @@ class InstructorContainer extends Component{
 				handleInfo = {this.handleInfo}
 				infoSection = {this.state.infoSection}
 				studentId ={this.state.studentId}
+				handleChartType = {this.handleChartType}
+				chartType = {this.state.chartType}
 
 			/>
 		);
@@ -84,7 +94,8 @@ InstructorContainer.propTypes = {
 	fetchInstructor: PropTypes.func,
 	students: PropTypes.array,
 	student : PropTypes.object,
-	handleCardClick: PropTypes.func
+	handleCardClick: PropTypes.func,
+	handleChartType: PropTypes.func
 };
 
 const mapStateToProps = state => ({

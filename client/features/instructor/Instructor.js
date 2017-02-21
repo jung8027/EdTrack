@@ -4,7 +4,7 @@ import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
 
 const Instructor = props => {
-	console.log('id',props.studentId);
+	console.log('chartType in Instructor',props.chartType);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
@@ -14,7 +14,7 @@ const Instructor = props => {
 		let studentsLowIds=[];
 		students.map(item => studentsLowIds.push(item.Grades.map(gradeFilter))
 		);
-		return [].concat(...studentsLowIds).filter((val,pos,arr)=> val && arr.indexOf(val) == pos)
+		return [].concat(...studentsLowIds).filter((val,pos,arr)=> val && arr.indexOf(val) == pos);
 	};
 	let lowGradeIds = getLowGrades(props.students);
 	console.log('lowGradeIds',lowGradeIds);
@@ -37,13 +37,14 @@ const Instructor = props => {
 							<p>{props.instructor.email}</p>
 						</div>
 						<center>
-							{filteredStudent ?
+							{
 								<div>
-									<LineChart grades={filteredStudent[0].Grades}/>
-									<GradeContainer studentId = {props.studentId}/>
+									<LineChart grades={filteredStudent[0].Grades}
+											   chartType={props.chartType}
+											   handleChartType={props.handleChartType}
+									/>
+									<GradeContainer studentId={props.studentId}/>
 								</div>
-								:
-								null
 							}
 						</center>
 					</div>
@@ -110,10 +111,10 @@ const Instructor = props => {
 	);
 };
 let cardImg = {
-	flex: "1",
 	height: "80px",
-	width: "30px",
-	backgroundColor: "#545F7A"
+	width: "auto",
+	backgroundColor: "#545F7A",
+	borderRadius: "50%"
 };
 
 let cardTitle = {
@@ -159,8 +160,13 @@ let rightPaneStyles = {
 Instructor.propTypes = {
 	instructor: PropTypes.object,
 	handleCardClick: PropTypes.func,
+	handleChartType: PropTypes.func,
 	students: PropTypes.array,
-	handleFilter: PropTypes.func
+	handleFilter: PropTypes.func,
+	studentId: PropTypes.integer,
+	filtered: PropTypes.string,
+	chartType: PropTypes.string
+
 };
 
 
