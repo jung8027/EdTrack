@@ -13,11 +13,14 @@ class InstructorContainer extends Component{
 		super( props );
 		this.state ={
 			activeStudentCard: "GRADES",
-			filtered: "ALL"
+			filtered: "ALL",
+			infoSection: "CLASS",
+			studentId: 1
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
 		this.props.fetchAllGrades();
+		this.handleInfo = this.handleInfo.bind(this);
 		this.handleCardClick= this.handleCardClick.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
 
@@ -31,6 +34,17 @@ class InstructorContainer extends Component{
 			activeStudentCard: newActiveCard
 		});
 		console.log('newactive card state',newActiveCard)
+	}
+	handleInfo(id){
+		let infoSection = this.state.infoSection;
+		let newInfoSection = infoSection === 'CLASS' ? 'STUDENT' : 'CLASS';
+		this.setState({
+			infoSection: newInfoSection
+		});
+		this.setState({
+			studentId: id
+		});
+		console.log("studentId", this.state.studentId);
 	}
 	handleFilter(e){
 		e.preventDefault();
@@ -55,6 +69,10 @@ class InstructorContainer extends Component{
 				handleCardClick={this.handleCardClick}
 				handleFilter={this.handleFilter}
 				filtered = {this.state.filtered}
+				handleInfo = {this.handleInfo}
+				infoSection = {this.state.infoSection}
+				studentId ={this.state.studentId}
+
 			/>
 		);
 	}

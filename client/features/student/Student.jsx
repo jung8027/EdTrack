@@ -17,7 +17,7 @@ const Student = (props) => {
 							<p>{props.student.name}</p>
 							<p>{props.student.email}</p>
 						</div>
-						<center>
+						 <center>
 							<LineChart grades={props.student.Grades}/>
 							<GradeContainer studentId={props.student.id}/>
 						</center>

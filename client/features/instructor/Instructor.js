@@ -1,9 +1,10 @@
 import React, {PropTypes} from "react";
 import { browserHistory } from 'react-router';
 import LineChart from '../common/LineChart';
-import TopicContainer from '../topic/TopicContainer';
+import GradeContainer from '../grade/GradeContainer';
 
 const Instructor = props => {
+	console.log('id',props.studentId);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
@@ -21,7 +22,9 @@ const Instructor = props => {
 	console.log('lowGradeStudents',lowGradeStudents);
 	console.log('props.filter',props.filtered);
 	(props.filtered === "ALL") ? studentsGrades = props.students : (props.filtered === "BELOW60") ? studentsGrades = lowGradeStudents : null;
-
+	console.log(studentsGrades);
+	let filteredStudent = studentsGrades.filter(student=> student.id === props.studentId);
+	console.log('filtered student Grades',filteredStudent[0]);
 	return (
 		<div className="row" style={{height: "100%"}}>
 			{!props.instructor.name ?
@@ -34,7 +37,14 @@ const Instructor = props => {
 							<p>{props.instructor.email}</p>
 						</div>
 						<center>
-							<p/>
+							{filteredStudent ?
+								<div>
+									<LineChart grades={filteredStudent[0].Grades}/>
+									<GradeContainer studentId = {props.studentId}/>
+								</div>
+								:
+								null
+							}
 						</center>
 					</div>
 					<div className="col s4" style={rightPaneStyles}>
@@ -52,7 +62,7 @@ const Instructor = props => {
 											<div key={indx} className="col s12 m12">
 
 												<div className="card horizontal">
-													<div className="card-image" style={cardHeader}>
+													<div onClick={()=> props.handleInfo(student.id)} className="card-image" style={cardHeader}>
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
 													</div>
