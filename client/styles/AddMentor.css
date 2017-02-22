@@ -1,0 +1,94 @@
+#mentorList {
+	width: 60%;
+	margin-left: 20px;
+	}
+
+#add-Mentor {
+	background-color: rgb(84, 95, 122);
+  width: 402px;
+  margin-left: 715px;
+  margin-top: -509px;
+  height: 500px;
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgb(255, 255, 255);
+  height: 800px;
+}
+
+#formInput {
+	font-size: 21px;
+  padding-top: 25px;
+  text-indent: 10px;
+}
+
+#stud-matchButton {
+	width: 106px;
+  margin-right: 10px;
+}
+
+.card {
+	/*background-color: yellow;*/
+	width: 750px;
+  height: 240px;
+}
+
+#email {
+	font-size: 20px;
+  margin-top: -18px;
+}
+
+#mentorName {
+	font-size: 20px;
+	margin-top: 9px;
+}
+
+#rightPaneStyles {
+	background-color: #545F7A;
+	font-family: Rubik;
+	font-size: 24px;
+	line-height: 28px;
+	color: #FFFFFF;
+	min-height: 100vh;
+	height: 100%;
+	margin-top: 23px;
+  width: 400px;
+
+}
+
+#insides4 {
+	padding: 20px;
+}
+
+#DashStyles {
+	background-color: white;
+	height: 100%;
+	overflow: scroll;
+	height: 750px;
+}
+
+#div-content {
+	margin-left: 52px;
+}
+
+#prof-Name {
+	font-size: 29px;
+}
+
+#mentorTop-cont {
+	width: 300px
+}
+
+#check-btn {
+	margin-left: -59px;
+  color: #0afb1c;
+}
+
+#addMoreTopics {
+	height: 400px;
+	margin-left: -271px;
+}
+
+
+
+

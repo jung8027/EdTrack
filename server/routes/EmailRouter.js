@@ -2,8 +2,8 @@ const router = require("express").Router();
 // const email = require("../../client/public/email.min.html");
 // const email = require("../../client/public/test1.min.html");
 
-const SENDGRID_API_KEY = require('../../sendgrid.js');
-const sg = require('sendgrid')(SENDGRID_API_KEY);
+// const SENDGRID_API_KEY = require('../../sendgrid.js');
+// const sg = require('sendgrid')(SENDGRID_API_KEY);
 const  helper = require('sendgrid').mail;
 
 function sendMail(req, res){
