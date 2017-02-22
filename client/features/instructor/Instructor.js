@@ -2,9 +2,10 @@ import React, {PropTypes} from "react";
 import { browserHistory } from 'react-router';
 import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
+import '../../styles/styles.css';
 
 const Instructor = props => {
-	console.log('grades in Instructor',props.grades);
+	console.log('student name',props.student.name);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
@@ -31,10 +32,12 @@ const Instructor = props => {
 				<p>Loading...</p> :
 				<div >
 					<div className="col s8" style={DashStyles}>
-						<div>
-							<img src={props.instructor.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
-							<p>{props.instructor.name}</p>
-							<p>{props.instructor.email}</p>
+						<div style={heading}>
+							<div style={{width:"100px",textAlign:"center"}}>
+								<img src={props.instructor.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
+								<p>{props.instructor.name}</p>
+								<p>{props.instructor.email}</p>
+							</div>
 						</div>
 						<center>
 							{
@@ -48,10 +51,11 @@ const Instructor = props => {
 											<GradeContainer studentId={props.studentId}/>
 										</div>
 										: props.infoSection === "STUDENT" ?
-										<div style={{backgroundColor:"green"}}>
+										<div>
 											<LineChart grades={filteredStudent[0].Grades}
 													   chartType={props.chartType}
 													   handleChartType={props.handleChartType}
+													   studentName = {filteredStudent[0].name}
 											/>
 											<GradeContainer studentId={props.studentId}/>
 										</div>: null
@@ -63,9 +67,15 @@ const Instructor = props => {
 					</div>
 					<div className="col s4" style={rightPaneStyles}>
 						<center style={{width: "100%"}}>
-							<button className="btn waves-effect waves-light" id="filterBtn" type="button" onClick={props.handleFilter}>Filter Grades
+							<button className="btn waves-effect waves-light" id="classBtn" type="button" onClick={props.handleClassView}>Class
 								<i className="material-icons right">send</i>
 							</button>
+							<br/>
+							<br/>
+							<button className="btn waves-effect waves-light" id="filterBtn" type="button" onClick={props.handleFilter}>Need Help
+								<i className="material-icons right">send</i>
+							</button>
+
 							<ul style={listStyle}>
 								{!studentsGrades ?
 									<div>Loading list of students...</div>
@@ -75,10 +85,13 @@ const Instructor = props => {
 										(
 											<div key={indx} className="col s12 m12">
 
-												<div className="card horizontal">
+												<div id="studentCards" className="card horizontal">
 													<div onClick={()=> props.handleInfo(student.id)} className="card-image" style={cardHeader}>
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
+														<div className="card-content white-text">
+															<p>Need Help</p>
+														</div>
 													</div>
 													{
 														props.activeStudentCard === 'GRADES' ?
@@ -110,7 +123,7 @@ const Instructor = props => {
 								}
 							</ul>
 							<br/>
-							<button className="btn waves-effect waves-light" id="btnMentors" type="button" onClick={()=>browserHistory.push('/mentor')}>Mentors
+							<button className="btn waves-effect waves-light" id="btnMentors" type="button" onClick={()=>browserHistory.push(`/instructor/${props.instructor.id}/mentor`)}>Mentors
 								<i className="material-icons right">send</i>
 							</button>
 							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push('/mentor/1')}>Match
@@ -123,6 +136,11 @@ const Instructor = props => {
 		</div>
 	);
 };
+
+let heading = {
+	paddingLeft:"20px",
+	textAlign: "left"
+};
 let cardImg = {
 	height: "80px",
 	width: "auto",
@@ -132,7 +150,8 @@ let cardImg = {
 
 let cardTitle = {
 	color: "#545F7A",
-	flex:"2"
+	flex: "0 1 0%",
+	marginLeft:"10px"
 };
 
 
@@ -150,7 +169,7 @@ let DashStyles = {
 let cardContent = {
 	fontColor: "#545F7A",
 	backgroundColor: "#3F485D",
-	width: "100%",
+	width: "auto",
 	height: "175px"
 };
 
@@ -159,7 +178,7 @@ let cardContentTopic = {
 	fontColor: "#545F7A",
 	color: "rgb(221, 19, 121)",
 	backgroundColor: "#3F485D",
-	width: "100%",
+	width: "auto",
 	height: "175px"
 };
 

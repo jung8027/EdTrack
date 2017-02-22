@@ -13,7 +13,6 @@
   font-size: 24px;
   line-height: 28px;
   color: rgb(255, 255, 255);
-  height: 800px;
 }
 
 #formInput {
@@ -27,7 +26,7 @@
   margin-right: 10px;
 }
 
-.card {
+#mentorCard {
 	/*background-color: yellow;*/
 	width: 750px;
   height: 240px;
@@ -52,7 +51,6 @@
 	min-height: 100vh;
 	height: 100%;
 	margin-top: 23px;
-  width: 400px;
 
 }
 
@@ -62,7 +60,6 @@
 
 #DashStyles {
 	background-color: white;
-	height: 100%;
 	overflow: scroll;
 	height: 750px;
 }

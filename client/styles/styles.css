@@ -6,4 +6,6 @@ body, html, #root {
 	width: 100%;
 
 }
-
+.card #studentCards {
+	width: 450px !important;
+}

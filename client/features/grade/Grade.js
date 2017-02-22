@@ -10,6 +10,7 @@ const Grade = (props) => {
 	let student = props.studentId;
 	if (grade) {
 		var studentGrades = grade.filter(grade => grade.StudentId === student);
+		console.log('studentGrades',studentGrades);
 		var studentAverage = studentGrades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / studentGrades.length;
 		var classAverage = grade.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grade.length;
 
@@ -30,7 +31,7 @@ const Grade = (props) => {
 						<span style={Gradelabel} >Avg Grade </span>
 					</div>
 					<div className="col s4" >
-						<span style={gradeStyles} >{studentGrades.filter(grade => grade.type==='final')[0].grade.toFixed(2)|| '-'}</span>
+						<span style={gradeStyles} >{studentGrades ? studentGrades.filter(grade => grade.type==='final')[0].grade.toFixed(2) : '-' }</span>
 						<br/>
 						<span style={Gradelabel} >Final Grade </span>
 					</div>

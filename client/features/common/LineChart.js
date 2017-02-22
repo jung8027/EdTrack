@@ -7,14 +7,29 @@ const LineChart = props => {
 			<div>
 				<button onClick={props.handleChartType} >Change Chart</button>
 				<div className="chart" style={{width:"60%"}}>
-
+					{props.studentName ? <h2><strong>{props.studentName}</strong></h2>: null}
 				<VictoryChart
 
 					// domainPadding will add space to each side of VictoryBar to
 					// prevent it from overlapping the axis
 					domainPadding={30}
 				>
-					{props.chartType === "BAR" ?
+					{props.chartType === "LINE" ?
+						<VictoryLine
+							labelComponent={<VictoryTooltip/>}
+							data={
+								props.grades.map((grades,index) => ({type: grades.type, grade: grades.grade}))
+							}
+							domain={{y: [0, 100]}}
+							x="type"
+							y="grade"
+							style={{
+								labels: {fontSize: 12},
+								parent: {border: "4px solid #ccc"},
+								width: "60%"
+							}}
+						/>
+						:
 						<VictoryBar
 							data={
 								props.grades.map(grades => ({type: grades.type, grade: grades.grade}))
@@ -29,24 +44,6 @@ const LineChart = props => {
 								width: "60%"
 							}}
 						/>
-						: props.chartType === "LINE" ?
-							<VictoryLine
-								labelComponent={<VictoryTooltip/>}
-								data={
-									props.grades.map((grades,index) => ({type: grades.type, grade: grades.grade}))
-								}
-								domain={{y: [0, 100]}}
-								x="type"
-								y="grade"
-								style={{
-									data: {stroke: (d) => d.y > 60 ? "#DD1379": "#1ABC9C"},
-									labels: {fontSize: 12},
-									parent: {border: "4px solid #ccc"},
-									width: "60%"
-								}}
-							/>
-							:
-							null
 					}
 				</VictoryChart>
 			</div>
@@ -61,108 +58,3 @@ LineChart.propTypes = {
 
 };
 export default LineChart;
-
-
-//
-// import React, { Component , PropTypes} from 'react';
-// import { VictoryBar ,VictoryLine, VictoryChart,VictoryTooltip, VictoryGroup,VictoryVoronoiTooltip} from 'victory';
-//
-// const LineChart = props => {
-// 	console.log('chart props',props.chartType);
-// 	return (
-// 		<div>
-// 			<button onClick={props.handleChartType} >Change Chart</button>
-// 			<div className="chart" style={{width:"60%"}}>
-//
-// 				<VictoryChart
-//
-// 					// domainPadding will add space to each side of VictoryBar to
-// 					// prevent it from overlapping the axis
-// 					domainPadding={30}
-// 				>
-// 					{
-// 						props.infoSection === "CLASS" ?
-//
-// 							(props.chartType === "BAR" ?
-// 									<VictoryBar
-// 										data={
-// 											props.grades.map(grades => ({type: grades.type, grade: grades.grade}))
-// 										}
-// 										domain={{y: [0, 100]}}
-// 										x="type"
-// 										y="grade"
-// 										style={{
-// 											data: {fill: (d) => d.y > 60 ? "#1ABC9C" : "#DD1379"},
-// 											labels: {fontSize: 12},
-// 											parent: {border: "4px solid #ccc"},
-// 											width: "60%"
-// 										}}
-// 									/>
-// 									: props.chartType === "LINE" ?
-// 									<VictoryLine
-// 										labelComponent={<VictoryTooltip/>}
-// 										data={
-// 											props.grades.map((grades,index) => ({type: grades.type, grade: grades.grade}))
-// 										}
-// 										domain={{y: [0, 100]}}
-// 										x="type"
-// 										y="grade"
-// 										style={{
-// 											data: {stroke: (d) => d.y > 60 ? "#DD1379": "#1ABC9C"},
-// 											labels: {fontSize: 12},
-// 											parent: {border: "4px solid #ccc"},
-// 											width: "60%"
-// 										}}
-// 									/>
-// 									:
-// 									null
-// 							)
-// 							: props.infoSection === "STUDENT" ?
-// 							(props.chartType === "BAR" ?
-// 									<VictoryBar
-// 										data={
-// 											props.grades.map(grades => ({type: grades.type, grade: grades.grade}))
-// 										}
-// 										domain={{y: [0, 100]}}
-// 										x="type"
-// 										y="grade"
-// 										style={{
-// 											data: {fill: (d) => d.y > 60 ? "#1ABC9C" : "#DD1379"},
-// 											labels: {fontSize: 12},
-// 											parent: {border: "4px solid #ccc"},
-// 											width: "60%"
-// 										}}
-// 									/>
-// 									: props.chartType === "LINE" ?
-// 									<VictoryLine
-// 										labelComponent={<VictoryTooltip/>}
-// 										data={
-// 											props.grades.map((grades,index) => ({type: grades.type, grade: grades.grade}))
-// 										}
-// 										domain={{y: [0, 100]}}
-// 										x="type"
-// 										y="grade"
-// 										style={{
-// 											data: {stroke: (d) => d.y > 60 ? "#DD1379": "#1ABC9C"},
-// 											labels: {fontSize: 12},
-// 											parent: {border: "4px solid #ccc"},
-// 											width: "60%"
-// 										}}
-// 									/>
-// 									: null
-// 							)
-// 							: null
-// 					}
-// 				</VictoryChart>
-// 			</div>
-// 		</div>
-// 	);
-// };
-//
-// LineChart.propTypes = {
-// 	handleChartType: PropTypes.func,
-// 	grades: PropTypes.array,
-// 	chartType: PropTypes.string
-//
-// };
-// export default LineChart;

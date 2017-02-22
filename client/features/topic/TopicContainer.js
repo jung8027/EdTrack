@@ -43,7 +43,7 @@ class TopicContainer extends Component {
 	}
 	handleSubmit(e){
 		e.preventDefault();
-		browserHistory.push('/mentor');
+		browserHistory.push('/');
 	}
 	render() {
 		return (

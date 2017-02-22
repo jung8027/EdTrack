@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import axios from 'axios';
 import querystring from 'querystring';
 import $ from 'jquery';
+import {browserHistory} from 'react-router';
 
 const MentorTopic = React.createClass({
 
@@ -93,10 +94,10 @@ const MentorTopic = React.createClass({
 
 
 
-					<button className="btn waves-effect waves-light"  onClick={this.onSubmit}>Submit
+					<button className="btn waves-effect waves-light"  onClick={()=>this.onSubmit}>Submit
 					<i className="material-icons right">send</i>
 					</button><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" >Students
+					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students
 						<i className="material-icons right">send</i>
 					</button>
 

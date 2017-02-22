@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import  '../../styles/AddMentor.css';
+import {browserHistory} from 'react-router';
 
 const AddMentor = React.createClass({
 	getInitialState(){
@@ -43,7 +44,7 @@ const AddMentor = React.createClass({
 
 
 					</div><br/><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" >Students
+					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)}>Students
 						<i className="material-icons right">send</i>
 					</button>
 					<br/><br/><br/>
