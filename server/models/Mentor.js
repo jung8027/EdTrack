@@ -7,6 +7,9 @@ module.exports = function (sequelize, DataTypes) {
 			unique: true,
 			validate: {notEmpty: true}
 		},
+		img_path: {
+				type: DataTypes.STRING,
+		},
 		email: {
 			type: DataTypes.STRING,
 			validate: {isEmail: true}

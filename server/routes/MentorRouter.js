@@ -11,6 +11,7 @@ const getAllMentors = (req, res) => {
 const postNewMentor = (req, res) => {
 	Mentor.create({
 		name: req.body.name,
+		img_path: req.body.img_path,
 		email: req.body.email
 	})
 		.then((MentorInfo) => {
