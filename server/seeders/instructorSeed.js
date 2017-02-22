@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const models = require("../models");
 
 const instructorSeedFunc = () => {
-	models.Student.sync({ force:true })
+	models.Instructor.sync({ force:true })
 		.then( () => {
 			models.Instructor.bulkCreate([
 				{ name: "Chuck", email: "chuck@c4q.nyc" },

@@ -18,7 +18,7 @@ class Signup extends React.Component{
 							    <input id="password-in" type="password" placeholder="Create a password" required/>
 		              <br></br>
 							    <input id="create-account" type="button" onClick={this.submitLogin} value="Create your account" />
-							    <p id="have-account">Already have an account? <Link to="/login"><strong>Sign in</strong></Link></p>
+							    <p id="have-account">Already have an account? <Link to="/instructor/1"><strong>Sign in</strong></Link></p>
 							</form>
 		    </div>
       </div>

@@ -25,8 +25,10 @@ class InstructorContainer extends Component{
 		this.handleCardClick= this.handleCardClick.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
 		this.handleChartType= this.handleChartType.bind(this);
+		this.handleClassView = this.handleClassView.bind(this);
 
 	}
+
 	handleChartType(e){
 		e.preventDefault();
 		let activeChart = this.state.chartType;
@@ -37,6 +39,7 @@ class InstructorContainer extends Component{
 		});
 		console.log('new active chart',newActiveChart)
 	}
+
 	handleCardClick(e) {
 		e.preventDefault();
 		let activeStudentCard = this.state.activeStudentCard;
@@ -48,8 +51,7 @@ class InstructorContainer extends Component{
 		console.log('newactive card state',newActiveCard)
 	}
 	handleInfo(id){
-		let infoSection = this.state.infoSection;
-		let newInfoSection = infoSection === 'CLASS' ? 'STUDENT' : 'CLASS';
+		let newInfoSection = 'STUDENT';
 		this.setState({
 			infoSection: newInfoSection
 		});
@@ -57,6 +59,14 @@ class InstructorContainer extends Component{
 			studentId: id
 		});
 		console.log("studentId", this.state.studentId);
+	}
+	handleClassView(e){
+		e.preventDefault();
+		let classSection = 'CLASS';
+		this.setState({
+			infoSection: classSection,
+			studentId: null
+		});
 	}
 	handleFilter(e){
 		e.preventDefault();
@@ -67,7 +77,7 @@ class InstructorContainer extends Component{
 		});
 		let button = $('#filterBtn');
 		console.log('button value',button.val());
-		button.text( filtered === 'ALL' ? "SHOW All" : "Filter Grades");
+		button.text( filtered === 'ALL' ? "All" : "Need Help");
 	}
 	render(){
 		return (
@@ -82,6 +92,7 @@ class InstructorContainer extends Component{
 				studentId ={this.state.studentId}
 				handleChartType = {this.handleChartType}
 				chartType = {this.state.chartType}
+				handleClassView = {this.handleClassView}
 
 			/>
 		);
@@ -101,7 +112,8 @@ InstructorContainer.propTypes = {
 const mapStateToProps = state => ({
 	instructor: state.instructorReducer,
 	students: state.studentReducer.students,
-	student: state.studentReducer.student
+	student: state.studentReducer.student,
+	grades: state.gradeReducer
 });
 
 const mapDispatchToProps = dispatch => (
