@@ -12,10 +12,12 @@ const Student = (props) => {
 				<p>Loading...</p> :
 				<div>
 					<div className="col s8" style={DashStyles}>
-						<div>
-							<img src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
-							<p>{props.student.name}</p>
-							<p>{props.student.email}</p>
+						<div style={heading}>
+							<div style={{width:"100px",textAlign:"center"}}>
+								<img src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
+								<p>{props.student.name}</p>
+								<p>{props.student.email}</p>
+							</div>
 						</div>
 						 <center>
 							<LineChart grades={props.student.Grades}/>
@@ -30,6 +32,11 @@ const Student = (props) => {
 		</div>
 	);
 
+};
+
+let heading = {
+	paddingLeft:"20px",
+	textAlign: "left"
 };
 
 let DashStyles = {

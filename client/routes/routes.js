@@ -16,8 +16,8 @@ export default (
 		<IndexRoute component={Login}/>
 		<Route path="/student/:id" component={StudentContainer}/>
 		<Route path="/instructor/:id" component={InstructorContainer}/>
-		<Route path="/mentor" component={MentorContainer}/>
-		<Route path="/mentor/:mentorId" component={MentorTopic}/>
+		<Route path="/instructor/:id/mentor" component={MentorContainer}/>
+		<Route path="/instructor/:id/mentor/:mentorId" component={MentorTopic}/>
 		<Route path="/signup" component={Signup}/>
 		<Route path="/login" component={Login}/>
 		<Route path="/upload-picture" component={UploadPicture}/>
