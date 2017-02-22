@@ -9,6 +9,7 @@ import Signup from '../features/signup/Signup';
 import Login from '../features/signup/Login';
 import UploadPicture from '../features/signup/UploadPicture';
 import ChangePicture from '../features/signup/ChangePicture';
+import Match from "../features/match/Match";
 
 export default (
 	<Route path="/" component={App}>
@@ -21,5 +22,6 @@ export default (
 		<Route path="/login" component={Login}/>
 		<Route path="/upload-picture" component={UploadPicture}/>
 		<Route path="/change-picture" component={ChangePicture}/>
+		<Route path="/match" component={Match}/>
 	</Route>
 );
