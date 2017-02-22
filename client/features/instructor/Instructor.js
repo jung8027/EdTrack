@@ -4,7 +4,7 @@ import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
 
 const Instructor = props => {
-	console.log('chartType in Instructor',props.chartType);
+	console.log('grades in Instructor',props.grades);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
@@ -39,11 +39,24 @@ const Instructor = props => {
 						<center>
 							{
 								<div>
-									<LineChart grades={filteredStudent[0].Grades}
-											   chartType={props.chartType}
-											   handleChartType={props.handleChartType}
-									/>
-									<GradeContainer studentId={props.studentId}/>
+									{props.infoSection === "CLASS" ?
+										<div>
+											<LineChart grades={props.grades}
+													   chartType={props.chartType}
+													   handleChartType={props.handleChartType}
+											/>
+											<GradeContainer studentId={props.studentId}/>
+										</div>
+										: props.infoSection === "STUDENT" ?
+										<div style={{backgroundColor:"green"}}>
+											<LineChart grades={filteredStudent[0].Grades}
+													   chartType={props.chartType}
+													   handleChartType={props.handleChartType}
+											/>
+											<GradeContainer studentId={props.studentId}/>
+										</div>: null
+									}
+
 								</div>
 							}
 						</center>
@@ -79,7 +92,7 @@ const Instructor = props => {
 																</div>
 															</div>)
 															: props.activeStudentCard === 'TOPICS' ?
-															(<div onClick={props.handleCardClick} style={cardContent} className="card-stacked">
+															(<div onClick={props.handleCardClick} style={cardContentTopic} className="card-stacked">
 																<div className="card-content">
 																	<ul>
 																		{student.Topics.map((topic, i) => <li key={i}>
@@ -140,6 +153,16 @@ let cardContent = {
 	width: "100%",
 	height: "175px"
 };
+
+
+let cardContentTopic = {
+	fontColor: "#545F7A",
+	color: "rgb(221, 19, 121)",
+	backgroundColor: "#3F485D",
+	width: "100%",
+	height: "175px"
+};
+
 let listStyle = {
 	marginTop: "70px",
 	height: "560px",
@@ -171,10 +194,3 @@ Instructor.propTypes = {
 
 
 export default Instructor;
-{/*<GradeContainer students={lowGradeStudents}/>*/
-}
-
-{/*<img src={props.instructor.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>*/
-}
-// <LineChart grades={props.students.Grades}/>
-// <TopicContainer {...props}/>

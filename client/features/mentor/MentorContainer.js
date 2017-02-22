@@ -18,13 +18,13 @@ class MentorContainer extends Component {
   }
 
   handleCardClick(id) {
-  	console.log('id',id)
-
+  	console.log('id',id);
+	  this.setState({
+		  mentorId: id,
+	  });
   	let active = this.state.activeRightPane;
-		let newActiveRightPane = active == 'FORM' ? 'TOPICS' : 'FORM';
-		this.setState({
-			mentorId: id
-		});
+		// let newActiveRightPane = active == 'FORM' ? 'TOPICS' : 'FORM';
+
 		this.setState({
 			activeRightPane: 'TOPICS'
 		});
@@ -39,7 +39,6 @@ class MentorContainer extends Component {
 				 activeRightPane={this.state.activeRightPane}
 				 activeRightPane1={this.state.activeRightPane1}
 				 handleCardClick={this.handleCardClick}
-				 displayTopicOrEmail={this.displayTopicOrEmail}
 
 				 />
 		);
@@ -65,3 +64,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MentorContainer);
+// displayTopicOrEmail={this.displayTopicOrEmail}

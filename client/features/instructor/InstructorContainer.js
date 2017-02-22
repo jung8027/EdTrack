@@ -101,7 +101,8 @@ InstructorContainer.propTypes = {
 const mapStateToProps = state => ({
 	instructor: state.instructorReducer,
 	students: state.studentReducer.students,
-	student: state.studentReducer.student
+	student: state.studentReducer.student,
+	grades: state.gradeReducer
 });
 
 const mapDispatchToProps = dispatch => (

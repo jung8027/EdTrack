@@ -17,7 +17,7 @@ const Mentor = (props) => {
 							<div className="card horizontal" key={indx}>
 
 								<div onClick={()=> props.handleCardClick(ele.id)} className="card-image">
-									<img src={ele.img_path} style={imgProfile} />
+									<img src={ele.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"} style={imgProfile} />
 									<p className="header" id="mentorName">{ele.name}</p>
 								</div>
 

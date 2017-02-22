@@ -53,7 +53,7 @@ const MentorTopic = React.createClass({
 		$(this).css({"background-color": "white", "color": "#545F7A"});
 	});
 
-		console.log('mentor whatever', this.props.mentor)
+		console.log('mentor whatever', this.state.mentor)
 		return (
 			<div className="col s4">
 					<div id="mentorTop-cont">
@@ -62,9 +62,13 @@ const MentorTopic = React.createClass({
 							? <div>
 							<br/>
 							<h3 id="prof-Name"> {this.state.mentor.name} is familiar with these topics:</h3>
-							{this.state.mentor.Topics.map((topic, indx) =>
+							{this.state.mentor.Topics ?
+								this.state.mentor.Topics.map((topic, indx) =>
 								<p key={indx}>{topic.name}<i className="material-icons right" id="check-btn">checked</i></p>
-							)}
+							)
+							:
+								<p>Loading Mentor Topics...</p>
+							}
 						</div>
 							: <p>loading profile...</p>
 					}
