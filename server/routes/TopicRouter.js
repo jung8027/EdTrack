@@ -44,9 +44,6 @@ const updateTopic = (req, res) => {
 const getTopicStudent = (req, res) => {
 	// req.topics = [2,3,4]
 	models.Topic.findAll({
-		where:{
-			id: 2
-		},
 		include: [{model: models.Student}]
 	})
 		.then((topics) => {
