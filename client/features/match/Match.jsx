@@ -47,14 +47,6 @@ class Match extends Component{
 
 		let matchConfirm = "CONFIRM";
 
-		const handleCLick = () => {
-			// this.state.matchConfirm = "DONE";
-			// console.log("CLICKED: MATCHCONFIRM: ", this.state.matchConfirm);
-			this.setState({ matchConfirm: "DONE" })
-
-		};
-
-
 		return (
 			<div className="row" style={{height: "100%"}}>
 
