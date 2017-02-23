@@ -1,130 +1,142 @@
-import React, {PropTypes} from "react";
+import React, {Component, PropTypes} from "react";
 import { browserHistory } from 'react-router';
 
 
 
-const Match = (props) => {
-	// const match = {
-	// 	"id1": {
-	// 		mentorName: "Justin",
-	// 		mentorEmail: "Justin@gmail.com",
-	// 		topics: "DSA",
-	// 		students: "Iliass, Jung, Luis, Quan",
-	// 		img_path: "c805236406941d2ba6b9398291266281.png"
-	// 	},
-	// 	"id2": {
-	// 		mentorName: "Lev",
-	// 		mentorEmail: "Justin@gmail.com",
-	// 		topics: "redux",
-	// 		students: "Iliass, Jung, Luis, Quan",
-	// 		img_path: "c805236406941d2ba6b9398291266281.png"
-	// 	},
-	// 	"id3": {
-	// 		mentorName: "Paul",
-	// 		mentorEmail: "Justin@gmail.com",
-	// 		topics: "react",
-	// 		students: "Luis, Quan",
-	// 		img_path: "c805236406941d2ba6b9398291266281.png"
+class Match extends Component{
+	constructor( props ) {
+		super( props );
+		this.state = {
+			matchConfirm : "CONFIRM"
+		}
+	}
 
-	// 	"id4": {
-	// 		mentorName: "Kenny",
-	// 		mentorEmail: "Justin@gmail.com",
-	// 		topics: "sequelize",
-	// 		students: "Iliass, Luis, Quan",
-	// 		img_path: "c805236406941d2ba6b9398291266281.png"
-	// 	},
+	render(){
+		console.log("MATCHCONFIRM: ", this.state.matchConfirm);
+		const match = [
+			{
+				mentorName: "Justin",
+				mentorEmail: "Justin@gmail.com",
+				topics: "DSA",
+				students: "Iliass, Jung, Luis, Quan",
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Lev",
+				mentorEmail: "Justin@gmail.com",
+				topics: "redux",
+				students: "Iliass, Jung, Luis, Quan",
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Paul",
+				mentorEmail: "Justin@gmail.com",
+				topics: "react",
+				students: "Luis, Quan",
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Kenny",
+				mentorEmail: "Justin@gmail.com",
+				topics: "sequelize",
+				students: "Iliass, Luis, Quan",
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
 
-	// };
+		];
 
-	const match = [
-		{
-			mentorName: "Justin",
-			mentorEmail: "Justin@gmail.com",
-			topics: "DSA",
-			students: "Iliass, Jung, Luis, Quan",
-			img_path: "../../server/images/c805236406941d2ba6b9398291266281.png"
-		},
-		{
-			mentorName: "Lev",
-			mentorEmail: "Justin@gmail.com",
-			topics: "redux",
-			students: "Iliass, Jung, Luis, Quan",
-			img_path: "../../server/images/c805236406941d2ba6b9398291266281.png"
-		},
-		{
-			mentorName: "Paul",
-			mentorEmail: "Justin@gmail.com",
-			topics: "react",
-			students: "Luis, Quan",
-			img_path: "../../server/images/c805236406941d2ba6b9398291266281.png"
-		},
-		{
-			mentorName: "Kenny",
-			mentorEmail: "Justin@gmail.com",
-			topics: "sequelize",
-			students: "Iliass, Luis, Quan",
-			img_path: "../../server/images/c805236406941d2ba6b9398291266281.png"
-		},
+		let matchConfirm = "CONFIRM";
 
-	];
+		const handleCLick = () => {
+			// this.state.matchConfirm = "DONE";
+			// console.log("CLICKED: MATCHCONFIRM: ", this.state.matchConfirm);
+			this.setState({ matchConfirm: "DONE" })
 
-	return (
-		<div className="row" style={{height: "100%"}}>
+		};
 
-				<div >
-					<div className="col s12" style={DashStyles}>
-						<div>
-							<h1>Please confirm the following emails: </h1>
+
+		return (
+			<div className="row" style={{height: "100%"}}>
+
+					<div > {/*LEFT PANEL*/}
+						<div className="col s8" style={DashStyles}>
+							<div>
+								<h1>Mentor Groups </h1>
+							</div>
+
+							{
+
+								match.map( (mentor, i) => (
+									<center>
+										<div id ="mentorCard" className="card horizontal" key={i}>
+
+											<div className="card-image">
+
+												<img src="/a4660052d5b6fee6192db0b5aeede812.png" style={imgProfile} />
+												<p className="header" id="mentorName">{mentor.mentorName}</p>
+												<p className="header" id="mentorEmail">{mentor.mentorEmail}</p>
+
+											</div>
+
+											<div  className="card-stacked">
+												<div className="card-content">
+													<p className="header" id="email">{mentor.students}
+													</p>
+												</div>
+											</div>
+
+										</div>
+									</center>
+								))
+							}
+
 						</div>
 
-						{
 
-							match.map( (mentor, i) => (
-								<center>
-									<div id ="mentorCard" className="card horizontal" key={i}>
+						{/*RIGHT PANEL*/}
+						<div className="col s4" style={rightPaneStyles}>
 
-										<div className="card-image">
+							{
+								this.state.matchConfirm === "CONFIRM" ? (
+									<div>
+										<center style={{width: "100%"}}>
+											<h1>Before we notify your mentors, do you approve of these groups ?
+											</h1>
+										</center>
 
-											<img src="/a4660052d5b6fee6192db0b5aeede812.png" style={imgProfile} />
-											<p className="header" id="mentorName">{mentor.mentorName}</p>
-											<p className="header" id="mentorEmail">{mentor.mentorEmail}</p>
+										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={() => this.setState({ matchConfirm: "DONE" })} >Yes, Notify Mentors
+												<i className="material-icons right">send</i>
+										</button>
 
-										</div>
-
-										<div  className="card-stacked">
-											<div className="card-content">
-												<p className="header" id="email">{mentor.students}
-												</p>
-											</div>
-										</div>
-
+										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
+												<i className="material-icons right">send</i>
+										</button>
 									</div>
-								</center>
-							))
-						}
 
-						<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Dashboard
-								<i className="material-icons right">send</i>
-						</button>
+								) : (
 
-						<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/email`)} >Send Email
-								<i className="material-icons right">send</i>
-						</button>
+									<div>
+										<center style={{width: "100%"}}>
+											<h1><strong>Done !</strong>We sent your mentors an email with all the info they'll need.</h1>
+										</center>
+
+										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Return Home
+												<i className="material-icons right">send</i>
+										</button>
+									</div>
+								)
+							}
+
+
+						</div>
 
 					</div>
 
+			</div>
+		);
+	}
 
-
-{/*					<div className="col s4" style={rightPaneStyles}>
-						<center style={{width: "100%"}}>
-							<h1>Success !!!</h1>
-						</center>
-					</div>*/}
-				</div>
-
-		</div>
-	);
-};
+}
 
 
 let cardStyle = {
@@ -159,6 +171,7 @@ let cardHeader = {
 
 let DashStyles = {
 	backgroundColor: "white",
+	color: "#545F7A",
 	height: "100%",
 	minHeight: "100vh"
 };
@@ -176,13 +189,17 @@ let listStyle = {
 };
 
 let rightPaneStyles = {
-	backgroundColor: "#545F7A",
+	// display: "flex",
+	// flexDirection: "column",
+	// justifyContent: "center",
+	width: "317px",
+	height: "84px",
 	fontFamily: "Rubik",
 	fontSize: "24px",
+	fontWeight: "bold",
 	lineHeight: "28px",
-	color: "#FFFFFF",
-	minHeight: "100vh",
-	height: "100%"
+	color: "#545F7A",
+	margin: "auto",
 };
 
 let imgProfile ={
@@ -191,17 +208,6 @@ let imgProfile ={
 	float: "left",
 };
 
-// Instructor.propTypes = {
-// 	instructor: PropTypes.object,
-// 	handleCardClick: PropTypes.func,
-// 	handleChartType: PropTypes.func,
-// 	students: PropTypes.array,
-// 	handleFilter: PropTypes.func,
-// 	studentId: PropTypes.integer,
-// 	filtered: PropTypes.string,
-// 	chartType: PropTypes.string
-
-// };
 
 
 
