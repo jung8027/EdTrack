@@ -101,7 +101,9 @@ const MentorTopic = React.createClass({
 						<i className="material-icons right">send</i>
 					</button>
 
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" >Match
+					<button className="btn waves-effect waves-light" id="btnMatch" type="button"
+						onClick={()=>browserHistory.push(`/match`)}
+					>Match
 						<i className="material-icons right">send</i>
 					</button>
 				</div>

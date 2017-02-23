@@ -135,8 +135,7 @@ const Instructor = props => {
 								Mentors
 								<i className="material-icons right">send</i>
 							</button>
-							<button className="btn waves-effect waves-light" id="btnMatch" type="button"
-									onClick={() => browserHistory.push('/mentor/1')}>Match
+							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/match`)}>Match
 								<i className="material-icons right">send</i>
 							</button>
 						</center>
@@ -220,22 +219,3 @@ Instructor.propTypes = {
 
 
 export default Instructor;
-// <div style={heading}>
-// <div style={{align:"right"}}>
-// <NavDropdown title={<i className="fa fa-user fa-fw"/> } id='navDropdown4'>
-// <MenuItem eventKey="4">
-// 	<span> <i className="fa fa-sign-out fa-fw"/> Signout </span>
-// </MenuItem>
-// </NavDropdown>
-// <ul style={{align:"right"}} className="nav navbar-top-links navbar-left">
-// <li>
-// 	<a href="" onClick={(e) => {
-// 		e.preventDefault();
-// 		browserHistory.push('/');
-// 	}}>
-// 		<i className="fa fa-dashboard fa-fw"/> &nbsp;Home
-// 	</a>
-// </li>
-// </ul>
-// </div>
-// </div>

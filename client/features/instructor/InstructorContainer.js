@@ -16,7 +16,8 @@ class InstructorContainer extends Component{
 			filtered: "ALL",
 			infoSection: "CLASS",
 			studentId: 1,
-			chartType: "BAR"
+			chartType: "BAR",
+			matchConfirm: "CONFIRM"
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
@@ -81,6 +82,7 @@ class InstructorContainer extends Component{
 				handleLineChart = {this.handleLineChart}
 				chartType = {this.state.chartType}
 				handleClassView = {this.handleClassView}
+				matchConfirm = {this.state.matchConfirm}
 
 			/>
 		);

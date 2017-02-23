@@ -130,6 +130,13 @@ const getStudentTopicList = (req, res) => {
 		});
 };
 
+const getStudentTopics = (req, res) => {
+	models.Student.findAll({
+		include: [{model: models.Topic}]
+	})
+		.then((StudentInfo) => res.send(StudentInfo));
+};
+
 //Adds multer middleware
 router.use(upload.any());
 
@@ -137,6 +144,9 @@ router.use(upload.any());
 router.route('/')
 	.get(getStudents)
 	.post(postStudent);
+
+router.route('/topic')
+	.get(getStudentTopics);
 
 router.route('/:id')
 	.get(getStudent)
