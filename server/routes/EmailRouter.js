@@ -6,9 +6,9 @@ const helper = require('sendgrid').mail;
 function sendMail(req, res){
 	console.log('sendMail invoked!');
 
-	const from_email = new helper.Email(req.body.fromEmail);
-	const to_email = new helper.Email(req.body.toEmail);
-	const subject = "Mentor Session Info next Tuesday 2/21";
+	const from_email = new helper.Email(req.body.from);
+	const to_email = new helper.Email(req.body.to);
+	const subject = "Upcoming Mentor Session Info";
 
 	let students = req.body.students;
 	let topics = req.body.topics;

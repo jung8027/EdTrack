@@ -126,7 +126,7 @@ const Instructor = props => {
 							<button className="btn waves-effect waves-light" id="btnMentors" type="button" onClick={()=>browserHistory.push(`/instructor/${props.instructor.id}/mentor`)}>Mentors
 								<i className="material-icons right">send</i>
 							</button>
-							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push('/mentor/1')}>Match
+							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/match`)}>Match
 								<i className="material-icons right">send</i>
 							</button>
 						</center>
