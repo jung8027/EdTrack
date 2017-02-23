@@ -29,7 +29,7 @@ const AddMentor = React.createClass({
 	render(){
 		return(
 			<div >
-					<div >
+					<div id="form1">
 						<center><h1>Add Mentor</h1>
 						</center>
 						<input id="formInput" type="text" placeholder="Mentor Name" onChange={this.handelChange.bind(this, 'mentorName')} value={this.state.input}/>

@@ -27,9 +27,12 @@
 }
 
 #mentorCard {
-	/*background-color: yellow;*/
-	width: 750px;
-  height: 240px;
+	box-sizing: border-box;
+	width: 554px;
+	height: 159px;
+	background-color: #FFFFFF;
+	border: 3px solid #CBCFD7;
+	border-radius: 4px;
 }
 
 #email {
@@ -40,6 +43,11 @@
 #mentorName {
 	font-size: 20px;
 	margin-top: 9px;
+	margin: -84px 169px 255px 65px;
+	font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: #545F7A;
 }
 
 #rightPaneStyles {
@@ -48,10 +56,7 @@
 	font-size: 24px;
 	line-height: 28px;
 	color: #FFFFFF;
-	min-height: 100vh;
-	height: 100%;
-	margin-top: 23px;
-
+  height: 1024px;
 }
 
 #insides4 {
@@ -65,7 +70,7 @@
 }
 
 #div-content {
-	margin-left: 52px;
+	margin-left: 127px;
 }
 
 #prof-Name {
@@ -83,9 +88,56 @@
 
 #addMoreTopics {
 	height: 400px;
-	margin-left: -271px;
+	/*margin-left: -271px;*/
 }
 
+#imgProfile {
+	width: 69px;
+	height: 69px;
+	margin: 50px 47px 30px 43px;
+}
 
+#instructorImage {
+	width: 50px;
+  height: 50px;
+}
+
+#eject {
+	width: 9.09px;
+  height: 5.55px;
+  margin-right: 40px;
+	margin-top: 32px;
+}
+
+#mentorTittle {
+    width: 152px;
+    height: 47px;
+    font-family: Rubik;
+    font-size: 40px;
+    line-height: 47px;
+    color: #545F7A;
+    margin-left: 127px;
+}
+
+#pleaseAddTopics {
+	width: 310px;
+  height: 84px;
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: #FFFFFF;
+}
+
+#form1 {
+  border-style: solid;
+	border-color: #FFFFFF;
+	margin-top: 41px;
+  padding: 10px
+}
+
+#saveTopicsButton {
+	margin-top: -286px;
+  width: 120px;
+}
 
 

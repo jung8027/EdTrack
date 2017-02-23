@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Mentor from './Mentor';
+import Mentors from './Mentors';
 import {bindActionCreators} from 'redux';
 import { fetchMentors } from './MentorAction';
 import React, {Component, PropTypes} from 'react';
@@ -11,7 +11,7 @@ class MentorContainer extends Component {
     this.handleCardClick = this.handleCardClick.bind(this);
     this.state = {
     	activeRightPane: 'FORM',
-    	mentorId: null,
+    	selectedMentorId: null,
     	activeRightPane1: 'EMAIL'
     }
     console.log('a1',this.state)
@@ -20,22 +20,21 @@ class MentorContainer extends Component {
   handleCardClick(id) {
   	console.log('id',id);
 	  this.setState({
-		  mentorId: id,
+		  selectedMentorId: id,
+		  activeRightPane: 'TOPICS'
 	  });
-  	let active = this.state.activeRightPane;
+  	//let active = this.state.activeRightPane;
 		// let newActiveRightPane = active == 'FORM' ? 'TOPICS' : 'FORM';
 
-		this.setState({
-			activeRightPane: 'TOPICS'
-		});
 
-		console.log('getID1', this.state.mentorId)
+
 	}
 
 	render() {
+		console.log('selected mentor id:', this.state.selectedMentorId)
 		return(
-			<Mentor {...this.props}
-				 mentorId={this.state.mentorId}
+			<Mentors {...this.props}
+				 selectedMentorId={this.state.selectedMentorId}
 				 activeRightPane={this.state.activeRightPane}
 				 activeRightPane1={this.state.activeRightPane1}
 				 handleCardClick={this.handleCardClick}
