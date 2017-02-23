@@ -1,78 +1,110 @@
 import React, {PropTypes} from "react";
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
 import '../../styles/styles.css';
+import Header from '../common/Header';
 
 const Instructor = props => {
-	console.log('student name',props.student.name);
+	console.log('student name', props.student.name);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
 
 	//returns students ids from filtered grades
-	const	getLowGrades = students =>{
-		let studentsLowIds=[];
+	const getLowGrades = students => {
+		let studentsLowIds = [];
 		students.map(item => studentsLowIds.push(item.Grades.map(gradeFilter))
 		);
-		return [].concat(...studentsLowIds).filter((val,pos,arr)=> val && arr.indexOf(val) == pos);
+		return [].concat(...studentsLowIds).filter((val, pos, arr) => val && arr.indexOf(val) == pos);
 	};
 	let lowGradeIds = getLowGrades(props.students);
-	console.log('lowGradeIds',lowGradeIds);
-	let lowGradeStudents = props.students.filter(student=> lowGradeIds.includes(student.id));
-	console.log('lowGradeStudents',lowGradeStudents);
-	console.log('props.filter',props.filtered);
+	console.log('lowGradeIds', lowGradeIds);
+	let lowGradeStudents = props.students.filter(student => lowGradeIds.includes(student.id));
+	console.log('lowGradeStudents', lowGradeStudents);
+	console.log('props.filter', props.filtered);
 	(props.filtered === "ALL") ? studentsGrades = props.students : (props.filtered === "BELOW60") ? studentsGrades = lowGradeStudents : null;
 	console.log(studentsGrades);
-	let filteredStudent = studentsGrades.filter(student=> student.id === props.studentId);
-	console.log('filtered student Grades',filteredStudent[0]);
+	let filteredStudent = studentsGrades.filter(student => student.id === props.studentId);
+	console.log('filtered student Grades', filteredStudent[0]);
+	$('ul.tabs').tabs();
 	return (
 		<div className="row" style={{height: "100%"}}>
 			{!props.instructor.name ?
 				<p>Loading...</p> :
 				<div >
 					<div className="col s8" style={DashStyles}>
-						<div style={heading}>
-							<div style={{width:"100px",textAlign:"center"}}>
-								<img src={props.instructor.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
-								<p>{props.instructor.name}</p>
-								<p>{props.instructor.email}</p>
-							</div>
-						</div>
+						<Header />
 						<center>
-							{
 								<div>
+									<div className="row">
+										<center><div className="col s6 center">
+											<ul className="tabs">
+												<li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
+												<li className="tab col s3"><a  onClick={props.handleLineChart}>Assignments</a></li>
+												<li className="tab col s3"><a className="" href="#">Quizzes</a></li>
+
+											</ul>
+										</div>
+										</center>
+									</div>
 									{props.infoSection === "CLASS" ?
 										<div>
 											<LineChart grades={props.grades}
 													   chartType={props.chartType}
-													   handleChartType={props.handleChartType}
 											/>
-											<GradeContainer studentId={props.studentId}/>
+											<GradeContainer />
 										</div>
 										: props.infoSection === "STUDENT" ?
 										<div>
 											<LineChart grades={filteredStudent[0].Grades}
 													   chartType={props.chartType}
-													   handleChartType={props.handleChartType}
-													   studentName = {filteredStudent[0].name}
 											/>
-											<GradeContainer studentId={props.studentId}/>
-										</div>: null
-									}
+											<div className="col s12" style={{width:"625px"}}>
+												<GradeContainer studentId={props.studentId}/>
+												{!studentsGrades ?
+													<div>Loading list of students...</div>
+													:
 
+													studentsGrades.filter(student=>student.id===props.studentId).map((student, indx) =>
+														(
+														props.activeStudentCard === 'TOPICS'
+															?
+															(
+																<div style={cardContentTopic} className="card-horizontal">
+																	<div className="card-content">
+																		<ul>
+																			{student.Topics.map((topic, i) =>
+																				<li key={i}><strong>{topic.name}</strong></li>
+																			)}
+																		</ul>
+																		<span>Improvement areas</span>
+																	</div>
+																</div>
+															)
+															:
+															null
+
+													      )
+													)
+												}
+
+											</div>
+										</div> : null
+									}
 								</div>
-							}
 						</center>
 					</div>
 					<div className="col s4" style={rightPaneStyles}>
 						<center style={{width: "100%"}}>
-							<button className="btn waves-effect waves-light" id="classBtn" type="button" onClick={props.handleClassView}>Class
+							<button className="btn waves-effect waves-light" id="classBtn" type="button"
+									onClick={props.handleClassView}>Class
 								<i className="material-icons right">send</i>
 							</button>
 							<br/>
 							<br/>
-							<button className="btn waves-effect waves-light" id="filterBtn" type="button" onClick={props.handleFilter}>Need Help
+							<button className="btn waves-effect waves-light" id="filterBtn" type="button"
+									onClick={props.handleFilter}>Need Help
 								<i className="material-icons right">send</i>
 							</button>
 
@@ -83,39 +115,14 @@ const Instructor = props => {
 
 									studentsGrades.map((student, indx) =>
 										(
-											<div key={indx} className="col s12 m12">
+											<div key={indx} className="col s12" style={info}>
 
-												<div id="studentCards" className="card horizontal">
-													<div onClick={()=> props.handleInfo(student.id)} className="card-image" style={cardHeader}>
+												<div id="studentCards"className="card horizontal">
+													<div  style={cardHeader}  onClick={() => props.handleInfo(student.id)} className="card-image" >
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
-														<div className="card-content white-text">
-															<p>Need Help</p>
-														</div>
 													</div>
-													{
-														props.activeStudentCard === 'GRADES' ?
-															(<div onClick={props.handleCardClick} style={cardContent} className="card-stacked">
-																<div className="card-content">
-																	<ul>
-																		{student.Grades.map((grade, i) => <li key={i}>
-																			<strong>{grade.type}</strong>: {grade.grade}
-																		</li>)}
-																	</ul>
-																</div>
-															</div>)
-															: props.activeStudentCard === 'TOPICS' ?
-															(<div onClick={props.handleCardClick} style={cardContentTopic} className="card-stacked">
-																<div className="card-content">
-																	<ul>
-																		{student.Topics.map((topic, i) => <li key={i}>
-																			<strong>{topic.name}</strong>
-																		</li>)}
-																	</ul>
-																</div>
-															</div>)
-															: null
-													}
+
 												</div>
 											</div>
 										)
@@ -123,10 +130,13 @@ const Instructor = props => {
 								}
 							</ul>
 							<br/>
-							<button className="btn waves-effect waves-light" id="btnMentors" type="button" onClick={()=>browserHistory.push(`/instructor/${props.instructor.id}/mentor`)}>Mentors
+							<button className="btn waves-effect waves-light" id="btnMentors" type="button"
+									onClick={() => browserHistory.push(`/instructor/${props.instructor.id}/mentor`)}>
+								Mentors
 								<i className="material-icons right">send</i>
 							</button>
-							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push('/mentor/1')}>Match
+							<button className="btn waves-effect waves-light" id="btnMatch" type="button"
+									onClick={() => browserHistory.push('/mentor/1')}>Match
 								<i className="material-icons right">send</i>
 							</button>
 						</center>
@@ -138,48 +148,46 @@ const Instructor = props => {
 };
 
 let heading = {
-	paddingLeft:"20px",
+	paddingLeft: "20px",
 	textAlign: "left"
 };
 let cardImg = {
 	height: "80px",
 	width: "auto",
+	flex: "0 0 0%",
 	backgroundColor: "#545F7A",
 	borderRadius: "50%"
 };
 
 let cardTitle = {
 	color: "#545F7A",
-	flex: "0 1 0%",
-	marginLeft:"10px"
+	flex: "0 0 0%",
+	marginLeft: "25px"
 };
 
-
+let info = {
+	justifyContent: "center"
+}
 let cardHeader = {
-	display: "flex"
+	display: "flex",
+	flexDirection: "row",
+	borderRadius: "4px",
+	alignItems: "center",
+	height: "100px"
 };
 
 
 let DashStyles = {
+	diplay:"flex",
 	backgroundColor: "white",
 	height: "100%",
 	minHeight: "100vh"
 };
 
-let cardContent = {
-	fontColor: "#545F7A",
-	backgroundColor: "#3F485D",
-	width: "auto",
-	height: "175px"
-};
-
-
 let cardContentTopic = {
-	fontColor: "#545F7A",
-	color: "rgb(221, 19, 121)",
-	backgroundColor: "#3F485D",
-	width: "auto",
-	height: "175px"
+	color: "#545F7A",
+	backgroundColor: "#FFFFFF",
+	width: "auto"
 };
 
 let listStyle = {
@@ -201,11 +209,10 @@ let rightPaneStyles = {
 
 Instructor.propTypes = {
 	instructor: PropTypes.object,
-	handleCardClick: PropTypes.func,
 	handleChartType: PropTypes.func,
 	students: PropTypes.array,
 	handleFilter: PropTypes.func,
-	studentId: PropTypes.integer,
+	//studentId: PropTypes.integer,
 	filtered: PropTypes.string,
 	chartType: PropTypes.string
 
@@ -213,3 +220,22 @@ Instructor.propTypes = {
 
 
 export default Instructor;
+// <div style={heading}>
+// <div style={{align:"right"}}>
+// <NavDropdown title={<i className="fa fa-user fa-fw"/> } id='navDropdown4'>
+// <MenuItem eventKey="4">
+// 	<span> <i className="fa fa-sign-out fa-fw"/> Signout </span>
+// </MenuItem>
+// </NavDropdown>
+// <ul style={{align:"right"}} className="nav navbar-top-links navbar-left">
+// <li>
+// 	<a href="" onClick={(e) => {
+// 		e.preventDefault();
+// 		browserHistory.push('/');
+// 	}}>
+// 		<i className="fa fa-dashboard fa-fw"/> &nbsp;Home
+// 	</a>
+// </li>
+// </ul>
+// </div>
+// </div>

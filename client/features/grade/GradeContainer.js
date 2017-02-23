@@ -19,22 +19,22 @@ class GradeContainer extends Component{
 	}
 	render(){
 		return (
-			<Grade {...this.props} students={this.props.students} studentId={this.props.studentId} />
+			<Grade {...this.props}  studentId={this.props.studentId} />
 		);
 	}
 
 }
 
 GradeContainer.propTypes = {
-	grade: PropTypes.array,
+	grades: PropTypes.array,
 	fetchGrade: PropTypes.func,
 	fetchAllGrades: PropTypes.func,
 };
 
-const mapStateToProps= (state,ownProps)=>{
+const mapStateToProps= (state)=>{
 	console.log("state.gradeReducer:", state.gradeReducer);
 	return {
-		grade: state.gradeReducer
+		grades: state.gradeReducer
 	};
 };
 
