@@ -59,7 +59,9 @@ class InstructorContainer extends Component{
 		});
 	}
 	handleFilter(e){
+
 		e.preventDefault();
+		$(".material-icons").removeClass("hidden");
 		let filtered = this.state.filtered;
 		let newFilter = filtered === 'ALL' ? 'BELOW60' : 'ALL';
 		this.setState({
@@ -68,6 +70,7 @@ class InstructorContainer extends Component{
 		let button = $('#filterBtn');
 		console.log('button value',button.val());
 		button.text( filtered === 'ALL' ? "All" : "Need Help");
+
 	}
 	render(){
 		return (

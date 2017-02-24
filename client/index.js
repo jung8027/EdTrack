@@ -14,7 +14,6 @@ import { fetchAllGrades} from './features/grade/gradeActions';
 const store = configureStore();
 
 store.dispatch(fetchTopics());
-//store.dispatch(fetchAllGrades());
 
 
 render(

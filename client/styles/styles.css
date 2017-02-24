@@ -9,3 +9,17 @@ body, html, #root {
 .card #studentCards {
 	width: 450px !important;
 }
+
+.row .col.s6 {
+	width: 46%;
+	margin-left: 26%;
+	margin-bottom: -9%;
+}
+
+.row .col.s6 .filter{
+	color: blue;
+	width: 10%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	background-color: #545f7a !important;
+}

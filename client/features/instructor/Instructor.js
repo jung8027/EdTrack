@@ -34,11 +34,10 @@ const Instructor = props => {
 				<p>Loading...</p> :
 				<div >
 					<div className="col s8" style={DashStyles}>
-						<Header />
 						<center>
 								<div>
 									<div className="row">
-										<center><div className="col s6 center">
+										<div className="col s6">
 											<ul className="tabs">
 												<li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
 												<li className="tab col s3"><a  onClick={props.handleLineChart}>Assignments</a></li>
@@ -46,7 +45,6 @@ const Instructor = props => {
 
 											</ul>
 										</div>
-										</center>
 									</div>
 									{props.infoSection === "CLASS" ?
 										<div>
@@ -103,10 +101,14 @@ const Instructor = props => {
 							</button>
 							<br/>
 							<br/>
-							<button className="btn waves-effect waves-light" id="filterBtn" type="button"
-									onClick={props.handleFilter}>Need Help
-								<i className="material-icons right">send</i>
-							</button>
+							<div className="row">
+								<div className="col s6 filter">
+									<ul className="tabs"  >
+										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter} >All Students</a></li>
+										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter}>Needs Improvement</a></li>
+									</ul>
+								</div>
+							</div>
 
 							<ul style={listStyle}>
 								{!studentsGrades ?
@@ -116,13 +118,15 @@ const Instructor = props => {
 									studentsGrades.map((student, indx) =>
 										(
 											<div key={indx} className="col s12" style={info}>
-
-												<div id="studentCards"className="card horizontal">
+												<div id="studentCards" className="card horizontal">
 													<div  style={cardHeader}  onClick={() => props.handleInfo(student.id)} className="card-image" >
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
+														{student.Grades.find(g => g.grade <= 60)
+															? (<i style={flag} className="material-icons">flag</i>)
+															: null
+														}
 													</div>
-
 												</div>
 											</div>
 										)
@@ -145,6 +149,17 @@ const Instructor = props => {
 		</div>
 	);
 };
+let filterTabs={
+	backgroundColor: "#545f7a",
+	color: "#FFFFFF",
+	width: "auto",
+	height: "100%",
+	fontFamily: "Rubik",
+	fontSize: "16px",
+	fontWeight: "500",
+	lineHeight: "19px",
+	paddingBottom:"5px"
+};
 
 let heading = {
 	paddingLeft: "20px",
@@ -157,7 +172,10 @@ let cardImg = {
 	backgroundColor: "#545F7A",
 	borderRadius: "50%"
 };
-
+let flag = {
+	color:"red",
+	flex: "1 0 0%"
+};
 let cardTitle = {
 	color: "#545F7A",
 	flex: "0 0 0%",

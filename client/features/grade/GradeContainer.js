@@ -19,7 +19,7 @@ class GradeContainer extends Component{
 	}
 	render(){
 		return (
-			<Grade {...this.props}  studentId={this.props.studentId} />
+			<Grade {...this.props} studentId = {this.props.studentId} />
 		);
 	}
 
