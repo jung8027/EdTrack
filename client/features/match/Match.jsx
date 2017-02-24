@@ -24,7 +24,7 @@ class Match extends Component{
 		var mentors = this.props.mentors;
 		var finalMatch = [];
 		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
-		var result = finalMatch.filter(groups=> groups.students.length > 1);
+		var result = finalMatch.filter(groups=> groups.students.length > 0);
 		console.log('filtered result groups',result);
 		const match = [
 			{
