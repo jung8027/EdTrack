@@ -73,10 +73,10 @@ class Match extends Component{
 							{ /*MENTOR GROUPS CARDS*/
 
 								match.map( (mentor, i) => (
-									<center key={i}>
+									<center key={i} style={cardContainer}>
 										<div id ="mentorCard" className="card horizontal" >
 
-											<div className="card-image">
+											<div className="card-image" style={cardItem}>
 
 												<figure style={imgProfile}>
 													<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
@@ -85,14 +85,14 @@ class Match extends Component{
 
 											</div>
 
-											<div  className="card-stacked">
+											<div  className="card-stacked" style={cardItem}>
 												<div className="card-content">
 													<p className="header" id="students">{mentor.students}
 													</p>
 												</div>
 											</div>
 
-											<div  className="card-stacked">
+											<div  className="card-stacked" style={cardItem}>
 												<div className="card-content">
 													<p>Topic</p>
 													<p className="header" id="teachingTopic">
@@ -124,7 +124,7 @@ class Match extends Component{
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
 												<i className="material-icons right">send</i>
 										</button>
-
+										<br/><br/>
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
 												<i className="material-icons right">send</i>
 										</button>
@@ -157,17 +157,15 @@ class Match extends Component{
 
 
 
-// let cardStyle = {
-// 	width: "368px",
-// 	height: "119px",
-// 	backgroundColor: "#3F485D",
-// 	borderRadius: "4px",
-// 	fontFamily: "Rubik",
-// 	fontSize: "14px",
-// 	lineHeight: "17px",
-// 	color: "#FFFFFF",
-// 	marginTop: "auto",
-// }
+let cardContainer = {
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+}
+
+let cardItem = {
+
+}
 
 // let cardImg = {
 // 	height: "80px",
@@ -219,7 +217,7 @@ let rightPaneStyles = {
 	margin: "auto",
 };
 
-let imgProfile ={
+let imgProfile = {
 	height: "150px",
 	width: "150px",
 	float: "left",
