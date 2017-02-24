@@ -2,62 +2,83 @@ import React, {Component, PropTypes} from "react";
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
+import matchingAlgorithm from './MatchingAlgorithm';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { fetchMentors } from '../mentor/MentorAction';
+import { fetchStudents } from '../student/studentActions';
+
 
 
 class Match extends Component{
 	constructor( props ) {
 		super( props );
+		this.props.fetchMentors();
+		this.props.fetchStudents();
 		this.state = {
 			matchConfirm : "CONFIRM"
 		};
 	}
-
 	render(){
-		console.log("MATCHCONFIRM: ", this.state.matchConfirm);
-		const match = [
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
+		var students= this.props.students;
+		var mentors = this.props.mentors;
+		var finalMatch = [];
+		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
+		var result = finalMatch.filter(groups=> groups.students.length > 0);
+
+		console.log('filtered result groups',result);
+
+		// const match = [
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
 
 
-		];
+		// ];
+
+		console.log("finalMatch",finalMatch);
 
 		const notifyMentors = () => {
 			this.setState({ matchConfirm: "DONE" });
 
-			axios.post("/api/email",
-				querystring.stringify({
-				from: "edtrack@googlegroups.com",
-				to: "edtrack2017@gmail.com",
-				students: "Iliass, Jung, Luis, Quan",
-				teachingTopic: "DSA",
-			})
-			);
+			result.map( ( group, i ) => {
+
+				axios.post("/api/email",
+					querystring.stringify({
+						from: "edtrack@googlegroups.com",
+						// to: group.mentorEmail,
+						to: "edtrack2017@gmail.com",
+						students: group.students,
+						teachingTopic: group.teachingTopic,
+					})
+				);
+
+			});
 
 		};
 
@@ -71,23 +92,21 @@ class Match extends Component{
 							</div>
 
 							{ /*MENTOR GROUPS CARDS*/
+								result.map( (group, i) => (
 
-								match.map( (mentor, i) => (
-									<center key={i} style={cardContainer}>
-										<div id ="mentorCard" className="card horizontal" >
-
+										<div key={i} className="card horizontal" style={cardContainer} >
 											<div className="card-image" style={cardItem}>
 
 												<figure style={imgProfile}>
 													<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
-													<figcaption>{mentor.mentorName}</figcaption>
+													<figcaption>{group.mentorName}</figcaption>
 												</figure>
 
 											</div>
 
 											<div  className="card-stacked" style={cardItem}>
 												<div className="card-content">
-													<p className="header" id="students">{mentor.students}
+													<p className="header" id="students">{group.students.map((student,idx)=><li key={idx}>{student}</li>)}
 													</p>
 												</div>
 											</div>
@@ -96,14 +115,14 @@ class Match extends Component{
 												<div className="card-content">
 													<p>Topic</p>
 													<p className="header" id="teachingTopic">
-														<strong>{mentor.teachingTopic}</strong>
+														<strong>{group.teachingTopic}</strong>
 													</p>
 												</div>
 											</div>
 
 
 										</div>
-									</center>
+
 								))
 							}
 
@@ -124,7 +143,9 @@ class Match extends Component{
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
 												<i className="material-icons right">send</i>
 										</button>
+
 										<br/><br/>
+
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
 												<i className="material-icons right">send</i>
 										</button>
@@ -155,59 +176,31 @@ class Match extends Component{
 
 }
 
-
-
-let cardContainer = {
+let DashStyles = {
 	display: "flex",
 	flexDirection: "column",
-	justifyContent: "center",
-}
+	justifyContent: "flex-start",
+	alignItems: "center",
 
-let cardItem = {
-
-}
-
-// let cardImg = {
-// 	height: "80px",
-// 	width: "auto",
-// 	backgroundColor: "#545F7A",
-// 	borderRadius: "50%"
-// };
-
-// let cardTitle = {
-// 	color: "#545F7A",
-// 	flex:"2"
-// };
-
-
-// let cardHeader = {
-// 	display: "flex"
-// };
-
-
-let DashStyles = {
 	backgroundColor: "white",
 	color: "#545F7A",
 	height: "100%",
 	minHeight: "100vh"
 };
 
-// let cardContent = {
-// 	fontColor: "#545F7A",
-// 	backgroundColor: "#3F485D",
-// 	width: "100%",
-// 	height: "175px"
-// };
-// let listStyle = {
-// 	marginTop: "70px",
-// 	height: "560px",
-// 	overflow: "auto"
-// };
+let cardContainer = {
+	display: "flex",
+	flexDirection: "row",
+	justifyContent: "space-between",
+}
+
+let cardItem = {
+	margin: "auto",
+}
+
+
 
 let rightPaneStyles = {
-	// display: "flex",
-	// flexDirection: "column",
-	// justifyContent: "center",
 	width: "317px",
 	height: "84px",
 	fontFamily: "Rubik",
@@ -220,13 +213,21 @@ let rightPaneStyles = {
 let imgProfile = {
 	height: "150px",
 	width: "150px",
-	float: "left",
+	// float: "left",
 };
 
 let matchH2Tag = {
 	fontWeight: "200"
 };
 
+const mapStateToProps = state => ({
+	mentors: state.mentorReducer,
+	students: state.studentReducer.students
+});
 
-
-export default Match;
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({
+		fetchMentors,fetchStudents
+	}, dispatch)
+);
+export default connect( mapStateToProps , mapDispatchToProps)( Match )

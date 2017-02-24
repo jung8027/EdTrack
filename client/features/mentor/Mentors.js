@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import AddMentor from './AddMentor';
 import MentorTopic from '../mentorTopicList/MentorTopic.jsx';
+
+import Header from '../common/Header.js';
 import '../../styles/AddMentor.css';
 import $ from 'jquery';
 
@@ -14,11 +16,14 @@ const Mentors = (props) => {
 					<div style={heading}>
 						<div style={{width:"100px",textAlign:"center"}}>
 							<img src={"/a4660052d5b6fee6192db0b5aeede812.png"} id="instructorImage"/>
-							<i className="material-icons" id="eject">keyboard_arrow_down</i>
+							<Header  id="header1"/>
 						</div>
 					</div>
 
-					<h1 id="mentorTittle">Mentors</h1>
+
+					<div>
+						<h1 id="mentorTittle">Mentors</h1>
+					</div>
 					<div id="DashStyles">
 						<div id="div-content"className="container">
 							<ul>
@@ -59,7 +64,8 @@ Mentors.propTypes = {
 
 let heading = {
 	paddingLeft:"20px",
-	textAlign: "left"
+	textAlign: "left",
+	paddingBottom: "55px"
 };
 
 

@@ -101,8 +101,10 @@
 }
 
 #instructorImage {
-	width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  margin-top: 19px;
+  margin-left: -20px;
 }
 
 #eject {
@@ -142,5 +144,7 @@
 	margin-top: -286px;
   width: 120px;
 }
+
+
 
 

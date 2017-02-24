@@ -12,7 +12,7 @@ const TopicSeedFunc = () => {
 				{name: 'Recursion'},
 				{name: 'Variables'},
 				{name: 'Linked lists'},
-				{name: 'JavaScript Fundamentals'},
+				{name: 'JS Fundamentals'},
 				{name: 'Data Structures'}
 		]);
 	});

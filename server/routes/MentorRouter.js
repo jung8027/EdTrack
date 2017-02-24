@@ -4,8 +4,10 @@ const Topic = require('../models').Topic;
 
 //FUNCTIONS//
 const getAllMentors = (req, res) => {
-	Mentor.findAll()
-		.then((MentorsInfo) => res.send(MentorsInfo));
+	Mentor.findAll({
+		include: [{model: Topic}]
+	})
+		.then((MentorInfo) => res.send(MentorInfo));
 };
 
 const postNewMentor = (req, res) => {
@@ -61,20 +63,11 @@ const attachTopicsToMentor = (req,res) => {
 			});
 };
 
-const getMentorTopics = (req, res) => {
-	Mentor.findAll({
-		include: [{model: Topic}]
-	})
-		.then((MentorInfo) => res.send(MentorInfo));
-};
 
 //ROUTES//
 router.route('/')
 	.get(getAllMentors)
 	.post(postNewMentor);
-
-router.route('/topic')
-	.get(getMentorTopics);
 
 router.route('/:id')
 	.get(getSingleMentor)
