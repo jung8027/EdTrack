@@ -5,9 +5,7 @@ const LineChart = props => {
 		console.log('chart props',props);
 		return (
 			<div>
-				<button onClick={props.handleChartType} >Change Chart</button>
 				<div className="chart" style={{width:"60%"}}>
-					{props.studentName ? <h2><strong>{props.studentName}</strong></h2>: null}
 				<VictoryChart
 
 					// domainPadding will add space to each side of VictoryBar to

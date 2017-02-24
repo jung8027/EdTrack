@@ -3,23 +3,30 @@ import LineChart from '../common/LineChart';
 
 const Grade = (props) => {
 	// console.log('grade component props', props.students);
-	console.log('grade component props', props.grades);
+	console.log('grade component props' + props.grades);
 
 
-	let grade = props.grade;
+	let grades = props.grades;
 	let student = props.studentId;
-	if (grade) {
-		var studentGrades = grade.filter(grade => grade.StudentId === student);
-		console.log('studentGrades',studentGrades);
+	if (grades) {
+		var studentGrades = !student? grades : grades.filter(grade => grade.StudentId === student);
+		console.log('studentGrades' + studentGrades);
 		var studentAverage = studentGrades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / studentGrades.length;
-		var classAverage = grade.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grade.length;
-
+		var classAverage = grades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grades.length;
+		var finalGrades = studentGrades.filter(grade => grade.type==='final')
+		console.log('finalGrades: ' + finalGrades)
+        var finalGrade;
+		if (finalGrades.length === 1){
+			finalGrade = finalGrades[0].grade
+		} else {
+			finalGrade = finalGrades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / finalGrades.length;
+		}
 	}
+	console.log("finalGrade: " + finalGrade);
 	return (
-		<div>
-			{!grade ?
+			grades.length === 0  ?
 				<p>Fetching grades...</p> :
-				<div className="row" style={{width:"60%"}}>
+				<div className="row">
 					<div className="col s4" >
 						<span style={gradeStyles} > {classAverage.toFixed(2)|| '-'}</span>
 						<br/>
@@ -31,14 +38,15 @@ const Grade = (props) => {
 						<span style={Gradelabel} >Avg Grade </span>
 					</div>
 					<div className="col s4" >
-						<span style={gradeStyles} >{studentGrades ? studentGrades.filter(grade => grade.type==='final')[0].grade.toFixed(2) : '-' }</span>
+
+						{finalGrade?
+							<span style={gradeStyles} >{finalGrade.toFixed(2) }</span>
+							: null
+						}
 						<br/>
 						<span style={Gradelabel} >Final Grade </span>
 					</div>
 				</div>
-			}
-
-		</div>
 	);
 };
 
