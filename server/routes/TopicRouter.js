@@ -42,7 +42,6 @@ const updateTopic = (req, res) => {
 };
 
 const getTopicStudent = (req, res) => {
-	// req.topics = [2,3,4]
 	models.Topic.findAll({
 		include: [{model: models.Student}]
 	})
