@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 const debug  = require('debug')('instructor');
 import $ from 'jquery';
+import {browserHistory} from 'react-router';
 import Instructor from './Instructor';
 import { fetchInstructor } from "./InstructorActions";
 import { fetchStudents } from '../student/studentActions';
 import { fetchAllGrades } from '../grade/gradeActions';
+import Match from '../match/Match.jsx'
 
 class InstructorContainer extends Component{
 	constructor( props ){
@@ -17,16 +19,27 @@ class InstructorContainer extends Component{
 			infoSection: "CLASS",
 			studentId: 1,
 			chartType: "BAR",
-			matchConfirm: "CONFIRM"
+			matchConfirm: "CONFIRM",
+			matchState: null
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
+		this.handleMatch= this.handleMatch.bind(this);
 		this.handleInfo = this.handleInfo.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
 		this.handleClassView = this.handleClassView.bind(this);
 		this.handleLineChart= this.handleLineChart.bind(this);
 	}
+	handleMatch(e){
+	e.preventDefault();
+	let newActiveChart = 'MATCH';
 
+	this.setState({
+		matchState: newActiveChart
+	});
+	browserHistory.push(`/instructor/${this.props.instructor.id}/match`);
+	console.log('new active chart',newActiveChart)
+}
 	handleLineChart(e){
 		e.preventDefault();
 		let activeChart = this.state.chartType;
@@ -46,6 +59,8 @@ class InstructorContainer extends Component{
 			studentId: id
 		});
 		console.log("studentId", this.state.studentId);
+		$('.card').removeClass('highlight');
+		$('#mentorCard' + id).addClass('highlight')
 	}
 	handleClassView(e){
 		e.preventDefault();
@@ -66,13 +81,14 @@ class InstructorContainer extends Component{
 		this.setState({
 			filtered: newFilter
 		});
-		let button = $('#filterBtn');
-		console.log('button value',button.val());
-		button.text( filtered === 'ALL' ? "All" : "Need Help");
+		// let button = $('#filterBtn');
+		// console.log('button value',button.val());
+		// button.text( filtered === 'ALL' ? "All" : "Need Help");
 
 	}
 	render(){
 		return (
+
 			<Instructor
 				{...this.props}
 				activeStudentCard={this.state.activeStudentCard}
@@ -85,6 +101,8 @@ class InstructorContainer extends Component{
 				chartType = {this.state.chartType}
 				handleClassView = {this.handleClassView}
 				matchConfirm = {this.state.matchConfirm}
+				matchState = {this.state.matchState}
+				handleMatch={this.handleMatch}
 
 			/>
 		);

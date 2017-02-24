@@ -4,9 +4,12 @@ import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
 import '../../styles/styles.css';
 import Header from '../common/Header';
+import Match from '../match/Match.jsx';
+
+
 
 const Instructor = props => {
-	console.log('student name', props.student.name);
+	console.log('instructor component props', props);
 	//filter grade less than 60
 	let studentsGrades = [];
 	const gradeFilter = item => item.grade <= 60 ? item.StudentId : null;
@@ -30,15 +33,21 @@ const Instructor = props => {
 	$('ul.tabs').tabs();
 	return (
 		<div className="row" style={{height: "100%"}}>
-			{!props.instructor.name ?
-				<p>Loading...</p> :
+			{
+				props.matchState === "MATCH" ?
+				<Match matchState={props.matchState}
+						students={props.students}
+					   mentors = {props.mentors}
+				/>
+					:
+				props.instructor.name ?
 				<div >
 					<div className="col s8" style={DashStyles}>
 						<center>
 								<div>
 									<div className="row">
 										<div className="col s6">
-											<ul className="tabs">
+											<ul className="tabs" style={dashNav}>
 												<li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
 												<li className="tab col s3"><a  onClick={props.handleLineChart}>Assignments</a></li>
 												<li className="tab col s3"><a className="" href="#">Quizzes</a></li>
@@ -95,14 +104,10 @@ const Instructor = props => {
 					</div>
 					<div className="col s4" style={rightPaneStyles}>
 						<center style={{width: "100%"}}>
-							<button className="btn waves-effect waves-light" id="classBtn" type="button"
-									onClick={props.handleClassView}>Class
-								<i className="material-icons right">send</i>
-							</button>
 							<br/>
 							<br/>
 							<div className="row">
-								<div className="col s6 filter">
+								<div style={navTabs} className="col s6 filter">
 									<ul className="tabs"  >
 										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter} >All Students</a></li>
 										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter}>Needs Improvement</a></li>
@@ -139,26 +144,39 @@ const Instructor = props => {
 								Mentors
 								<i className="material-icons right">send</i>
 							</button>
-							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/${props.instructor.id}/match`)}>Match
+							<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={props.handleMatch}>Match
 								<i className="material-icons right">send</i>
 							</button>
 						</center>
 					</div>
 				</div>
+				:
+				 <p>Loading...</p>
 			}
 		</div>
 	);
 };
+let navTabs ={
+	marginLeft:"5px",
+	width:"350px",
+	height: "100%"
+};
+
+let dashNav={
+	color:"#545F7A"
+};
 let filterTabs={
 	backgroundColor: "#545f7a",
 	color: "#FFFFFF",
-	width: "auto",
+	width: "100%",
 	height: "100%",
 	fontFamily: "Rubik",
-	fontSize: "16px",
+	fontSize: "12px",
 	fontWeight: "500",
 	lineHeight: "19px",
-	paddingBottom:"5px"
+	paddingBottom:"5px",
+	paddingLeft:"5px",
+	paddingRight:"5px"
 };
 
 let heading = {

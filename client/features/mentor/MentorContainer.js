@@ -22,7 +22,7 @@ class MentorContainer extends Component {
 		  selectedMentorId: id,
 		  activeRightPane: 'TOPICS'
 	  });
-		$('.card').removeClass('highlight')
+		$('.card').removeClass('highlight');
 	  $('#mentorCard' + id).addClass('highlight')
 	}
 

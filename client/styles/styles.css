@@ -18,6 +18,7 @@ body, html, #root {
 	width: 10%;
 	margin-left: 5%;
 	margin-bottom: 5%;
+
 	background-color: #545f7a !important;
 }
 
@@ -25,3 +26,4 @@ body, html, #root {
 	width: 0px;  /* remove scrollbar space */
 	background: transparent;  /* optional: just make scrollbar invisible */
 }
+
