@@ -5,15 +5,16 @@ const helper = require('sendgrid').mail;
 
 function sendMail(req, res){
 	console.log('sendMail invoked!');
+	console.log("req.body: ", req.body);
 
 	const from_email = new helper.Email(req.body.from);
 	const to_email = new helper.Email(req.body.to);
 	const subject = "Upcoming Mentor Session Info";
 
 	let students = req.body.students;
-	let topics = req.body.topics;
+	let topic = req.body.topic;
 
-	const content = new helper.Content("text/html", '<!DOCTYPE html><html><head><style>div.container {width: 100%;border: 1px solid gray;}header, footer {padding: 1em;color: white;background-color: #3F485D;clear: left;text-align: center;}nav ul {list-style-type: none;padding: 0;}nav ul a {text-decoration: none;}#topics {margin-left: 170px;border-left: 1px solid gray;padding: 1em;overflow: hidden;}</style></head><body><div class="container"><header><h1> Mentor Session Info</h1></header><h1></h1><section id="students">'+ students +'</section><section id="topics">'+ topics +'</section><footer>Copyright &copy; EdTrack.io</footer></div></body></html>');
+	const content = new helper.Content("text/html", '<!DOCTYPE html><html><head><style>div.container {width: 100%;border: 1px solid gray;}header, footer {padding: 1em;color: white;background-color: #3F485D;clear: left;text-align: center;}nav ul {list-style-type: none;padding: 0;}nav ul a {text-decoration: none;}#topic {margin-left: 170px;border-left: 1px solid gray;padding: 1em;overflow: hidden;}</style></head><body><div class="container"><header><h1> Mentor Session Info</h1></header><h1></h1><section id="students">'+ students +'</section><section id="topic">'+ topic +'</section><footer>Copyright &copy; EdTrack.io</footer></div></body></html>');
 
 	const mail = new helper.Mail(from_email, subject, to_email, content);
 
