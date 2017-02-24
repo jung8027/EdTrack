@@ -72,7 +72,7 @@ class Match extends Component{
 								<h1>Mentor Groups </h1>
 							</div>
 
-							{
+							{ /*MENTOR GROUPS CARDS*/
 
 								match.map( (mentor, i) => (
 									<center>
@@ -80,18 +80,29 @@ class Match extends Component{
 
 											<div className="card-image">
 
-												<img src="/a4660052d5b6fee6192db0b5aeede812.png" style={imgProfile} />
-												<p className="header" id="mentorName">{mentor.mentorName}</p>
-												<p className="header" id="mentorEmail">{mentor.mentorEmail}</p>
+												<figure style={imgProfile}>
+													<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
+													<figcaption>{mentor.mentorName}</figcaption>
+												</figure>
 
 											</div>
 
 											<div  className="card-stacked">
 												<div className="card-content">
-													<p className="header" id="email">{mentor.students}
+													<p className="header" id="students">{mentor.students}
 													</p>
 												</div>
 											</div>
+
+											<div  className="card-stacked">
+												<div className="card-content">
+													<p>Topic</p>
+													<p className="header" id="teachingTopic">
+														<strong>{mentor.teachingTopic}</strong>
+													</p>
+												</div>
+											</div>
+
 
 										</div>
 									</center>
