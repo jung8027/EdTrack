@@ -6,9 +6,6 @@ body, html, #root {
 	width: 100%;
 
 }
-.card #studentCards {
-	width: 450px !important;
-}
 
 .row .col.s6 {
 	width: 46%;
@@ -22,4 +19,9 @@ body, html, #root {
 	margin-left: 5%;
 	margin-bottom: 5%;
 	background-color: #545f7a !important;
+}
+
+::-webkit-scrollbar {
+	width: 0px;  /* remove scrollbar space */
+	background: transparent;  /* optional: just make scrollbar invisible */
 }

@@ -183,8 +183,9 @@ let cardTitle = {
 };
 
 let info = {
-	justifyContent: "center"
-}
+	justifyContent: "center",
+	overflowY: "scroll"
+};
 let cardHeader = {
 	display: "flex",
 	flexDirection: "row",
@@ -210,7 +211,7 @@ let cardContentTopic = {
 let listStyle = {
 	marginTop: "70px",
 	height: "560px",
-	overflow: "auto"
+	overflow: "scroll"
 };
 
 let rightPaneStyles = {
