@@ -8,25 +8,7 @@ import {bindActionCreators} from 'redux';
 import { fetchMentors } from '../mentor/MentorAction';
 import { fetchStudents } from '../student/studentActions';
 
-
-
-class Match extends Component{
-	constructor( props ) {
-		super( props );
-		this.props.fetchMentors();
-		this.props.fetchStudents();
-		this.state = {
-			matchConfirm : "CONFIRM"
-		};
-	}
-	render(){
-		var students= this.props.students;
-		var mentors = this.props.mentors;
-		var finalMatch = [];
-		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
-		var result = finalMatch.filter(groups=> groups.students.length > 0);
-		console.log('filtered result groups',result);
-		const match = [
+const match = [
 			{
 				mentorName: "Justin",
 				mentorEmail: "Justin@gmail.com",
@@ -58,21 +40,39 @@ class Match extends Component{
 
 
 		];
-		console.log("finalMatch",finalMatch);
-		const notifyMentors = () => {
-			this.setState({ matchConfirm: "DONE" });
 
-			axios.post("/api/email",
-				querystring.stringify({
-				from: "edtrack@googlegroups.com",
-				to: "edtrack2017@gmail.com",
-				students: "Iliass, Jung, Luis, Quan",
-				teachingTopic: "DSA",
-			})
-			);
-
+class Match extends Component{
+	constructor( props ) {
+		super( props );
+		this.props.fetchMentors();
+		this.props.fetchStudents();
+		this.setFilteredList = this.setFilteredList.bind(this);
+		this.notifyMentors = this.notifyMentors.bind(this);
+		this.state = {
+			filteredList: null,
+			matchConfirm : "CONFIRM"
 		};
+	}
 
+	setFilteredList(array){
+		this.setState({ filteredList: array });
+	}
+
+	notifyMentors(){
+		this.setState({ matchConfirm: "DONE" });
+	}
+
+	componentWillReceiveProps(props){
+		let students= props.students;
+		let mentors = props.mentors;
+		if(students.length > 0 && mentors.length > 0){
+			let result = matchingAlgorithm(mentors,students);
+			let results = result.filter(groups=> groups.students.length > 0);
+			return this.setFilteredList(results);
+		}
+	}
+
+	render(){
 		return (
 			<div className="row" style={{height: "100%"}}>
 
@@ -83,40 +83,44 @@ class Match extends Component{
 							</div>
 
 							{ /*MENTOR GROUPS CARDS*/
+								(this.state.filteredList)
+									? (this.state.filteredList.map( (mentor, i) => {
+											let studentList = mentor.students.map(student => student).join(', ');
+											return <center key={i}>
+												<div id ="mentorCard" className="card horizontal" key={i}>
 
-								result.map( (mentor, i) => (
-									<center>
-										<div id ="mentorCard" className="card horizontal" key={i}>
+													<div className="card-image">
 
-											<div className="card-image">
+														<figure style={imgProfile}>
+															<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
+															<figcaption>{mentor.mentorName}</figcaption>
+														</figure>
 
-												<figure style={imgProfile}>
-													<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
-													<figcaption>{mentor.mentorName}</figcaption>
-												</figure>
+													</div>
 
-											</div>
+													<div  className="card-stacked">
+														<div className="card-content">
+															<p>Student(s): </p>
+															<p className="header" id="students">
+																<strong>{studentList}</strong>
+															</p>
+														</div>
+													</div>
 
-											<div  className="card-stacked">
-												<div className="card-content">
-													<p className="header" id="students">{mentor.students.map((student,idx)=><li key={idx}>{student}</li>)}
-													</p>
+													<div  className="card-stacked">
+														<div className="card-content">
+															<p>Topic</p>
+															<p className="header" id="teachingTopic">
+																<strong>{mentor.teachingTopic}</strong>
+															</p>
+														</div>
+													</div>
+
+
 												</div>
-											</div>
-
-											<div  className="card-stacked">
-												<div className="card-content">
-													<p>Topic</p>
-													<p className="header" id="teachingTopic">
-														<strong>{mentor.teachingTopic}</strong>
-													</p>
-												</div>
-											</div>
-
-
-										</div>
-									</center>
-								))
+											</center>
+										}))
+									: null
 							}
 
 						</div>
@@ -133,7 +137,7 @@ class Match extends Component{
 											</h1>
 										</center>
 
-										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
+										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={this.notifyMentors} >Yes, Notify Mentors
 												<i className="material-icons right">send</i>
 										</button>
 										<br/>
@@ -192,14 +196,16 @@ let imgProfile ={
 };
 
 
-const mapStateToProps = state => ({
-	mentors: state.mentorReducer,
-	students: state.studentReducer.students
-});
+const mapStateToProps = state => {
+	return {
+		mentors: state.mentorReducer,
+		students: state.studentReducer.students
+	};
+};
 
 const mapDispatchToProps = dispatch => (
 	bindActionCreators({
 		fetchMentors,fetchStudents
 	}, dispatch)
 );
-export default connect( mapStateToProps , mapDispatchToProps)( Match )
+export default connect( mapStateToProps , mapDispatchToProps)( Match );
