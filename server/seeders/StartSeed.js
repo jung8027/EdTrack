@@ -9,22 +9,22 @@ const gradeSeedFunc = require('./gradeSeed.js');
 
 const StartSeedFunc = () => {
 	models.Instructor.sync({force: true})
-		.then(() => instructorSeedFunc());
+		.then(setTimeout(() => instructorSeedFunc(),2000));
 
 	models.Topic.sync({force: true})
-		.then(() => TopicSeedFunc());
+		.then(setTimeout(() => TopicSeedFunc(),2000));
 
 	models.Mentor.sync({force: true})
-		.then(() => MentorSeedFunc());
+		.then(setTimeout(() => MentorSeedFunc(),2000));
 
 	models.Student.sync({force: true})
-		.then(() => StudentSeedFunc());
+		.then(setTimeout(() => StudentSeedFunc(),3000));
 
 	models.Grade.sync({force: true})
-		.then(() => gradeSeedFunc());
+		.then(setTimeout(() => gradeSeedFunc(),3000));
 
 	models.Class.sync({force: true})
-		.then(() => ClassSeedFunc());
+		.then(setTimeout(() => ClassSeedFunc(),2000));
 };
 
 StartSeedFunc();
