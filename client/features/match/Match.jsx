@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import { browserHistory } from 'react-router';
-
+import axios from 'axios';
+import querystring from 'querystring';
 
 
 class Match extends Component{
@@ -8,7 +9,7 @@ class Match extends Component{
 		super( props );
 		this.state = {
 			matchConfirm : "CONFIRM"
-		}
+		};
 	}
 
 	render(){
@@ -17,35 +18,48 @@ class Match extends Component{
 			{
 				mentorName: "Justin",
 				mentorEmail: "Justin@gmail.com",
-				topics: "DSA",
-				students: "Iliass, Jung, Luis, Quan",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
 				img_path: "/c805236406941d2ba6b9398291266281.png"
 			},
 			{
-				mentorName: "Lev",
+				mentorName: "Justin",
 				mentorEmail: "Justin@gmail.com",
-				topics: "redux",
-				students: "Iliass, Jung, Luis, Quan",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
 				img_path: "/c805236406941d2ba6b9398291266281.png"
 			},
 			{
-				mentorName: "Paul",
+				mentorName: "Justin",
 				mentorEmail: "Justin@gmail.com",
-				topics: "react",
-				students: "Luis, Quan",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
 				img_path: "/c805236406941d2ba6b9398291266281.png"
 			},
 			{
-				mentorName: "Kenny",
+				mentorName: "Justin",
 				mentorEmail: "Justin@gmail.com",
-				topics: "sequelize",
-				students: "Iliass, Luis, Quan",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
 				img_path: "/c805236406941d2ba6b9398291266281.png"
 			},
+
 
 		];
 
-		let matchConfirm = "CONFIRM";
+		const notifyMentors = () => {
+			this.setState({ matchConfirm: "DONE" });
+
+			axios.post("/api/email",
+				querystring.stringify({
+				from: "edtrack@googlegroups.com",
+				to: "edtrack2017@gmail.com",
+				students: "Iliass, Jung, Luis, Quan",
+				teachingTopic: "DSA",
+			})
+			);
+
+		};
 
 		return (
 			<div className="row" style={{height: "100%"}}>
@@ -96,7 +110,7 @@ class Match extends Component{
 											</h1>
 										</center>
 
-										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={() => this.setState({ matchConfirm: "DONE" })} >Yes, Notify Mentors
+										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
 												<i className="material-icons right">send</i>
 										</button>
 
@@ -188,7 +202,6 @@ let rightPaneStyles = {
 	height: "84px",
 	fontFamily: "Rubik",
 	fontSize: "24px",
-	fontWeight: "bold",
 	lineHeight: "28px",
 	color: "#545F7A",
 	margin: "auto",
