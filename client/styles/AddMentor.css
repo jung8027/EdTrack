@@ -26,13 +26,17 @@
   margin-right: 10px;
 }
 
-#mentorCard {
+.card {
 	box-sizing: border-box;
 	width: 554px;
 	height: 159px;
 	background-color: #FFFFFF;
 	border: 3px solid #CBCFD7;
 	border-radius: 4px;
+}
+
+.card.highlight {
+	border: 3px solid #545F7A;
 }
 
 #email {
@@ -88,7 +92,6 @@
 
 #addMoreTopics {
 	height: 400px;
-	/*margin-left: -271px;*/
 }
 
 #imgProfile {

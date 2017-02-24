@@ -3,6 +3,7 @@ import Mentors from './Mentors';
 import {bindActionCreators} from 'redux';
 import { fetchMentors } from './MentorAction';
 import React, {Component, PropTypes} from 'react';
+import '../../styles/AddMentor.css';
 
 class MentorContainer extends Component {
 	constructor(props) {
@@ -14,20 +15,15 @@ class MentorContainer extends Component {
     	selectedMentorId: null,
     	activeRightPane1: 'EMAIL'
     }
-    console.log('a1',this.state)
   }
 
   handleCardClick(id) {
-  	console.log('id',id);
 	  this.setState({
 		  selectedMentorId: id,
 		  activeRightPane: 'TOPICS'
 	  });
-  	//let active = this.state.activeRightPane;
-		// let newActiveRightPane = active == 'FORM' ? 'TOPICS' : 'FORM';
-
-
-
+		$('.card').removeClass('highlight')
+	  $('#mentorCard' + id).addClass('highlight')
 	}
 
 	render() {
@@ -63,4 +59,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MentorContainer);
-// displayTopicOrEmail={this.displayTopicOrEmail}
