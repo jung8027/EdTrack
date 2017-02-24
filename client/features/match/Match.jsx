@@ -9,37 +9,35 @@ import { fetchMentors } from '../mentor/MentorAction';
 import { fetchStudents } from '../student/studentActions';
 
 const match = [
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-
-
-		];
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	}
+];
 
 class Match extends Component{
 	constructor( props ) {
@@ -60,6 +58,19 @@ class Match extends Component{
 
 	notifyMentors(){
 		this.setState({ matchConfirm: "DONE" });
+		// disabled until actual use
+
+		// let EmailList = this.state.filteredList;
+		// for( let i = 0; i < EmailList; i++){
+		// 	axios.post("/api/email",
+		// 			querystring.stringify({
+		// 				from: "edtrack@googlegroups.com",
+		// 				to: EmailList.mentorEmail,
+		// 				students: EmailList.students,
+		// 				teachingTopic: EmailList.teachingTopic
+		// 		})
+		// 	);
+		// }
 	}
 
 	componentWillReceiveProps(props){
@@ -196,12 +207,10 @@ let imgProfile ={
 };
 
 
-const mapStateToProps = state => {
-	return {
+const mapStateToProps = state => ({
 		mentors: state.mentorReducer,
 		students: state.studentReducer.students
-	};
-};
+	});
 
 const mapDispatchToProps = dispatch => (
 	bindActionCreators({
