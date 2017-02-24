@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
-
+import {matchingAlgorithm} from './MatchingAlgorithm';
 
 class Match extends Component{
 	constructor( props ) {
@@ -10,43 +10,44 @@ class Match extends Component{
 		this.state = {
 			matchConfirm : "CONFIRM"
 		};
+		console.log('match props',props)
+		// const newMatch = matchingAlgorithm()
 
 	}
-
 	render(){
 		console.log("MATCHCONFIRM: ", this.state.matchConfirm);
-		// const match = [
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-        //
-        //
-		// ];
+		const match = [
+			{
+				mentorName: "Justin",
+				mentorEmail: "Justin@gmail.com",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Justin",
+				mentorEmail: "Justin@gmail.com",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Justin",
+				mentorEmail: "Justin@gmail.com",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+			{
+				mentorName: "Justin",
+				mentorEmail: "Justin@gmail.com",
+				teachingTopic: "DSA",
+				students: ["Iliass, Jung, Luis, Quan"],
+				img_path: "/c805236406941d2ba6b9398291266281.png"
+			},
+
+
+		];
 
 		const notifyMentors = () => {
 			this.setState({ matchConfirm: "DONE" });

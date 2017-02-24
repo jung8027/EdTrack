@@ -18,11 +18,10 @@ export default (
 		<Route path="/instructor/:id" component={InstructorContainer}/>
 		<Route path="/instructor/:id/mentor" component={MentorContainer}/>
 		<Route path="/instructor/:id/mentor/:mentorId" component={MentorTopic}/>
-		<Route path="/instructor/:id/match/" component={Match}/>
+		<Route path="/instructor/:id/match" component={Match}/>
 		<Route path="/signup" component={Signup}/>
 		<Route path="/login" component={Login}/>
 		<Route path="/upload-picture" component={UploadPicture}/>
 		<Route path="/change-picture" component={ChangePicture}/>
-		<Route path="/match" component={Match}/>
 	</Route>
 );

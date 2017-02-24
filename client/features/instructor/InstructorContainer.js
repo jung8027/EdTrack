@@ -21,7 +21,6 @@ class InstructorContainer extends Component{
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
-		//this.props.fetchAllGrades();
 		this.handleInfo = this.handleInfo.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
 		this.handleClassView = this.handleClassView.bind(this);
