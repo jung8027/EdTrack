@@ -25,51 +25,59 @@ class Match extends Component{
 		var finalMatch = [];
 		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
 		var result = finalMatch.filter(groups=> groups.students.length > 0);
+
 		console.log('filtered result groups',result);
-		const match = [
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
-			{
-				mentorName: "Justin",
-				mentorEmail: "Justin@gmail.com",
-				teachingTopic: "DSA",
-				students: ["Iliass, Jung, Luis, Quan"],
-				img_path: "/c805236406941d2ba6b9398291266281.png"
-			},
+
+		// const match = [
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
+		// 	{
+		// 		mentorName: "Justin",
+		// 		mentorEmail: "Justin@gmail.com",
+		// 		teachingTopic: "DSA",
+		// 		students: ["Iliass, Jung, Luis, Quan"],
+		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
+		// 	},
 
 
-		];
+		// ];
+
 		console.log("finalMatch",finalMatch);
+
 		const notifyMentors = () => {
 			this.setState({ matchConfirm: "DONE" });
 
-			axios.post("/api/email",
-				querystring.stringify({
-				from: "edtrack@googlegroups.com",
-				to: "edtrack2017@gmail.com",
-				students: "Iliass, Jung, Luis, Quan",
-				teachingTopic: "DSA",
-			})
-			);
+			result.map( ( group, i ) => {
+
+				axios.post("/api/email",
+					querystring.stringify({
+						from: "edtrack@googlegroups.com",
+						to: "edtrack2017@gmail.com",
+						students: group.students,
+						teachingTopic: group.teachingTopic,
+					})
+				);
+
+			});
 
 		};
 
@@ -84,7 +92,7 @@ class Match extends Component{
 
 							{ /*MENTOR GROUPS CARDS*/
 
-								result.map( (mentor, i) => (
+								result.map( (group, i) => (
 									<center>
 										<div id ="mentorCard" className="card horizontal" key={i}>
 
@@ -92,14 +100,14 @@ class Match extends Component{
 
 												<figure style={imgProfile}>
 													<img src="/a4660052d5b6fee6192db0b5aeede812.png" />
-													<figcaption>{mentor.mentorName}</figcaption>
+													<figcaption>{group.mentorName}</figcaption>
 												</figure>
 
 											</div>
 
 											<div  className="card-stacked">
 												<div className="card-content">
-													<p className="header" id="students">{mentor.students.map((student,idx)=><li key={idx}>{student}</li>)}
+													<p className="header" id="students">{group.students.map((student,idx)=><li key={idx}>{student}</li>)}
 													</p>
 												</div>
 											</div>
@@ -108,7 +116,7 @@ class Match extends Component{
 												<div className="card-content">
 													<p>Topic</p>
 													<p className="header" id="teachingTopic">
-														<strong>{mentor.teachingTopic}</strong>
+														<strong>{group.teachingTopic}</strong>
 													</p>
 												</div>
 											</div>
