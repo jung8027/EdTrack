@@ -2,18 +2,30 @@ import React, {Component, PropTypes} from "react";
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import querystring from 'querystring';
+import matchingAlgorithm from './MatchingAlgorithm';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { fetchMentors } from '../mentor/MentorAction';
+import { fetchStudents } from '../student/studentActions';
+
 
 
 class Match extends Component{
 	constructor( props ) {
 		super( props );
+		this.props.fetchMentors();
+		this.props.fetchStudents();
 		this.state = {
 			matchConfirm : "CONFIRM"
 		};
 	}
-
 	render(){
-		console.log("MATCHCONFIRM: ", this.state.matchConfirm);
+		var students= this.props.students;
+		var mentors = this.props.mentors;
+		var finalMatch = [];
+		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
+		var result = finalMatch.filter(groups=> groups.students.length > 1);
+		console.log('filtered result groups',result);
 		const match = [
 			{
 				mentorName: "Justin",
@@ -46,7 +58,7 @@ class Match extends Component{
 
 
 		];
-
+		console.log("finalMatch",finalMatch);
 		const notifyMentors = () => {
 			this.setState({ matchConfirm: "DONE" });
 
@@ -72,7 +84,7 @@ class Match extends Component{
 
 							{ /*MENTOR GROUPS CARDS*/
 
-								match.map( (mentor, i) => (
+								result.map( (mentor, i) => (
 									<center>
 										<div id ="mentorCard" className="card horizontal" key={i}>
 
@@ -87,7 +99,7 @@ class Match extends Component{
 
 											<div  className="card-stacked">
 												<div className="card-content">
-													<p className="header" id="students">{mentor.students}
+													<p className="header" id="students">{mentor.students.map((student,idx)=><li key={idx}>{student}</li>)}
 													</p>
 												</div>
 											</div>
@@ -124,7 +136,8 @@ class Match extends Component{
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
 												<i className="material-icons right">send</i>
 										</button>
-
+										<br/>
+										<br/>
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
 												<i className="material-icons right">send</i>
 										</button>
@@ -155,37 +168,6 @@ class Match extends Component{
 
 }
 
-
-let cardStyle = {
-	width: "368px",
-	height: "119px",
-	backgroundColor: "#3F485D",
-	borderRadius: "4px",
-	fontFamily: "Rubik",
-	fontSize: "14px",
-	lineHeight: "17px",
-	color: "#FFFFFF",
-	marginTop: "auto",
-}
-
-let cardImg = {
-	height: "80px",
-	width: "auto",
-	backgroundColor: "#545F7A",
-	borderRadius: "50%"
-};
-
-let cardTitle = {
-	color: "#545F7A",
-	flex:"2"
-};
-
-
-let cardHeader = {
-	display: "flex"
-};
-
-
 let DashStyles = {
 	backgroundColor: "white",
 	color: "#545F7A",
@@ -193,22 +175,7 @@ let DashStyles = {
 	minHeight: "100vh"
 };
 
-let cardContent = {
-	fontColor: "#545F7A",
-	backgroundColor: "#3F485D",
-	width: "100%",
-	height: "175px"
-};
-let listStyle = {
-	marginTop: "70px",
-	height: "560px",
-	overflow: "auto"
-};
-
 let rightPaneStyles = {
-	// display: "flex",
-	// flexDirection: "column",
-	// justifyContent: "center",
 	width: "317px",
 	height: "84px",
 	fontFamily: "Rubik",
@@ -225,6 +192,14 @@ let imgProfile ={
 };
 
 
+const mapStateToProps = state => ({
+	mentors: state.mentorReducer,
+	students: state.studentReducer.students
+});
 
-
-export default Match;
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({
+		fetchMentors,fetchStudents
+	}, dispatch)
+);
+export default connect( mapStateToProps , mapDispatchToProps)( Match )
