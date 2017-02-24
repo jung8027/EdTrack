@@ -73,8 +73,8 @@ class Match extends Component{
 							{ /*MENTOR GROUPS CARDS*/
 
 								match.map( (mentor, i) => (
-									<center>
-										<div id ="mentorCard" className="card horizontal" key={i}>
+									<center key={i}>
+										<div id ="mentorCard" className="card horizontal" >
 
 											<div className="card-image">
 
@@ -117,8 +117,8 @@ class Match extends Component{
 								this.state.matchConfirm === "CONFIRM" ? (
 									<div>
 										<center style={{width: "100%"}}>
-											<h1>Before we notify your mentors, do you approve of these groups ?
-											</h1>
+											<h2 style={matchH2Tag}>Before we notify your mentors, do you approve of these groups ?
+											</h2>
 										</center>
 
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
@@ -134,7 +134,7 @@ class Match extends Component{
 
 									<div>
 										<center style={{width: "100%"}}>
-											<h1><strong>Done !</strong>We sent your mentors an email with all the info they'll need.</h1>
+											<h2 style={matchH2Tag}><strong>Done !</strong>We sent your mentors an email with all the info they'll need.</h2>
 										</center>
 
 										<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Return Home
@@ -156,34 +156,35 @@ class Match extends Component{
 }
 
 
-let cardStyle = {
-	width: "368px",
-	height: "119px",
-	backgroundColor: "#3F485D",
-	borderRadius: "4px",
-	fontFamily: "Rubik",
-	fontSize: "14px",
-	lineHeight: "17px",
-	color: "#FFFFFF",
-	marginTop: "auto",
-}
 
-let cardImg = {
-	height: "80px",
-	width: "auto",
-	backgroundColor: "#545F7A",
-	borderRadius: "50%"
-};
+// let cardStyle = {
+// 	width: "368px",
+// 	height: "119px",
+// 	backgroundColor: "#3F485D",
+// 	borderRadius: "4px",
+// 	fontFamily: "Rubik",
+// 	fontSize: "14px",
+// 	lineHeight: "17px",
+// 	color: "#FFFFFF",
+// 	marginTop: "auto",
+// }
 
-let cardTitle = {
-	color: "#545F7A",
-	flex:"2"
-};
+// let cardImg = {
+// 	height: "80px",
+// 	width: "auto",
+// 	backgroundColor: "#545F7A",
+// 	borderRadius: "50%"
+// };
+
+// let cardTitle = {
+// 	color: "#545F7A",
+// 	flex:"2"
+// };
 
 
-let cardHeader = {
-	display: "flex"
-};
+// let cardHeader = {
+// 	display: "flex"
+// };
 
 
 let DashStyles = {
@@ -193,17 +194,17 @@ let DashStyles = {
 	minHeight: "100vh"
 };
 
-let cardContent = {
-	fontColor: "#545F7A",
-	backgroundColor: "#3F485D",
-	width: "100%",
-	height: "175px"
-};
-let listStyle = {
-	marginTop: "70px",
-	height: "560px",
-	overflow: "auto"
-};
+// let cardContent = {
+// 	fontColor: "#545F7A",
+// 	backgroundColor: "#3F485D",
+// 	width: "100%",
+// 	height: "175px"
+// };
+// let listStyle = {
+// 	marginTop: "70px",
+// 	height: "560px",
+// 	overflow: "auto"
+// };
 
 let rightPaneStyles = {
 	// display: "flex",
@@ -224,6 +225,9 @@ let imgProfile ={
 	float: "left",
 };
 
+let matchH2Tag = {
+	fontWeight: "200"
+};
 
 
 
