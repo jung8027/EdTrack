@@ -8,3 +8,5 @@ npm-debug.log
 .idea/modules.xml
 .idea/workspace.xmlsendgrid.env
 sendgrid.js
+"sendgrid.env"
+sendgrid.env

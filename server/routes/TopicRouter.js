@@ -41,15 +41,39 @@ const updateTopic = (req, res) => {
 		.then((data) => res.send(data));
 };
 
+const getTopicStudent = (req, res) => {
+	models.Topic.findAll({
+		include: [{model: models.Student}]
+	})
+		.then((topics) => {
+			res.send(topics);
+		});
+};
+
+const getTopicMentor = (req, res) => {
+	models.Topic.findAll({
+		include: [{model: models.Mentor}]
+	})
+		.then((topics) => {
+			res.send(topics);
+		});
+};
 
 //ROUTES
 router.route('/')
 	.post(createTopic)
 	.get(getTopics);
 
+router.route('/student')
+	.get(getTopicStudent);
+
+router.route('/mentor')
+	.get(getTopicMentor);
+
 router.route('/:id')
 	.get(getOneTopic)
 	.delete(deleteTopic)
 	.put(updateTopic);
+
 
 module.exports = router;
