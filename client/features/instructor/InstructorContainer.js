@@ -12,7 +12,7 @@ class InstructorContainer extends Component{
 	constructor( props ){
 		super( props );
 		this.state ={
-			activeStudentCard: "GRADES",
+			activeStudentCard: "TOPICS",
 			filtered: "ALL",
 			infoSection: "CLASS",
 			studentId: 1,
@@ -21,35 +21,22 @@ class InstructorContainer extends Component{
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
-		this.props.fetchAllGrades();
+		//this.props.fetchAllGrades();
 		this.handleInfo = this.handleInfo.bind(this);
-		this.handleCardClick= this.handleCardClick.bind(this);
 		this.handleFilter=this.handleFilter.bind(this);
-		this.handleChartType= this.handleChartType.bind(this);
 		this.handleClassView = this.handleClassView.bind(this);
-
+		this.handleLineChart= this.handleLineChart.bind(this);
 	}
 
-	handleChartType(e){
+	handleLineChart(e){
 		e.preventDefault();
 		let activeChart = this.state.chartType;
-		let newActiveChart = activeChart === 'BAR' ? 'LINE' : 'BAR';
+		let newActiveChart = 'LINE';
 
 		this.setState({
 			chartType: newActiveChart
 		});
 		console.log('new active chart',newActiveChart)
-	}
-
-	handleCardClick(e) {
-		e.preventDefault();
-		let activeStudentCard = this.state.activeStudentCard;
-		let newActiveCard = activeStudentCard === 'GRADES' ? 'TOPICS' : 'GRADES';
-
-		this.setState({
-			activeStudentCard: newActiveCard
-		});
-		console.log('newactive card state',newActiveCard)
 	}
 	handleInfo(id){
 		let newInfoSection = 'STUDENT';
@@ -66,11 +53,15 @@ class InstructorContainer extends Component{
 		let classSection = 'CLASS';
 		this.setState({
 			infoSection: classSection,
-			studentId: null
+			studentId: null,
+			chartType: "BAR"
+
 		});
 	}
 	handleFilter(e){
+
 		e.preventDefault();
+		$(".material-icons").removeClass("hidden");
 		let filtered = this.state.filtered;
 		let newFilter = filtered === 'ALL' ? 'BELOW60' : 'ALL';
 		this.setState({
@@ -79,19 +70,19 @@ class InstructorContainer extends Component{
 		let button = $('#filterBtn');
 		console.log('button value',button.val());
 		button.text( filtered === 'ALL' ? "All" : "Need Help");
+
 	}
 	render(){
 		return (
 			<Instructor
 				{...this.props}
 				activeStudentCard={this.state.activeStudentCard}
-				handleCardClick={this.handleCardClick}
 				handleFilter={this.handleFilter}
 				filtered = {this.state.filtered}
 				handleInfo = {this.handleInfo}
 				infoSection = {this.state.infoSection}
 				studentId ={this.state.studentId}
-				handleChartType = {this.handleChartType}
+				handleLineChart = {this.handleLineChart}
 				chartType = {this.state.chartType}
 				handleClassView = {this.handleClassView}
 				matchConfirm = {this.state.matchConfirm}
@@ -107,7 +98,6 @@ InstructorContainer.propTypes = {
 	fetchInstructor: PropTypes.func,
 	students: PropTypes.array,
 	student : PropTypes.object,
-	handleCardClick: PropTypes.func,
 	handleChartType: PropTypes.func
 };
 
