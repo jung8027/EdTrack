@@ -55,7 +55,7 @@ class Match extends Component{
 				from: "edtrack@googlegroups.com",
 				to: "edtrack2017@gmail.com",
 				students: "Iliass, Jung, Luis, Quan",
-				topic: "DSA",
+				teachingTopic: "DSA",
 			})
 			);
 
@@ -202,7 +202,6 @@ let rightPaneStyles = {
 	height: "84px",
 	fontFamily: "Rubik",
 	fontSize: "24px",
-	fontWeight: "bold",
 	lineHeight: "28px",
 	color: "#545F7A",
 	margin: "auto",
