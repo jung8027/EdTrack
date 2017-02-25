@@ -13,13 +13,12 @@ const Student = (props) => {
 				<div>
 					<div className="col s8" style={DashStyles}>
 						<div style={heading}>
-							<div style={{width:"100px",textAlign:"center"}}>
-								<img style={pictureProfile} src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
-								<p>{props.student.name}</p>
-								<p>{props.student.email}</p>
+							<img style={pictureProfile} src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
+							<div style={nameDiv}>
+								<h1 style={nameStyle}>{props.student.name}</h1>
 							</div>
 						</div>
-						 <center>
+							<center>
 							<LineChart grades={props.student.Grades}/>
 							<GradeContainer studentId={props.student.id}/>
 						</center>
@@ -35,13 +34,32 @@ const Student = (props) => {
 };
 
 let heading = {
-	paddingLeft:"20px",
-	textAlign: "left"
+	display: "flex",
+	flexDirection: "row",
+	justifyContent: "left",
+	padding: "10px"
 };
 
 let pictureProfile = {
-	height: "150px"
-}
+	height: "150px",
+	borderRadius: "50px",
+	alignItems: "left"
+};
+
+let nameDiv = {
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	justifyContent: "center",
+	paddingLeft: "20px"
+};
+
+let nameStyle = {
+	display: "flex",
+	flexDirection: "row",
+	alignContent: "center",
+	justifyContent: "center"
+};
 
 let DashStyles = {
 	backgroundColor: "white",

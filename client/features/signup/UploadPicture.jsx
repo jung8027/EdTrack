@@ -6,7 +6,7 @@ import '../../styles/UploadPhoto.css';
 
 const UploadPicture = React.createClass({
 	getInitialState(){
-		return {img: null}
+		return {img: null};
 	},
 	handleFile(file){
 		let imageType = /^image\//;
@@ -16,9 +16,9 @@ const UploadPicture = React.createClass({
 		}
 
 		//attach image to screen
-		var preview = document.getElementById('image-preview');
+		let preview = document.getElementById('image-preview');
 		preview.innerHTML = '';
-		var img = document.createElement("img");
+		let img = document.createElement("img");
 		img.className = "post-img";
 		img.file = file;
 
@@ -55,48 +55,48 @@ const UploadPicture = React.createClass({
       data: formData
 		})
 		.done((data) => {
-			var preview = document.getElementById('image-preview');
+			let preview = document.getElementById('image-preview');
 			preview.innerHTML = '';
-			this.setState({img: null, caption: ''})
+			this.setState({img: null, caption: ''});
 		});
 
-		browserHistory.push('/change-picture')
+		browserHistory.push('/change-picture');
 	},
 
 	handleClick(e){
-		document.getElementsByClassName('image-chooser')[0].click()
+		document.getElementsByClassName('image-chooser')[0].click();
 	},
 
 	render(){
-		let img = this.state.img
+		let img = this.state.img;
 		return (
 			<div id="div-parent">
 				<form className="newPostForm" onSubmit={this.handleSubmit}>
 					<FileInput className="image-chooser" accept=".png,.gif,.jpg" onChange={this.handleChange.bind(this, 'img')} />
 					<center>
 					<p id="before-beg">Before we begin</p>
-      		<br/>
-      		<p id="Add-Prof">Add a profile photo so instructors and mentors can recognize you.</p>
-      		</center>
+					<br/>
+					<p id="Add-Prof">Add a profile photo so instructors and mentors can recognize you.</p>
+					</center>
 					<div id="image-preview"></div>
 					<div className= "submitButtons">
 						{
-							img ?
-							<button id="continue-button" type="submit">Continue</button> :
-							<div>
-								<img id='astronaut' src={require('../../../public/astronaut.png')} />
-								<br/>
-								<button id="uploadButton" type="button" onClick={this.handleClick}>Upload photo</button>
-							</div>
+							(img) ?
+								<button id="continue-button" type="submit">Continue</button> :
+								<div>
+									<img id="astronaut" src={require('../../../public/astronaut.png')} />
+									<br/>
+									<button id="uploadButton" type="button" onClick={this.handleClick}>Upload photo</button>
+								</div>
 						}
 						<center>
-						<Link to="/student/1"><p id="Skip-step">Skip this step</p></Link>
+							<Link to="/student/1"><p id="Skip-step">Skip this step</p></Link>
 						</center>
 					</div>
 				</form>
 			</div>
-		)
+		);
 	}
-})
+});
 
 export default UploadPicture;

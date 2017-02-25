@@ -11,31 +11,30 @@ class MentorContainer extends Component {
     this.props.fetchMentors();
     this.handleCardClick = this.handleCardClick.bind(this);
     this.state = {
-    	activeRightPane: 'FORM',
-    	selectedMentorId: null,
-    	activeRightPane1: 'EMAIL'
-    }
+			activeRightPane: 'FORM',
+			selectedMentorId: null,
+			activeRightPane1: 'EMAIL'
+    };
   }
 
   handleCardClick(id) {
-	  this.setState({
-		  selectedMentorId: id,
-		  activeRightPane: 'TOPICS'
-	  });
+		this.setState({
+			selectedMentorId: id,
+			activeRightPane: 'TOPICS'
+		});
 		$('.card').removeClass('highlight');
-	  $('#mentorCard' + id).addClass('highlight')
+		$('#mentorCard' + id).addClass('highlight');
 	}
 
 	render() {
-		console.log('selected mentor id:', this.state.selectedMentorId)
+		console.log('selected mentor id:', this.state.selectedMentorId);
 		return(
 			<Mentors {...this.props}
-				 selectedMentorId={this.state.selectedMentorId}
-				 activeRightPane={this.state.activeRightPane}
-				 activeRightPane1={this.state.activeRightPane1}
-				 handleCardClick={this.handleCardClick}
-
-				 />
+					selectedMentorId={this.state.selectedMentorId}
+					activeRightPane={this.state.activeRightPane}
+					activeRightPane1={this.state.activeRightPane1}
+					handleCardClick={this.handleCardClick}
+					/>
 		);
 	}
 }

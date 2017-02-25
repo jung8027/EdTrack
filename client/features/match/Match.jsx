@@ -118,7 +118,6 @@ class Match extends Component{
 									</center>
 								))
 							}
-
 						</div>
 
 

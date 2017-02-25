@@ -123,7 +123,7 @@ const Instructor = props => {
 									studentsGrades.map((student, indx) =>
 										(
 											<div key={indx} className="col s12" style={info}>
-												<div id="studentCards" className="card horizontal">
+												<div id="studentCards" className="card horizontal" style={{height:"auto"}}>
 													<div  style={cardHeader}  onClick={() => props.handleInfo(student.id)} className="card-image" >
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
@@ -196,8 +196,8 @@ let flag = {
 };
 let cardTitle = {
 	color: "#545F7A",
-	flex: "0 0 0%",
-	marginLeft: "25px"
+	marginLeft: "25px",
+	paddingBottom: "10px"
 };
 
 let info = {
