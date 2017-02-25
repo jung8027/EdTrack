@@ -28,8 +28,6 @@ const StudentSeedFunc = () => {
 			models.Student.create({
 				name: 'Luis', email: 'Luis@email.com', address: '12 main st'
 			}))
-		.then((student) =>
-			student.addTopics([2,6,9]))
 
 		.then((data) =>
 			models.Student.create({
@@ -61,9 +59,7 @@ const StudentSeedFunc = () => {
 		.then((data) =>
 			models.Student.create({
 				name: 'Jill', email: 'Jill@email.com', address: '18 main st'
-			}))
-		.then((student) =>
-			student.addTopics([3,6,9]));
+			}));
 };
 StudentSeedFunc();
 module.exports = StudentSeedFunc;
