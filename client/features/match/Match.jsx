@@ -138,11 +138,11 @@ class Match extends Component{
 				{/*RIGHT PANEL*/}
 				<div className="col s4" style={rightPaneItem}>
 					{
-						(this.state.matchConfirm === "CONFIRM") 
+						(this.state.matchConfirm === "CONFIRM")
 							? (
 								<div>
 									<h2 style={matchH2Tag}>Before we notify your mentors, do you approve of these groups ?</h2>
-									<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
+									<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={this.notifyMentors} >Yes, Notify Mentors
 											<i className="material-icons right">send</i>
 									</button>
 									<br/><br/>
@@ -150,7 +150,7 @@ class Match extends Component{
 											<i className="material-icons right">send</i>
 									</button>
 								</div>
-								) 
+								)
 							: (
 								<div>
 									<h2 style={matchH2Tag}><strong>Done! </strong>We sent your mentors an email with all the info they'll need.</h2>
