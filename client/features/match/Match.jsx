@@ -8,80 +8,82 @@ import {bindActionCreators} from 'redux';
 import { fetchMentors } from '../mentor/MentorAction';
 import { fetchStudents } from '../student/studentActions';
 
-
+const match = [
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	},
+	{
+		mentorName: "Justin",
+		mentorEmail: "Justin@gmail.com",
+		teachingTopic: "DSA",
+		students: ["Iliass, Jung, Luis, Quan"],
+		img_path: "/c805236406941d2ba6b9398291266281.png"
+	}
+];
 
 class Match extends Component{
 	constructor( props ) {
 		super( props );
 		this.props.fetchMentors();
 		this.props.fetchStudents();
+		this.setFilteredList = this.setFilteredList.bind(this);
+		this.notifyMentors = this.notifyMentors.bind(this);
 		this.state = {
+			filteredList: null,
 			matchConfirm : "CONFIRM"
 		};
 	}
+
+	setFilteredList(array){
+		this.setState({ filteredList: array });
+	}
+
+	notifyMentors(){
+		this.setState({ matchConfirm: "DONE" });
+		// disabled until actual use
+
+		// let EmailList = this.state.filteredList;
+		// for( let i = 0; i < EmailList; i++){
+		// 	axios.post("/api/email",
+		// 			querystring.stringify({
+		// 				from: "edtrack@googlegroups.com",
+		// 				to: EmailList.mentorEmail,
+		// 				students: EmailList.students,
+		// 				teachingTopic: EmailList.teachingTopic
+		// 		})
+		// 	);
+		// }
+	}
+
+	componentWillReceiveProps(props){
+		let students= props.students;
+		let mentors = props.mentors;
+		if(students.length > 0 && mentors.length > 0){
+			let result = matchingAlgorithm(mentors,students);
+			let results = result.filter(groups=> groups.students.length > 0);
+			return this.setFilteredList(results);
+		}
+	}
+
 	render(){
-		var students= this.props.students;
-		var mentors = this.props.mentors;
-		var finalMatch = [];
-		students && mentors ? finalMatch = matchingAlgorithm(mentors,students): finalMatch = null;
-		var result = finalMatch.filter(groups=> groups.students.length > 0);
-
-		console.log('filtered result groups',result);
-
-		// const match = [
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-		// 	{
-		// 		mentorName: "Justin",
-		// 		mentorEmail: "Justin@gmail.com",
-		// 		teachingTopic: "DSA",
-		// 		students: ["Iliass, Jung, Luis, Quan"],
-		// 		img_path: "/c805236406941d2ba6b9398291266281.png"
-		// 	},
-
-
-		// ];
-
-		console.log("finalMatch",finalMatch);
-
-		const notifyMentors = () => {
-			this.setState({ matchConfirm: "DONE" });
-
-			result.map( ( group, i ) => {
-
-				axios.post("/api/email",
-					querystring.stringify({
-						from: "edtrack@googlegroups.com",
-						// to: group.mentorEmail,
-						to: "edtrack2017@gmail.com",
-						students: group.students,
-						teachingTopic: group.teachingTopic,
-					})
-				);
-
-			});
-
-		};
-
 		return (
 			<div className="row" style={dashContainer}>
 
@@ -90,10 +92,9 @@ class Match extends Component{
 					<div>
 						<h1>Mentor Groups </h1>
 					</div>
-
-					{ /*MENTOR GROUPS CARDS*/
-						result.map( (group, i) => (
-
+			    { /*MENTOR GROUPS CARDS*/
+						(this.state.filteredList)
+							? (this.state.filteredList.map( (group, i) => (
 								<div key={i} className="card horizontal" style={cardContainer} >
 									<div className="card-image" style={mentorItem}>
 
@@ -113,7 +114,6 @@ class Match extends Component{
 																<img style={studentImg} src="/a4660052d5b6fee6192db0b5aeede812.png" />
 																<figcaption>{student}</figcaption>
 															</figure>
-
 														</p>
 													))
 												}
@@ -128,58 +128,42 @@ class Match extends Component{
 											</p>
 										</div>
 									</div>
-
-
 								</div>
-
-						))
+							)))
+							: null
 					}
-
 				</div>
 
 
 				{/*RIGHT PANEL*/}
 				<div className="col s4" style={rightPaneItem}>
-
 					{
-						this.state.matchConfirm === "CONFIRM" ? (
-							<div>
-
-									<h2 style={matchH2Tag}>Before we notify your mentors, do you approve of these groups ?
-									</h2>
-
-								<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
-										<i className="material-icons right">send</i>
-								</button>
-
-								<br/><br/>
-
-								<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
-										<i className="material-icons right">send</i>
-								</button>
-							</div>
-
-						) : (
-
-							<div>
-
-									<h2 style={matchH2Tag}><strong>Done! </strong>We sent your mentors an email with all the info they'll need.
-									</h2>
-
-								<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Return Home
-										<i className="material-icons right">send</i>
-								</button>
-							</div>
-						)
+						(this.state.matchConfirm === "CONFIRM") 
+							? (
+								<div>
+									<h2 style={matchH2Tag}>Before we notify your mentors, do you approve of these groups ?</h2>
+									<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={notifyMentors} >Yes, Notify Mentors
+											<i className="material-icons right">send</i>
+									</button>
+									<br/><br/>
+									<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Back
+											<i className="material-icons right">send</i>
+									</button>
+								</div>
+								) 
+							: (
+								<div>
+									<h2 style={matchH2Tag}><strong>Done! </strong>We sent your mentors an email with all the info they'll need.</h2>
+									<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Return Home
+											<i className="material-icons right">send</i>
+									</button>
+								</div>
+								)
 					}
-
-
 				</div>
-
 			</div>
 		);
 	}
-
 }
 
 let dashContainer = {
@@ -216,14 +200,11 @@ let mentorItem = {
 
 let studentItem = {
 	flex: "1",
-	// alignSelf: "center",
 }
 
 let topicItem = {
 	flex: "1",
 }
-
-
 
 let studentsColumn = {
 	display: "flex",
@@ -232,7 +213,6 @@ let studentsColumn = {
 	height: "200px",
 	overflow: "scroll",
 }
-
 
 let mentorFig = {
 	height: "130px",
@@ -256,8 +236,6 @@ let studentFig = {
 let studentImg = {
 	maxWidth: "100%",
 	maxHeight: "100%",
-
-	// float: "right",
 };
 
 /*****************RIGHT PANE******************/
@@ -266,14 +244,10 @@ let rightPaneItem = {
 	flexDirection: "column",
 	justifyContent: "center",
 	alignItems: "flex-start",
-
-	// width: "317px",
-	// height: "84px",
 	fontFamily: "Rubik",
 	fontSize: "24px",
 	lineHeight: "28px",
 	color: "#545F7A",
-	// margin: "auto",
 };
 
 
@@ -282,13 +256,13 @@ let matchH2Tag = {
 };
 
 const mapStateToProps = state => ({
-	mentors: state.mentorReducer,
-	students: state.studentReducer.students
-});
+		mentors: state.mentorReducer,
+		students: state.studentReducer.students
+	});
 
 const mapDispatchToProps = dispatch => (
 	bindActionCreators({
 		fetchMentors,fetchStudents
 	}, dispatch)
 );
-export default connect( mapStateToProps , mapDispatchToProps)( Match )
+export default connect( mapStateToProps , mapDispatchToProps)( Match );

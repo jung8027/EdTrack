@@ -1,0 +1,17 @@
+
+#homeNav {
+	margin-top: -41px;
+	width: 80px;
+	height: 25px;
+	font-family: Rubik;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 19px;
+	color: #545F7A;
+}
+
+#homeNav:hover {
+    background-color: rgba(203, 207, 215, 0.73);
+    padding: 5px;
+}
+
