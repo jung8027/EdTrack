@@ -62,14 +62,14 @@ class Match extends Component{
 		const notifyMentors = () => {
 			this.setState({ matchConfirm: "DONE" });
 
-			axios.post("/api/email",
-				querystring.stringify({
-				from: "edtrack@googlegroups.com",
-				to: "edtrack2017@gmail.com",
-				students: "Iliass, Jung, Luis, Quan",
-				teachingTopic: "DSA",
-			})
-			);
+			// axios.post("/api/email",
+			// 	querystring.stringify({
+			// 	from: "edtrack@googlegroups.com",
+			// 	to: "edtrack2017@gmail.com",
+			// 	students: "Iliass, Jung, Luis, Quan",
+			// 	teachingTopic: "DSA",
+			// })
+			// );
 
 		};
 
