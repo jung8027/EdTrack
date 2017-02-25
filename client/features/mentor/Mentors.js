@@ -64,8 +64,7 @@ Mentors.propTypes = {
 
 let heading = {
 	paddingLeft:"20px",
-	textAlign: "left",
-	paddingBottom: "55px"
+	textAlign: "left"
 };
 
 
