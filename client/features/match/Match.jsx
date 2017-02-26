@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { fetchMentors } from '../mentor/MentorAction';
 import { fetchStudents } from '../student/studentActions';
+import Header from '../common/Header';
 
 const match = [
 	{
@@ -89,6 +90,12 @@ class Match extends Component{
 
 				{/*LEFT PANEL*/}
 				<div className="col s8" style={leftPaneItem}>
+					<div style={heading}>
+						<div style={{width:"100px",textAlign:"center"}}>
+							<img src="/a4660052d5b6fee6192db0b5aeede812.png" id="instructorImage"/>
+							<Header  id="header1"/>
+						</div>
+					</div>
 					<div>
 						<h1>Mentor Groups </h1>
 					</div>
@@ -109,12 +116,12 @@ class Match extends Component{
 										<div className="card-content" style={studentsColumn}>
 												{
 													group.students.map(( student,i ) => (
-														<p key={i}>
+														<span key={i}>
 															<figure style={studentFig}>
 																<img style={studentImg} src="/a4660052d5b6fee6192db0b5aeede812.png" />
 																<figcaption>{student}</figcaption>
 															</figure>
-														</p>
+														</span>
 													))
 												}
 										</div>
@@ -253,6 +260,12 @@ let rightPaneItem = {
 
 let matchH2Tag = {
 	fontWeight: "200"
+};
+
+let heading = {
+	paddingLeft:"20px",
+	textAlign: "left",
+	width: "100%"
 };
 
 const mapStateToProps = state => ({
