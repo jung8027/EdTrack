@@ -17,18 +17,22 @@ class InstructorContainer extends Component{
 			activeStudentCard: "TOPICS",
 			filtered: "ALL",
 			infoSection: "CLASS",
-			studentId: 1,
+			studentId: null,
 			chartType: "BAR",
+			chartGradeType: null,
 			matchConfirm: "CONFIRM",
 			matchState: null
 		};
 		this.props.fetchInstructor(this.props.params.id);
 		this.props.fetchStudents();
 		this.handleMatch= this.handleMatch.bind(this);
-		this.handleInfo = this.handleInfo.bind(this);
-		this.handleFilter=this.handleFilter.bind(this);
+		this.handleStudentView = this.handleStudentView.bind(this);
+		this.handleFilterNeed=this.handleFilterNeed.bind(this);
+		this.handleFilterAll = this.handleFilterAll.bind(this);
+		this.handleAllGrades = this.handleAllGrades.bind(this);
+		this.handleLineAssignmentChart= this.handleLineAssignmentChart.bind(this);
+		this.handleLineQuizChart= this.handleLineQuizChart.bind(this);
 		this.handleClassView = this.handleClassView.bind(this);
-		this.handleLineChart= this.handleLineChart.bind(this);
 	}
 	handleMatch(e){
 	e.preventDefault();
@@ -40,17 +44,27 @@ class InstructorContainer extends Component{
 	browserHistory.push(`/instructor/${this.props.instructor.id}/match`);
 	console.log('new active chart',newActiveChart)
 }
-	handleLineChart(e){
+	handleLineAssignmentChart(e){
 		e.preventDefault();
-		let activeChart = this.state.chartType;
-		let newActiveChart = 'LINE';
-
+		let assignmentChart = this.state.chartGradeType;
+		let type = 'ASSIGNMENT';
 		this.setState({
-			chartType: newActiveChart
+			chartType:"LINE",
+			chartGradeType: type
 		});
-		console.log('new active chart',newActiveChart)
+		console.log('new active assignment chart',assignmentChart)
 	}
-	handleInfo(id){
+	handleLineQuizChart(e){
+		e.preventDefault();
+		let chartGradeType = this.state.chartGradeType;
+		let type = "QUIZ";
+		this.setState({
+			chartType: 'LINE',
+			chartGradeType: type
+		});
+		console.log('new active chart',chartGradeType)
+	}
+	handleStudentView(id){
 		let newInfoSection = 'STUDENT';
 		this.setState({
 			infoSection: newInfoSection
@@ -62,29 +76,33 @@ class InstructorContainer extends Component{
 		$('.card').removeClass('highlight');
 		$('#mentorCard' + id).addClass('highlight')
 	}
-	handleClassView(e){
+	handleAllGrades(e){
 		e.preventDefault();
-		let classSection = 'CLASS';
 		this.setState({
-			infoSection: classSection,
-			studentId: null,
-			chartType: "BAR"
+			studentId: 1,
+			chartType: "BAR",
+			chartGradeType: null
 
 		});
 	}
-	handleFilter(e){
-
+	handleClassView(e){
 		e.preventDefault();
-		$(".material-icons").removeClass("hidden");
-		let filtered = this.state.filtered;
-		let newFilter = filtered === 'ALL' ? 'BELOW60' : 'ALL';
 		this.setState({
-			filtered: newFilter
+			infoSection: "CLASS",
+			studentId: null
 		});
-		// let button = $('#filterBtn');
-		// console.log('button value',button.val());
-		// button.text( filtered === 'ALL' ? "All" : "Need Help");
-
+	}
+	handleFilterAll(e){
+		e.preventDefault();
+		this.setState({
+			filtered: "ALL"
+		});
+	}
+	handleFilterNeed(e){
+		e.preventDefault();
+		this.setState({
+			filtered: "BELOW60"
+		});
 	}
 	render(){
 		return (
@@ -92,17 +110,21 @@ class InstructorContainer extends Component{
 			<Instructor
 				{...this.props}
 				activeStudentCard={this.state.activeStudentCard}
-				handleFilter={this.handleFilter}
+				handleFilterAll={this.handleFilterAll}
+				handleFilterNeed={this.handleFilterNeed}
 				filtered = {this.state.filtered}
-				handleInfo = {this.handleInfo}
+				handleStudentView = {this.handleStudentView}
 				infoSection = {this.state.infoSection}
 				studentId ={this.state.studentId}
-				handleLineChart = {this.handleLineChart}
+				handleLineQuizChart = {this.handleLineQuizChart}
+				handleLineAssignmentChart = {this.handleLineAssignmentChart}
 				chartType = {this.state.chartType}
-				handleClassView = {this.handleClassView}
+				chartGradeType= {this.state.chartGradeType}
+				handleAllGrades = {this.handleAllGrades}
 				matchConfirm = {this.state.matchConfirm}
 				matchState = {this.state.matchState}
 				handleMatch={this.handleMatch}
+				handleClassView ={this.handleClassView}
 
 			/>
 		);
