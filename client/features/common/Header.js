@@ -12,7 +12,6 @@ import '../../styles/Header.css';
 function Header() {
 	return (
 		<div id="wrapper1" className="content" style={wrapper1}>
-
 			<div id="wrapper" className="content" style={headingLogOut}>
 					<ul className="nav navbar-top-links navbar-left">
 						<NavDropdown title='' id='navDropdown4'>

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
 	const Grade = sequelize.define("Grade", {
 		grade: {
 			type: DataTypes.FLOAT,
-			validate: {isFloat: true}
+			validate: {notEmpty: true}
 		},
 		type: {
 			type: DataTypes.STRING,

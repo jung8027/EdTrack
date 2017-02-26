@@ -28,7 +28,7 @@ function matchingAlgorithm(mentor_topic, student_topic){
 
 	let sessions = mentorArr(mentor_topic);
 
-	const MAX_STUDENTS = 5;
+	const MAX_STUDENTS = 3;
 
 	function placeStudent(student){
 		while (student.Topics.length > 0){
