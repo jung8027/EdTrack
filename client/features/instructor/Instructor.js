@@ -42,6 +42,12 @@ const Instructor = props => {
 				props.instructor.name ?
 				<div >
 					<div className="col s8" style={DashStyles}>
+						<div style={heading}>
+							<div style={{width:"100px",textAlign:"center"}}>
+								<img src={props.instructor.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"} id="instructorImage"/>
+								<Header  id="header1"/>
+							</div>
+						</div>
 						<center>
 								<div>
 									<div className="row">

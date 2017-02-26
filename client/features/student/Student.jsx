@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import LineChart from '../common/LineChart';
 import TopicContainer from '../topic/TopicContainer';
 import GradeContainer from '../grade/GradeContainer';
+import Header from '../common/Header';
 
 const Student = (props) => {
 	console.log('student grades component props', props.student.Grades);
@@ -14,9 +15,8 @@ const Student = (props) => {
 					<div className="col s8" style={DashStyles}>
 						<div style={heading}>
 							<div style={{width:"100px",textAlign:"center"}}>
-								<img style={pictureProfile} src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>
-								<p>{props.student.name}</p>
-								<p>{props.student.email}</p>
+								<img src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"} id="instructorImage"/>
+								<Header  id="header1"/>
 							</div>
 						</div>
 						 <center>
@@ -59,3 +59,10 @@ let rightPaneStyles = {
 	height: "100%"
 };
 export default Student;
+{/*<div style={heading}>*/}
+	{/*<div style={{width:"100px",textAlign:"center"}}>*/}
+		{/*<img style={pictureProfile} src={props.student.img_path||"/a4660052d5b6fee6192db0b5aeede812.png"}/>*/}
+		{/*<p>{props.student.name}</p>*/}
+		{/*<p>{props.student.email}</p>*/}
+	{/*</div>*/}
+{/*</div>*/}
