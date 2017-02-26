@@ -72,7 +72,7 @@ const Instructor = props => {
 											<LineChart grades={filteredStudent[0].Grades}
 													   chartType={props.chartType}
 											/>
-											<div className="col s12" style={{width:"625px"}}>
+											<div className="col s12">
 												<GradeContainer studentId={props.studentId}/>
 												{!studentsGrades ?
 													<div>Loading list of students...</div>
