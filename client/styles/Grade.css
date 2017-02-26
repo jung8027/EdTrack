@@ -1,0 +1,44 @@
+#Gradecolums {
+	width: 160px;
+	margin-left: -362px;
+}
+
+#Gradecolums2 {
+	width: 160px;
+	margin-left: -84px;
+  margin-top: -77px;
+}
+
+#Gradecolums3 {
+	width: 160px;
+	margin-top: -77px;
+	margin-left: 151px;
+}
+
+#lastRow {
+	width: 500px;
+}
+
+#studentCards {
+	height: 96px;
+  margin-top: -11px;
+
+}
+
+#topicsImprovement {
+	width: 160px;
+	margin-top: -111px;
+	color: #545F7A;
+	background-color: #FFFFFF;
+   	margin-left: 455px;
+
+}
+
+
+/*let cardContentTopic = {
+	color: "#545F7A",
+	backgroundColor: "#FFFFFF",
+	width: "auto"
+};*/
+
+

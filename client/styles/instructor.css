@@ -1,0 +1,87 @@
+body, html, #root {
+	background-color: white;
+	margin:0;
+	padding:0;
+	height: 100%;
+	width: 100%;
+
+}
+
+.row .col.s6 {
+	width: 46%;
+	margin-left: 26%;
+	margin-bottom: -9%;
+}
+
+.row .col.s6 .filter{
+	color: blue;
+	width: 10%;
+	margin-left: 5%;
+margin-bottom: 5%;
+
+	background-color: #545f7a !important;
+}
+
+::-webkit-scrollbar {
+	width: 0px;  /* remove scrollbar space */
+	background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+#currentStudentName {
+	width: 77px;
+	height: 47px;
+	font-family: Rubik;
+	font-size: 40px;
+	line-height: 47px;
+	color: #545F7A;
+  margin-left: -453px;
+}
+ #dashNav {
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: color .28s ease;
+    /* width: 78px; */
+    /* height: 19px; */
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 500;
+    /* line-height: 19px; */
+		color: #545F7A;
+ }
+
+.tabs .tab a:hover {
+	color: #545F7A;
+}
+
+.tabs .indicator {
+	    /* position: absolute; */
+    bottom: 0;
+    /* height: 2px; */
+    background-color: #464646;
+    will-change: left, right;
+}
+
+.tabs .tab a {
+	color: #545F7A;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: color .28s ease;
+}
+
+#colS6 {
+	margin-left: 163px;
+	margin-top: -10px;
+}
+
+#allGrades {
+	margin-left: 10px;
+}
+
+
+
+

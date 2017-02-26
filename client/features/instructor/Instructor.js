@@ -2,7 +2,7 @@ import React, {PropTypes} from "react";
 import {browserHistory} from 'react-router';
 import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
-import '../../styles/styles.css';
+import '../../styles/instructor.css';
 import Header from '../common/Header';
 import Match from '../match/Match.jsx';
 
@@ -50,11 +50,13 @@ const Instructor = props => {
 						</div>
 						<center>
 								<div>
-									<div className="row">
-										<div className="col s6">
+									<p id="currentStudentName">Luis</p>
+									<div className="row">             
+                      <div className="col s6" id="colS6">
 											<button onClick={props.handleClassView}>Class</button>
-											<ul className="tabs" style={dashNav}>
-												<li className="tab col s3"><a onClick={props.handleAllGrades} className="active" href="/instructor/1">All Grades</a></li>
+												<ul className="tabs" id="dashNav">
+    	                   <li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">Class</a></li>
+												<li className="tab col s3" id="allGrades"><a onClick={props.handleAllGrades} href="/instructor/1">All Grades</a></li>
 												<li className="tab col s3"><a  onClick={props.handleLineAssignmentChart}>Assignments</a></li>
 												<li className="tab col s3"><a className="" onClick={props.handleLineQuizChart}>Quizzes</a></li>
 											</ul>
@@ -75,7 +77,7 @@ const Instructor = props => {
 													   chartGradeType= {props.chartGradeType}
 													   studentId = {props.studentId}
 											/>
-											<div className="col s12" style={{width:"100%"}}>
+											<div className="col s12">
 												<GradeContainer studentId={props.studentId}/>
 												{!studentsGrades ?
 													<div>Loading list of students...</div>
@@ -86,8 +88,11 @@ const Instructor = props => {
 														props.activeStudentCard === 'TOPICS'
 															?
 															(
-																<div style={cardContentTopic} className="col s12">
-																	<div>
+																<div className="card-horizontal" id="topicsImprovement">
+																	<div className="card-content">
+
+// 																<div style={cardContentTopic} className="col s12">
+// 																	<div>
 																		<ul>
 																			{student.Topics.map((topic, i) =>
 																				<li key={i}><strong>{topic.name}</strong></li>
@@ -227,6 +232,7 @@ let DashStyles = {
 	height: "100%",
 	minHeight: "100vh"
 };
+
 
 let cardContentTopic = {
 	color: "#545F7A",
