@@ -13,7 +13,7 @@ class Login extends React.Component{
 
 	handleChange(event){
 		this.setState({pass: event.target.value});
-  }
+	}
 
 	handleClick(){
 		(this.state.pass === 'iiii')
