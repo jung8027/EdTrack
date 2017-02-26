@@ -1,20 +1,16 @@
 import React, {PropTypes} from 'react';
-import LineChart from '../common/LineChart';
 
 const Grade = (props) => {
-	// console.log('grade component props', props.students);
-	console.log('grade component props' + props.grades);
-
 
 	let grades = props.grades;
 	let student = props.studentId;
 	if (grades) {
 		var studentGrades = !student? grades : grades.filter(grade => grade.StudentId === student);
-		console.log('studentGrades' + studentGrades);
+		console.log('studentGrades', studentGrades);
 		var studentAverage = studentGrades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / studentGrades.length;
 		var classAverage = grades.reduce((gradesSum, currentGrade) => gradesSum + currentGrade.grade, 0) / grades.length;
-		var finalGrades = studentGrades.filter(grade => grade.type==='final')
-		console.log('finalGrades: ' + finalGrades)
+		var finalGrades = studentGrades.filter(grade => grade.type==='final');
+		console.log('finalGrades: ', finalGrades);
         var finalGrade;
 		if (finalGrades.length === 1){
 			finalGrade = finalGrades[0].grade
@@ -27,17 +23,17 @@ const Grade = (props) => {
 			grades.length === 0  ?
 				<p>Fetching grades...</p> :
 				<div className="row">
-					<div className="col s4" >
+					<div className="col s3" >
 						<span style={gradeStyles} > {classAverage.toFixed(2)|| '-'}</span>
 						<br/>
 						<span style={Gradelabel} >Avg Class Grade</span>
 					</div>
-					<div className="col s4" >
+					<div className="col s3" >
 						<span style={gradeStyles} >{studentAverage.toFixed(2)|| '-'}</span>
 						<br/>
 						<span style={Gradelabel} >Avg Grade </span>
 					</div>
-					<div className="col s4" >
+					<div className="col s3" >
 
 						{finalGrade?
 							<span style={gradeStyles} >{finalGrade.toFixed(2) }</span>

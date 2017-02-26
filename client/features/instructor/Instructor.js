@@ -7,7 +7,6 @@ import Header from '../common/Header';
 import Match from '../match/Match.jsx';
 
 
-
 const Instructor = props => {
 	console.log('instructor component props', props);
 	//filter grade less than 60
@@ -27,7 +26,7 @@ const Instructor = props => {
 	console.log('lowGradeStudents', lowGradeStudents);
 	console.log('props.filter', props.filtered);
 	(props.filtered === "ALL") ? studentsGrades = props.students : (props.filtered === "BELOW60") ? studentsGrades = lowGradeStudents : null;
-	console.log(studentsGrades);
+	console.log('studentsGrades',studentsGrades);
 	let filteredStudent = studentsGrades.filter(student => student.id === props.studentId);
 	console.log('filtered student Grades', filteredStudent[0]);
 	$('ul.tabs').tabs();
@@ -47,11 +46,11 @@ const Instructor = props => {
 								<div>
 									<div className="row">
 										<div className="col s6">
+											<button onClick={props.handleClassView}>Class</button>
 											<ul className="tabs" style={dashNav}>
-												<li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
-												<li className="tab col s3"><a  onClick={props.handleLineChart}>Assignments</a></li>
-												<li className="tab col s3"><a className="" href="#">Quizzes</a></li>
-
+												<li className="tab col s3"><a onClick={props.handleAllGrades} className="active" href="/instructor/1">All Grades</a></li>
+												<li className="tab col s3"><a  onClick={props.handleLineAssignmentChart}>Assignments</a></li>
+												<li className="tab col s3"><a className="" onClick={props.handleLineQuizChart}>Quizzes</a></li>
 											</ul>
 										</div>
 									</div>
@@ -59,6 +58,7 @@ const Instructor = props => {
 										<div>
 											<LineChart grades={props.grades}
 													   chartType={props.chartType}
+													   chartGradeType= {props.chartGradeType}
 											/>
 											<GradeContainer />
 										</div>
@@ -66,8 +66,10 @@ const Instructor = props => {
 										<div>
 											<LineChart grades={filteredStudent[0].Grades}
 													   chartType={props.chartType}
+													   chartGradeType= {props.chartGradeType}
+													   studentId = {props.studentId}
 											/>
-											<div className="col s12" style={{width:"625px"}}>
+											<div className="col s12" style={{width:"100%"}}>
 												<GradeContainer studentId={props.studentId}/>
 												{!studentsGrades ?
 													<div>Loading list of students...</div>
@@ -78,8 +80,8 @@ const Instructor = props => {
 														props.activeStudentCard === 'TOPICS'
 															?
 															(
-																<div style={cardContentTopic} className="card-horizontal">
-																	<div className="card-content">
+																<div style={cardContentTopic} className="col s12">
+																	<div>
 																		<ul>
 																			{student.Topics.map((topic, i) =>
 																				<li key={i}><strong>{topic.name}</strong></li>
@@ -109,8 +111,8 @@ const Instructor = props => {
 							<div className="row">
 								<div style={navTabs} className="col s6 filter">
 									<ul className="tabs"  >
-										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter} >All Students</a></li>
-										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilter}>Needs Improvement</a></li>
+										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilterAll} >All Students</a></li>
+										<li className="tab col s3"><a style={filterTabs} onClick={props.handleFilterNeed}>Needs Improvement</a></li>
 									</ul>
 								</div>
 							</div>
@@ -124,7 +126,7 @@ const Instructor = props => {
 										(
 											<div key={indx} className="col s12" style={info}>
 												<div id="studentCards" className="card horizontal">
-													<div  style={cardHeader}  onClick={() => props.handleInfo(student.id)} className="card-image" >
+													<div  style={cardHeader}  onClick={() => props.handleStudentView(student.id)} className="card-image" >
 														<img style={cardImg} src={student.img_path || "/a4660052d5b6fee6192db0b5aeede812.png"}/>
 														<h2 className="header" style={cardTitle}>{student.name}</h2>
 														{student.Grades.find(g => g.grade <= 60)
@@ -223,7 +225,7 @@ let DashStyles = {
 let cardContentTopic = {
 	color: "#545F7A",
 	backgroundColor: "#FFFFFF",
-	width: "auto"
+	width: "25%"
 };
 
 let listStyle = {
@@ -247,8 +249,8 @@ Instructor.propTypes = {
 	instructor: PropTypes.object,
 	handleChartType: PropTypes.func,
 	students: PropTypes.array,
-	handleFilter: PropTypes.func,
-	//studentId: PropTypes.integer,
+	handleFilterAll: PropTypes.func,
+	handlefilterNeed: PropTypes.func,
 	filtered: PropTypes.string,
 	chartType: PropTypes.string
 
