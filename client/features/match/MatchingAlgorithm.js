@@ -36,7 +36,7 @@ function matchingAlgorithm(mentor_topic, student_topic){
 			// Check if sessions is in teachingTopic exists
 			let index = sessions.findIndex(session =>
 				session.teachingTopic === topic.name &&
-				session.students.length <= MAX_STUDENTS
+				session.students.length < MAX_STUDENTS
 			);
 			if (index !== -1){
 				sessions[index].addStudent(student.name);

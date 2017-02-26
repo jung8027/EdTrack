@@ -12,8 +12,8 @@ const TopicSeedFunc = () => {
 				{name: 'Recursion'},
 				{name: 'Variables'},
 				{name: 'Linked lists'},
-				{name: 'JS Fundamentals'},
-				{name: 'Data Structures'}
+				{name: 'Algorithms'},
+				{name: 'Git'}
 		]);
 	});
 };

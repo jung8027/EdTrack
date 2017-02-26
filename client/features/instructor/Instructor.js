@@ -50,12 +50,10 @@ const Instructor = props => {
 						</div>
 						<center>
 								<div>
-									<p id="currentStudentName">Luis</p>
-									<div className="row">             
+									<p id="currentStudentName">Class</p>
+									<div className="row">
                       <div className="col s6" id="colS6">
-											<button onClick={props.handleClassView}>Class</button>
 												<ul className="tabs" id="dashNav">
-    	                   <li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">Class</a></li>
 												<li className="tab col s3" id="allGrades"><a onClick={props.handleAllGrades} href="/instructor/1">All Grades</a></li>
 												<li className="tab col s3"><a  onClick={props.handleLineAssignmentChart}>Assignments</a></li>
 												<li className="tab col s3"><a className="" onClick={props.handleLineQuizChart}>Quizzes</a></li>
@@ -90,9 +88,6 @@ const Instructor = props => {
 															(
 																<div className="card-horizontal" id="topicsImprovement">
 																	<div className="card-content">
-
-// 																<div style={cardContentTopic} className="col s12">
-// 																	<div>
 																		<ul>
 																			{student.Topics.map((topic, i) =>
 																				<li key={i}><strong>{topic.name}</strong></li>
