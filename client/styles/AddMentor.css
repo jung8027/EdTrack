@@ -56,11 +56,12 @@
 
 #rightPaneStyles {
 	background-color: #545F7A;
-	font-family: Rubik;
-	font-size: 24px;
-	line-height: 28px;
-	color: #FFFFFF;
-  height: 1024px;
+  font-family: Rubik;
+  font-size: 24px;
+  line-height: 28px;
+  color: #FFFFFF;
+  overflow-y: hidden;
+  height: 100vh;
 }
 
 #insides4 {
@@ -70,7 +71,7 @@
 #DashStyles {
 	background-color: white;
 	overflow: scroll;
-	height: 750px;
+	height: 561px;
 }
 
 #div-content {
@@ -79,10 +80,17 @@
 
 #prof-Name {
 	font-size: 29px;
+	width: 317px;
+	height: 47px;
+	font-family: Rubik;
+	font-size: 40px;
+	line-height: 47px;
+	color: #FFFFFF;
+	/*margin-left: -80px;*/
 }
 
 #mentorTop-cont {
-	width: 300px
+	width: 300px;
 }
 
 #check-btn {
@@ -91,7 +99,10 @@
 }
 
 #addMoreTopics {
-	height: 400px;
+	height: 300px;
+	/*background-color: red;*/
+	overflow: scroll;
+	/*overflow-y: hidden;*/
 }
 
 #imgProfile {
@@ -141,9 +152,36 @@
 }
 
 #saveTopicsButton {
-	margin-top: -286px;
+	margin-top: -100px;
   width: 120px;
 }
+
+#btnMatchTopic {
+	width: 140px;
+	margin-left: 11px;
+
+}
+
+#btnMatchForm{
+	width: 140px;
+  margin-left: 10px;
+  margin-top: 30px;
+	}
+
+	#scroll2{
+		/*background-color: #5a595d;*/
+	overflow: scroll;
+	height: 530px;
+	width: 355px;
+	}
+
+	#mentor-name-list {
+		margin-top: -20px;
+	}
+
+#lastTwoBntDiv {
+	width: 400px;
+	}
 
 
 

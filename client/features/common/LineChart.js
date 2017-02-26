@@ -5,7 +5,7 @@ const LineChart = props => {
 		console.log('chart props',props);
 		return (
 			<div>
-				<div className="chart" style={{width:"60%"}}>
+				<div className="chart" style={graph}>
 				<VictoryChart
 
 					// domainPadding will add space to each side of VictoryBar to
@@ -55,4 +55,13 @@ LineChart.propTypes = {
 	chartType: PropTypes.string
 
 };
+
+let graph = {
+	height: "497px",
+  // width: "80%",
+  userSelect: "none",
+  marginTop: "-40px",
+  width: "672px",
+
+}
 export default LineChart;

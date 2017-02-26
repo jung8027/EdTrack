@@ -2,7 +2,7 @@ import React, {PropTypes} from "react";
 import {browserHistory} from 'react-router';
 import LineChart from '../common/LineChart';
 import GradeContainer from '../grade/GradeContainer';
-import '../../styles/styles.css';
+import '../../styles/instructor.css';
 import Header from '../common/Header';
 import Match from '../match/Match.jsx';
 
@@ -43,12 +43,17 @@ const Instructor = props => {
 				props.instructor.name ?
 				<div >
 					<div className="col s8" style={DashStyles}>
+						<div style={{width:"100px",textAlign:"center"}}>
+							<img src={"/a4660052d5b6fee6192db0b5aeede812.png"} id="instructorImage"/>
+							<Header  id="header1"/>
+						</div>
 						<center>
 								<div>
+									<p id="currentStudentName">Luis</p>
 									<div className="row">
-										<div className="col s6">
-											<ul className="tabs" style={dashNav}>
-												<li className="tab col s3"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
+										<div className="col s6" id="colS6">
+											<ul className="tabs" id="dashNav">
+												<li className="tab col s3" id="allGrades"><a onClick={props.handleClassView} className="active" href="/instructor/1">All Grades</a></li>
 												<li className="tab col s3"><a  onClick={props.handleLineChart}>Assignments</a></li>
 												<li className="tab col s3"><a className="" href="#">Quizzes</a></li>
 
@@ -78,7 +83,7 @@ const Instructor = props => {
 														props.activeStudentCard === 'TOPICS'
 															?
 															(
-																<div style={cardContentTopic} className="card-horizontal">
+																<div className="card-horizontal" id="topicsImprovement">
 																	<div className="card-content">
 																		<ul>
 																			{student.Topics.map((topic, i) =>
@@ -220,11 +225,7 @@ let DashStyles = {
 	minHeight: "100vh"
 };
 
-let cardContentTopic = {
-	color: "#545F7A",
-	backgroundColor: "#FFFFFF",
-	width: "auto"
-};
+
 
 let listStyle = {
 	marginTop: "70px",

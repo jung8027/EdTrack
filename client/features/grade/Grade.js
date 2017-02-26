@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import LineChart from '../common/LineChart';
-
+import '../../styles/Grade.css';
 const Grade = (props) => {
 	// console.log('grade component props', props.students);
 	console.log('grade component props' + props.grades);
@@ -26,19 +26,19 @@ const Grade = (props) => {
 	return (
 			grades.length === 0  ?
 				<p>Fetching grades...</p> :
-				<div className="row">
-					<div className="col s4" >
+				<div className="row" id="lastRow">
+					<div id="Gradecolums" >
 						<span style={gradeStyles} > {classAverage.toFixed(2)|| '-'}</span>
 						<br/>
 						<span style={Gradelabel} >Avg Class Grade</span>
 					</div>
-					<div className="col s4" >
+					<div id="Gradecolums2" >
 						<span style={gradeStyles} >{studentAverage.toFixed(2)|| '-'}</span>
 						<br/>
 						<span style={Gradelabel} >Avg Grade </span>
 					</div>
-					<div className="col s4" >
 
+					<div id="Gradecolums3" >
 						{finalGrade?
 							<span style={gradeStyles} >{finalGrade.toFixed(2) }</span>
 							: null
@@ -54,7 +54,7 @@ let gradeStyles = {
 	width: "93px",
 	height: "57px",
 	fontFamily: "Rubik",
-	fontSize: "40px",
+	fontSize: "30px",
 	fontWeight: "bold",
 	lineHeight: "57px",
 	color: "#545F7A"
@@ -66,7 +66,8 @@ let Gradelabel = {
 	fontFamily: "Rubik",
 	fontSize: "14px",
 	lineHeight: "19px",
-	color: "#545F7A"
+	color: "#545F7A",
+
 };
 
 export default Grade;

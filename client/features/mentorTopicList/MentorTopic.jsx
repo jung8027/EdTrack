@@ -61,12 +61,22 @@ const MentorTopic = React.createClass({
 
 		return (
 			<div className="col s4">
+						{
+							(this.state.mentor)
+							?<div>
+								<h3 id="prof-Name">{this.state.mentor.name}</h3>
+							</div> :
+							<h1>Loading mentor name...</h1>
+						}
+
+
+				<div id="scroll2">
 					<div id="mentorTop-cont">
 						{
 							(this.state.mentor)
 								? <div>
 								<br/>
-								<h3 id="prof-Name"> {this.state.mentor.name}'s topics:</h3>
+								<h3 id="mentor-name-list"> {this.state.mentor.name}'s topics:</h3>
 								{this.state.mentor.Topics ?
 									this.state.mentor.Topics.map((topic, indx) =>
 									<p key={indx}>{topic.name}<i className="material-icons right" id="check-btn">checked</i></p>
@@ -78,32 +88,36 @@ const MentorTopic = React.createClass({
 								: <p>loading profile...</p>
 						}
 
-					<h3 id="pleaseAddTopics">Please add or remove topics this mentor is familiar with:</h3>
-					<div id="addMoreTopics">
-						<ul className="items" style={listStyle}>
-							{
-								(this.state.topics)
-									? this.state.topics.map((topic, indx) => (
-									<li key={indx}>
-											<input style={TopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name} onClick={this.logger}/>
-									</li>
-								))
-									: <p>loading list...</p>
-							}
-							</ul>
-					</div>
+						<h3 id="pleaseAddTopics">Please add or remove topics this mentor is familiar with:</h3>
+						<div id="addMoreTopics">
+							<ul className="items" style={listStyle}>
+								{
+									(this.state.topics)
+										? this.state.topics.map((topic, indx) => (
+										<li key={indx}>
+												<input style={TopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name} onClick={this.logger}/>
+										</li>
+									))
+										: <p>loading list...</p>
+								}
+								</ul>
+						</div>
 
-					<button className="btn waves-effect waves-light" id="saveTopicsButton" onClick={this.onSubmit}>Save
-					<i className="material-icons right">send</i>
-					</button><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students
+						<button className="btn waves-effect waves-light" id="saveTopicsButton" onClick={this.onSubmit}>Save
 						<i className="material-icons right">send</i>
-					</button>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button"
-						onClick={()=>browserHistory.push(`/match`)}>Match
-						<i className="material-icons right">send</i>
-					</button>
+						</button>
+					</div>
 				</div>
+				<div id="lastTwoBntDiv">
+					<center>
+						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students<i className="material-icons right">send</i>
+						</button>
+						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button"
+							onClick={()=>browserHistory.push(`/match`)}>Match
+							<i className="material-icons right">send</i>
+						</button>
+					</center>
+					</div>
 			</div>
 		);
 	}
@@ -115,6 +129,7 @@ let listStyle = {
 	width: "300px",
 	height: "250px"
 };
+
 
 let TopicsBtn = {
 	width: "150px",

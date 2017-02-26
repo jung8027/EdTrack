@@ -35,15 +35,15 @@ const AddMentor = React.createClass({
 						<input id="formInput" type="text" placeholder="Mentor Name" onChange={this.handelChange.bind(this, 'mentorName')} value={this.state.input}/>
 						<input id="formInput" type="text" placeholder="Mentor Email" onChange={this.handelChange.bind(this, 'mentorEmail')} value={this.state.input}/>
 
-						<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={this.createMentor}>Submit
+						<button className="btn waves-effect waves-light" id="btnMatchSubmit" type="button" onClick={this.createMentor}>Submit
 								<i className="material-icons right">send</i>
 						</button>
 					</div><br/><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)}>Students
+					<button className="btn waves-effect waves-light" id="btnMatchForm" type="button" onClick={()=>browserHistory.push(`/instructor/1`)}>Students
 						<i className="material-icons right">send</i>
 					</button>
-					<br/><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={() => browserHistory.push(`/instructor/1/match`)}
+
+					<button className="btn waves-effect waves-light" id="btnMatchForm" type="button" onClick={() => browserHistory.push(`/instructor/1/match`)}
 					>Match
 						<i className="material-icons right">send</i>
 					</button>
