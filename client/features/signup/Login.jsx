@@ -5,13 +5,13 @@ import '../../styles/Login.css';
 class Login extends React.Component{
 
 	constructor(props){
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {pass:''};
-  }
+		super(props);
+		this.handleChange = this.handleChange.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+		this.state = {pass:''};
+	}
 
-  handleChange(event){
+	handleChange(event){
 		this.setState({pass: event.target.value});
   }
 
