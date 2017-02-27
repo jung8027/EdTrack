@@ -105,14 +105,9 @@ const MentorTopic = React.createClass({
 
 					<button className="btn waves-effect waves-light" id="saveTopicsButton" onClick={this.onSubmit}>Save
 					<i className="material-icons right">send</i>
-					</button><br/><br/>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students
-						<i className="material-icons right">send</i>
 					</button>
-					<button className="btn waves-effect waves-light" id="btnMatch" type="button"
-						onClick={() => browserHistory.push(`/instructor/1/match`)}>Match
-						<i className="material-icons right">send</i>
-						</button>
+					<br/>
+					<br/>
 					</div>
 				</div>
 				<div id="lastTwoBntDiv">
@@ -120,7 +115,7 @@ const MentorTopic = React.createClass({
 						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students<i className="material-icons right">send</i>
 						</button>
 						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button"
-							onClick={()=>browserHistory.push(`/match`)}>Match
+							onClick={()=>browserHistory.push(`/instructor/1/match`)}>Match
 							<i className="material-icons right">send</i>
 						</button>
 					</center>
