@@ -26,19 +26,18 @@ class Login extends React.Component{
 			<div>
 				<div className="log">
 					<img id="edtrack-logo" src={require('../../../public/edTrack.png')} /><br/>
-					<h4 id="signup">Log in to EdTrack</h4>
-						<form >
-							<input id="email-in" type="email" placeholder="School email address"  required/>
-							<br/>
-							<input id="password-in" type="password" onChange={this.handleChange} placeholder="Create a password" required/>
-							<br/>
-							<input id="create-account" type="button" onClick={this.handleClick} value="Log In" />
-							<p id="have-account">Don't have an account?
-								<Link to="/signup">
-									<strong> Sign up</strong>
-								</Link>
-							</p>
-						</form>
+					<form >
+						<input id="email-in" type="email" placeholder="School email address"  required/>
+						<br/>
+						<input id="password-in" type="password" onChange={this.handleChange} placeholder="Create a password" required/>
+						<br/>
+						<input id="create-account" type="button" onClick={this.handleClick} value="Log In" />
+						<p id="have-account">Don't have an account?
+							<Link to="/signup">
+								<strong> Sign up</strong>
+							</Link>
+						</p>
+					</form>
 				</div>
 			</div>
 		);
