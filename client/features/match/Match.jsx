@@ -61,17 +61,20 @@ class Match extends Component{
 		this.setState({ matchConfirm: "DONE" });
 		// disabled until actual use
 
-		// let EmailList = this.state.filteredList;
+		let EmailList = this.state.filteredList;
 		// for( let i = 0; i < EmailList; i++){
-		// 	axios.post("/api/email",
-		// 			querystring.stringify({
-		// 				from: "edtrack@googlegroups.com",
-		// 				to: EmailList.mentorEmail,
-		// 				students: EmailList.students,
-		// 				teachingTopic: EmailList.teachingTopic
-		// 		})
-		// 	);
+			axios.post("/api/email",
+					querystring.stringify({
+						from: "edtrack@googlegroups.com",
+						// to: EmailList.mentorEmail,
+						to: "edtrack2017@gmail.com",
+						students: EmailList[0].students,
+						teachingTopic: EmailList[0].teachingTopic
+				})
+			);
 		// }
+
+		console.log("EmailList[0]: ",EmailList[0]);
 	}
 
 	componentWillReceiveProps(props){
