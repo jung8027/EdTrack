@@ -69,7 +69,8 @@ class Match extends Component{
 						// to: EmailList.mentorEmail,
 						to: "edtrack2017@gmail.com",
 						students: EmailList[0].students,
-						teachingTopic: EmailList[0].teachingTopic
+						teachingTopic: EmailList[0].teachingTopic,
+						mentorName: EmailList[0].mentorName,
 				})
 			);
 		// }
