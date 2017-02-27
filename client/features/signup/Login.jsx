@@ -26,7 +26,7 @@ class Login extends React.Component{
 			<div>
 				<div className="log">
 					<img id="edtrack-logo" src={require('../../../public/edTrack.png')} /><br/>
-					<h4 id="signup">Log into EdTrack</h4>
+					<h4 id="signup">Log in to EdTrack</h4>
 						<form >
 							<input id="email-in" type="email" placeholder="School email address"  required/>
 							<br/>
