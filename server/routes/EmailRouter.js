@@ -2,9 +2,6 @@ const router = require("express").Router();
 const SENDGRID_API_KEY = require('../../sendgrid.js');
 const sg = require('sendgrid')(SENDGRID_API_KEY);
 const helper = require('sendgrid').mail;
-// let email = require("../../client/public/final.html");
-// email = JSON.stringify(email);
-// console.log("EMAIL: ", email);
 
 function sendMail(req, res){
 	console.log('sendMail invoked!');

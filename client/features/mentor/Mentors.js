@@ -47,12 +47,14 @@ const Mentors = (props) => {
 			<div className="col s4" id="rightPaneStyles">
 				<div id="insides4">
 					<center style={{width: "100%"}}>
-						{props.activeRightPane == 'FORM' ?  <AddMentor /> :
-							props.activeRightPane == 'TOPICS' ?
-						<MentorTopic {...props} mentorId ={props.selectedMentorId} /> : null
-					  }
-				  </center>
-			  </div>
+						{props.activeRightPane == 'FORM'
+							?  <AddMentor />
+							:	props.activeRightPane == 'TOPICS'
+								?	<MentorTopic {...props} mentorId ={props.selectedMentorId} />
+								: null
+						}
+					</center>
+				</div>
 			</div>
 		</div>
 	);
