@@ -43,6 +43,9 @@ Install postgres app AND postico app then run both, then create a database calle
 
 In the config folder, create a file named config.json. Then, copy the contents above and paste it into the config.json file you created.
 
+Go to sendgrid.com and register for a api key.
+In root, make a file called sendgrid.js and module.export SENDGRID_API_KEY as a string.
+
 Also, change the "username", "database", and "dialect" fields in the config.json
 file. Username should be your username for the database, database should be
 "EdTrack", and dialect should be "postgres".
