@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "app for student performance tracking",
   "scripts": {
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:src",
     "open:src": "babel-node server/index.js",
     "lint": "node_modules/.bin/esw webpack.config.* client server",
     "lint:watch": "npm run lint -- --watch",
@@ -97,7 +97,7 @@
     "webpack-hot-middleware": "2.14.0"
   },
   "peerDependencies": {
-	"react": "^0.14.0 || ^15.0.0-0"
+    "react": "^0.14.0 || ^15.0.0-0"
   },
   "repository": {
     "type": "git",
