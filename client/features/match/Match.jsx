@@ -68,7 +68,7 @@ class Match extends Component{
 						from: "edtrack@googlegroups.com",
 						// to: EmailList.mentorEmail,
 						to: "edtrack2017@gmail.com",
-						students: EmailList[0].students,
+						students: EmailList[0].students.join(', '),
 						teachingTopic: EmailList[0].teachingTopic,
 						mentorName: EmailList[0].mentorName,
 				})

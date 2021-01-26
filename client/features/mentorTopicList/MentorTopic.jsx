@@ -16,16 +16,16 @@ const MentorTopic = React.createClass({
 			.then((topicData) => this.setState({
 				topics: topicData.data
 			}));
-		this.getMentor()
+		this.getMentor();
 	},
 
   componentDidUpdate: function(prevProps, prevState) {
-  	if (!this.state.mentor){
-    		return
-    	}
-    	if (this.state.mentor.id !== this.props.mentorId){
-    		this.getMentor();
-    	}
+		if (!this.state.mentor){
+				return
+		}
+		if (this.state.mentor.id !== this.props.mentorId){
+				this.getMentor();
+		}
   },
 
 	getMentor(){
@@ -41,7 +41,6 @@ const MentorTopic = React.createClass({
         (!event.target.name)
             ? this.setState({selectedTopics: selected.filter(topic => parseInt(topic) != parseInt(topicName))})
             : this.setState({selectedTopics: [...selected, parseInt(topicName)]});
-            console.log('selectedTopics1', selected)
     },
 
 	onSubmit(){
@@ -61,65 +60,62 @@ const MentorTopic = React.createClass({
 
 		return (
 			<div className="col s4">
-						{
-							(this.state.mentor)
-							?<div>
+				{
+					(this.state.mentor)
+						?	<div>
 								<h3 id="prof-Name">{this.state.mentor.name}</h3>
-							</div> :
-							<h1>Loading mentor name...</h1>
-						}
-
+							</div>
+						: <h1>Loading mentor name...</h1>
+				}
 
 				<div id="scroll2">
 					<div id="mentorTop-cont">
 						{
 							(this.state.mentor)
 								? <div>
-								<br/>
-								<h3 id="mentor-name-list"> {this.state.mentor.name}'s topics:</h3>
-								{this.state.mentor.Topics ?
-									this.state.mentor.Topics.map((topic, indx) =>
-									<p key={indx}>{topic.name}<i className="material-icons right" id="check-btn">checked</i></p>
-								)
-								:
-									<p>Loading Mentor Topics...</p>
-								}
-							</div>
+										<br/>
+										<h3 id="mentor-name-list"> {this.state.mentor.name}'s topics:</h3>
+										{
+											(this.state.mentor.Topics)
+												? this.state.mentor.Topics.map((topic, indx) =>
+														<p key={indx}>{topic.name}<i className="material-icons right" id="check-btn">checked</i></p>
+													)
+												: <p>Loading Mentor Topics...</p>
+										}
+									</div>
 								: <p>loading profile...</p>
 						}
-
 						<h3 id="pleaseAddTopics">Please add or remove topics this mentor is familiar with:</h3>
 						<div id="addMoreTopics">
 							<ul className="items" style={listStyle}>
 								{
 									(this.state.topics)
 										? this.state.topics.map((topic, indx) => (
-										<li key={indx}>
-												<input style={TopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name} onClick={this.logger}/>
-										</li>
-									))
+												<li key={indx}>
+														<input style={TopicsBtn} className="topicBtn" type="button" id={topic.id} name={topic.id} value={topic.name} onClick={this.logger}/>
+												</li>
+											))
 										: <p>loading list...</p>
 								}
-								</ul>
+							</ul>
 						</div>
-
-					<button className="btn waves-effect waves-light" id="saveTopicsButton" onClick={this.onSubmit}>Save
-					<i className="material-icons right">send</i>
-					</button>
-					<br/>
-					<br/>
+						<button className="btn waves-effect waves-light" id="saveTopicsButton" onClick={this.onSubmit}>Save
+							<i className="material-icons right">send</i>
+						</button>
 					</div>
 				</div>
+
 				<div id="lastTwoBntDiv">
 					<center>
-						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button" onClick={()=>browserHistory.push(`/instructor/1`)} >Students<i className="material-icons right">send</i>
+						<button className="btn waves-effect waves-light" id="btnMatchForm" type="button" onClick={()=>browserHistory.push(`/instructor/1`)}>Students
+							<i className="material-icons right">send</i>
 						</button>
-						<button className="btn waves-effect waves-light" id="btnMatchTopic" type="button"
-							onClick={()=>browserHistory.push(`/instructor/1/match`)}>Match
+
+						<button className="btn waves-effect waves-light" id="btnMatchForm" type="button" onClick={() => browserHistory.push(`/instructor/1/match`)}>Match
 							<i className="material-icons right">send</i>
 						</button>
 					</center>
-					</div>
+				</div>
 			</div>
 		);
 	}
